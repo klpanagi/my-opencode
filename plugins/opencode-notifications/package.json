@@ -1,0 +1,13 @@
+{
+  "name": "opencode-notifications",
+  "version": "1.0.0",
+  "description": "Desktop notifications for OpenCode events",
+  "main": "src/index.js",
+  "type": "module",
+  "keywords": ["opencode", "plugin", "notifications"],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "node-notifier": "^10.0.1"
+  }
+}
