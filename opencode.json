@@ -2,6 +2,6 @@
   "$schema": "https://opencode.ai/config.json",
   "autoupdate": "notify",
   "plugin": [
-    "/home/klpanagi/Development/oh-my-opencode"
+    "/home/klpanagi/cortex"
   ]
 }

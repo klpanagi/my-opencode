@@ -1,67 +1,34 @@
 {
   "$schema": "https://raw.githubusercontent.com/code-yeongyu/oh-my-opencode/master/assets/matrixx.schema.json",
   "agents": {
-    "morpheus": {
-      "model": "google-vertex-anthropic/claude-opus-4-6@default"
-    },
-    "merovingian": {
-      "model": "google-vertex-anthropic/claude-opus-4-6@default"
-    },
-    "operator": {
-      "model": "google-vertex/gemini-flash-latest"
-    },
-    "trinity": {
-      "model": "google-vertex/gemini-flash-latest"
-    },
-    "construct": {
-      "model": "google-vertex/gemini-flash-latest"
-    },
-    "oracle": {
-      "model": "google-vertex-anthropic/claude-opus-4-6@default"
-    },
-    "seraph": {
-      "model": "google-vertex/gemini-flash-latest"
-    },
-    "smith": {
-      "model": "google-vertex/gemini-flash-latest"
-    },
-    "architect": {
-      "model": "google-vertex/gemini-flash-latest"
-    },
-    "keymaker": {
-      "model": "google-vertex-anthropic/claude-opus-4-6@default"
-    },
-    "cipher": {
-      "model": "google-vertex-anthropic/claude-opus-4-6@default"
-    }
+    "morpheus": { "model": "google-vertex-anthropic/claude-opus-4-6@default" },
+    "merovingian": { "model": "google-vertex-anthropic/claude-opus-4-6@default" },
+    "operator": { "model": "google-vertex/gemini-flash-latest" },
+    "trinity": { "model": "google-vertex/gemini-flash-latest" },
+    "construct": { "model": "google-vertex/gemini-flash-latest" },
+    "oracle": { "model": "google-vertex-anthropic/claude-opus-4-6@default" },
+    "seraph": { "model": "google-vertex/gemini-flash-latest" },
+    "smith": { "model": "google-vertex/gemini-flash-latest" },
+    "architect": { "model": "google-vertex/gemini-flash-latest" },
+    "keymaker": { "model": "google-vertex-anthropic/claude-opus-4-6@default" },
+    "cipher": { "model": "google-vertex-anthropic/claude-opus-4-6@default" }
   },
   "categories": {
-    "visual-engineering": {
-      "model": "google-vertex/gemini-flash-latest"
-    },
-    "ultrabrain": {
-      "model": "google-vertex-anthropic/claude-opus-4-6@default"
-    },
-    "artistry": {
-      "model": "google-vertex/gemini-flash-latest"
-    },
-    "quick": {
-      "model": "google-vertex/gemini-flash-latest"
-    },
-    "unspecified-low": {
-      "model": "google-vertex/gemini-flash-latest"
-    },
-    "unspecified-high": {
-      "model": "google-vertex/gemini-flash-latest"
-    },
-    "writing": {
-      "model": "google-vertex/gemini-flash-latest"
-    },
-    "source": {
-    	"model": "google-vertex-anthropic/claude-opus-4-6@default"
-    },
-    "dsl-engineering": {
-	"model": "google-vertex-anthropic/claude-opus-4-6@default"
-    }
+    "source": { "model": "google-vertex-anthropic/claude-opus-4-6@default" },
+    "deep-jack": { "model": "google-vertex-anthropic/claude-opus-4-6@default" },
+    "matrix-bend": { "model": "google-vertex-anthropic/claude-opus-4-6@default" },
+    "red-pill": { "model": "google-vertex-anthropic/claude-opus-4-6@default" },
+    "ultrabrain": { "model": "google-vertex-anthropic/claude-opus-4-6@default" },
+    "dsl-engineering": { "model": "google-vertex-anthropic/claude-opus-4-6@default" },
+    "construct": { "model": "google-vertex-anthropic/claude-opus-4-6@default" },
+    "bullet-time": { "model": "google-vertex-anthropic/claude-opus-4-6@default" },
+    "blue-pill": { "model": "google-vertex-anthropic/claude-opus-4-6@default" },
+    "quick": { "model": "google-vertex-anthropic/claude-opus-4-6@default" },
+    "unspecified-low": { "model": "google-vertex-anthropic/claude-opus-4-6@default" },
+    "unspecified-high": { "model": "google-vertex-anthropic/claude-opus-4-6@default" },
+    "broadcast": { "model": "google-vertex-anthropic/claude-opus-4-6@default" },
+    "visual-engineering": { "model": "google-vertex-anthropic/claude-opus-4-6@default" },
+    "artistry": { "model": "google-vertex-anthropic/claude-opus-4-6@default" },
+    "writing": { "model": "google-vertex-anthropic/claude-opus-4-6@default" }
   }
 }
