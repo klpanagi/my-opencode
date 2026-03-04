@@ -1,21 +1,28 @@
 {
-  "$schema": "https://opencode.ai/config.json",
-  "autoupdate": "notify",
-  "plugin": [
-    "/home/klpanagi/cortex"
-  ],
-  "provider": {
-    "kimi-vertex": {
-      "npm": "@ai-sdk/openai-compatible",
-      "name": "Kimi K2.5 (Vertex Dedicated)",
-      "options": {
-        "baseURL": "https://[vertex-ai-endpoint-redacted]"
-      },
-      "models": {
-        "kimi-k2.5": {
-          "name": "Kimi K2.5"
-        }
-      }
-    }
-  }
+	"$schema": "https://opencode.ai/config.json",
+	"autoupdate": "notify",
+	"plugin": [
+		"/home/klpanagi/matrixx",
+		"@tarquinen/opencode-dcp",
+		"@nick-vi/opencode-type-inject",
+		"opencode-mem",
+		"envsitter-guard"
+	],
+	"instructions": [
+		"/home/klpanagi/.myopencode/plugins/opencode-shell-strategy/shell_strategy.md"
+	],
+	"provider": {
+		"kimi-vertex": {
+			"npm": "@ai-sdk/openai-compatible",
+			"name": "Kimi K2.5 (Vertex Dedicated)",
+			"options": {
+				"baseURL": "https://[vertex-ai-endpoint-redacted]"
+			},
+			"models": {
+				"kimi-k2.5": {
+					"name": "Kimi K2.5"
+				}
+			}
+		}
+	}
 }
