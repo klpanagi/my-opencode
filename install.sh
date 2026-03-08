@@ -8,7 +8,6 @@ CONFIG_DIR="${HOME}/.config/opencode"
 SYMLINK_ITEMS=(
   opencode.json
   matrixx.json
-  oh-my-opencode.json
   agents
   skills
   tools
