@@ -2,31 +2,31 @@
 	"$schema": "https://raw.githubusercontent.com/klpanagi/matrixx/dev/assets/matrixx.schema.json",
 	"agents": {
 		"morpheus": {
-			"model": "google-vertex-anthropic/claude-opus-4-6@default"
+			"model": "google-vertex-anthropic/claude-sonnet-4-6@default"
 		},
 		"oracle": {
-			"model": "google-vertex-anthropic/claude-opus-4-6@default"
+			"model": "google-vertex-anthropic/claude-sonnet-4-6@default"
 		},
 		"keymaker": {
-			"model": "google-vertex-anthropic/claude-opus-4-6@default"
+			"model": "google-vertex-anthropic/claude-sonnet-4-6@default"
 		},
 		"cipher": {
-			"model": "google-vertex-anthropic/claude-opus-4-6@default"
+			"model": "google-vertex-anthropic/claude-sonnet-4-6@default"
 		},
 		"niobe": {
-			"model": "google-vertex-anthropic/claude-opus-4-6@default"
+			"model": "google-vertex-anthropic/claude-sonnet-4-6@default"
 		},
 		"sentinel": {
-			"model": "google-vertex-anthropic/claude-opus-4-6@default"
+			"model": "google-vertex-anthropic/claude-sonnet-4-6@default"
+		},
+		"seraph": {
+			"model": "google-vertex-anthropic/claude-sonnet-4-6@default"
 		},
 		"merovingian": {
 			"model": "google-vertex/gemini-3.1-pro-preview"
 		},
 		"smith": {
 			"model": "google-vertex/gemini-3.1-pro-preview"
-		},
-		"seraph": {
-			"model": "google-vertex-anthropic/claude-sonnet-4-6@default"
 		},
 		"architect": {
 			"model": "google-vertex/gemini-3-flash-preview"
@@ -43,10 +43,10 @@
 	},
 	"categories": {
 		"source": {
-			"model": "google-vertex-anthropic/claude-opus-4-6@default"
+			"model": "google-vertex-anthropic/claude-sonnet-4-6@default"
 		},
 		"dsl-engineering": {
-			"model": "google-vertex-anthropic/claude-opus-4-6@default"
+			"model": "google-vertex-anthropic/claude-sonnet-4-6@default"
 		},
 		"deep-jack": {
 			"model": "google-vertex/gemini-3.1-pro-preview"
