@@ -6,15 +6,15 @@ CONFIG_DIR="${HOME}/.config/opencode"
 
 # Files and directories to symlink from this repo into ~/.config/opencode/
 SYMLINK_ITEMS=(
-  opencode.json
-  matrixx.json
+  opencode.jsonc
+  matrixx.jsonc
   agents
   skills
   tools
   plugins
 )
 
-# npm plugin dependencies (must match opencode.json "plugin" entries)
+# npm plugin dependencies (must match opencode.jsonc "plugin" entries)
 NPM_DEPS=(
   "@opencode-ai/plugin"
   "@tarquinen/opencode-dcp"
