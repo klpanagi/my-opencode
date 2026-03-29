@@ -3,11 +3,28 @@
 	"autoupdate": "notify",
 	"plugin": [
 		"/home/klpanagi/matrixx",
-		"@tarquinen/opencode-dcp@beta",
-		"opencode-mem",
-		"envsitter-guard"
+		"@tarquinen/opencode-dcp", // dynamic context compression
+		"opencode-mem", // personalized memory
+		"envsitter-guard", // guard reading .env
+		"@ccusage/opencode", // token cost visibility
+		"@braintrust/trace-opencode" // multi-agent observability
 	],
 	"instructions": [
 		"/home/klpanagi/.myopencode/plugins/opencode-shell-strategy/shell_strategy.md"
 	],
+	"provider": {
+		"ariadne-staging": {
+			"npm": "@ai-sdk/openai-compatible",
+			"name": "Ariadne Staging",
+			"options": {
+				"baseURL": "https://beta.ariadne.issel-portal.com/api/v1",
+				"apiKey": "{env:ARIADNE_STAGING_API_KEY}",
+			},
+			"models": {
+				"claude-haiku-4-5@20251001": {
+					"name": "Claude Haiku 4-5"
+				}
+			}
+		}
+	}
 }
