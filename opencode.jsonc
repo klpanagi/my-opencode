@@ -4,6 +4,7 @@
 	"plugin": [
 		"/home/klpanagi/matrixx",
 		"@tarquinen/opencode-dcp", // dynamic context compression
+		"@nick-vi/opencode-type-inject", // auto-inject TS types into file reads
 		"opencode-mem", // personalized memory
 		"envsitter-guard", // guard reading .env
 		"@ccusage/opencode", // token cost visibility

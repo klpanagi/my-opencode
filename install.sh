@@ -8,6 +8,7 @@ CONFIG_DIR="${HOME}/.config/opencode"
 SYMLINK_ITEMS=(
   opencode.jsonc
   matrixx.jsonc
+  dcp.jsonc
   agents
   skills
   tools
@@ -21,6 +22,8 @@ NPM_DEPS=(
   "@nick-vi/opencode-type-inject"
   "opencode-mem"
   "envsitter-guard"
+  "@ccusage/opencode"
+  "@braintrust/trace-opencode"
 )
 
 info()  { printf "  %-6s %s\n" "$1" "$2"; }
