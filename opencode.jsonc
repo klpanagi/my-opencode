@@ -2,13 +2,13 @@
 	"$schema": "https://opencode.ai/config.json",
 	"autoupdate": "notify",
 	"plugin": [
-    "/home/klpanagi/matrixx",
-    "@tarquinen/opencode-dcp",
-    "@nick-vi/opencode-type-inject",
-    "envsitter-guard",
-    "@ccusage/opencode",
-    "@slkiser/opencode-quota"
-  ],
+		"/home/klpanagi/matrixx",
+		"@tarquinen/opencode-dcp",
+		"@nick-vi/opencode-type-inject",
+		"envsitter-guard",
+		"@ccusage/opencode",
+		"@slkiser/opencode-quota"
+	],
 	// ─── PROVIDERS ─────────────────────────────────────────────────────────────
 	"provider": {
 		"ariadne-staging": {
