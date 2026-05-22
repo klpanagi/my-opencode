@@ -1,9 +1,141 @@
 {
 	"$schema": "https://raw.githubusercontent.com/klpanagi/matrixx/dev/assets/matrixx.schema.json",
-	"profile": "balanced",
+	// Use only free/zero-cost models (Kimi K2.5 Free, Grok, Gemini, GLM, MiniMax)
+	"profile": "free",
+	// ─── AGENTS ──────────────────────────────────────────────────────────────────
+	// Models are inherited from the "free" profile.
+	// Only non-model settings (temperature, thinking, fallbackChain) are specified here.
 	"agents": {
+		// ── HEAVY REASONING AGENTS → Kimi K2.5 Free ───────────────────────────────
 		"morpheus": {
-			"model": "google-vertex-anthropic/claude-sonnet-4-6@default"
+			"temperature": 0.1,
+			"thinking": {
+				"type": "enabled",
+				"budgetTokens": 32000
+			}
+		},
+		"oracle": {
+			"temperature": 0.1,
+			"thinking": {
+				"type": "enabled",
+				"budgetTokens": 32000
+			}
+		},
+		"seraph": {
+			"temperature": 0.3,
+			"thinking": {
+				"type": "enabled",
+				"budgetTokens": 32000
+			}
+		},
+		"keymaker": {
+			"temperature": 0.1,
+			"thinking": {
+				"type": "enabled",
+				"budgetTokens": 16000
+			}
+		},
+		"cipher": {
+			"temperature": 0.1
+		},
+		"niobe": {
+			"temperature": 0.15
+		},
+		"sentinel": {
+			"temperature": 0.1,
+			"thinking": {
+				"type": "enabled",
+				"budgetTokens": 32000
+			}
+		},
+		// ── MEDIUM AGENTS → Gemini 3.1 Pro ────────────────────────────────────────
+		"smith": {
+			"temperature": 0.1,
+			"thinking": {
+				"type": "enabled",
+				"budgetTokens": 16000
+			}
+		},
+		"merovingian": {
+			"temperature": 0.1
+		},
+		// ── LIGHTWEIGHT AGENTS → MiniMax Free / Grok / GLM ───────────────────────
+		"architect": {
+			"temperature": 0.1
+		},
+		"mouse": {
+			"temperature": 0.1,
+			"thinking": {
+				"type": "enabled",
+				"budgetTokens": 16000
+			}
+		},
+		"zion": {
+			"temperature": 0.1
+		},
+		"operator": {
+			"temperature": 0.1
+		},
+		"trinity": {
+			"temperature": 0.1
+		},
+		"construct": {
+			"temperature": 0.1
+		},
+		// ── OPENCODE BUILT-INS ────────────────────────────────────────────────────
+		// Free models for build & plan to match the "free" profile
+		"build": {
+			"model": "opencode/kimi-k2.5-free"
+		},
+		"plan": {
+			"model": "opencode/kimi-k2.5-free"
 		}
+	},
+	// ─── CATEGORIES ──────────────────────────────────────────────────────────────
+	// Models are inherited from the "free" profile.
+	// Only non-model settings (temperature, fallback_models) are specified here.
+	"categories": {
+		"source": {
+			"temperature": 0.1
+		},
+		"deep-jack": {
+			"temperature": 0.1
+		},
+		"red-pill": {
+			"temperature": 0.1
+		},
+		"construct": {
+			"temperature": 0.1
+		},
+		"matrix-bend": {
+			"temperature": 0.1
+		},
+		"blue-pill": {
+			"temperature": 0.1
+		},
+		"broadcast": {
+			"temperature": 0.1
+		},
+		"bullet-time": {
+			"temperature": 0.1
+		}
+	},
+	// ─── RUNTIME FALLBACK ────────────────────────────────────────────────────────
+	"runtime_fallback": {
+		"enabled": true,
+		"retry_on_errors": [
+			429,
+			500,
+			502,
+			503,
+			504
+		],
+		"max_fallback_attempts": 3,
+		"cooldown_seconds": 30,
+		"notify_on_fallback": true
+	},
+	// ─── BACKGROUND TASK CONCURRENCY ─────────────────────────────────────────────
+	"background_task": {
+		"defaultConcurrency": 5
 	}
 }
