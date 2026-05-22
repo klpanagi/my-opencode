@@ -7,7 +7,6 @@
 <p align="center">
   <a href="#-architecture"><img src="https://img.shields.io/badge/view-architecture-8A2BE2?style=flat-square" alt="Architecture"></a>
   <a href="#-matrixx-agent-profile"><img src="https://img.shields.io/badge/matrixx-v3-00E5FF?style=flat-square" alt="Matrixx"></a>
-  <a href="#-kimi-k25--vertex-ai"><img src="https://img.shields.io/badge/Kimi_K2.5-Vertex_AI-4285F4?style=flat-square" alt="Kimi Vertex"></a>
   <a href="#-plugins"><img src="https://img.shields.io/badge/plugins-4-22C55E?style=flat-square" alt="Plugins"></a>
   <a href="https://opencode.ai"><img src="https://img.shields.io/badge/powered_by-OpenCode-FF6B35?style=flat-square" alt="OpenCode"></a>
 </p>
@@ -42,38 +41,58 @@ This repository holds the **central configuration** for your OpenCode AI agent e
 ## 🏛️ Architecture
 
 ```
-┌───────────────────────────────────────────────────────┐
-│                     OpenCode Runtime                    │
-├───────────────────────────────────────────────────────┤
-│  ┌─────────────────┐   ┌──────────────────────────┐   │
-│  │  Ariadne Staging │   │  Kimi K2.5 (Vertex AI)  │   │
-│  │  ┌────────────┐  │   │  ┌───────────────────┐  │   │
-│  │  │ Qwen 3.5   │  │   │  │ Kimi-K2.5         │  │   │
-│  │  │ 35B-A3B    │  │   │  │ 8× NVIDIA B200    │  │   │
-│  │  ├────────────┤  │   │  │ 65536 ctx         │  │   │
-│  │  │ Claude     │  │   │  └───────────────────┘  │   │
-│  │  │ Haiku 4-5  │  │   │                         │   │
-│  │  └────────────┘  │   │                         │   │
-│  └─────────────────┘   └──────────────────────────┘   │
-│  ┌────────────────────────────────────────────────┐   │
-│  │              Matrixx Agent Layer                │   │
-│  │  morpheus · oracle · seraph · cipher · niobe   │   │
-│  │  sentinel · smith · merovingian · operator      │   │
-│  │  trinity · construct · zion · mouse · keymaker  │   │
-│  └────────────────────────────────────────────────┘   │
-│  ┌────────────────────────────────────────────────┐   │
-│  │                  Plugin Layer                   │   │
-│  │  DCP · Type Inject · EnvSitter · CCUsage       │   │
-│  │  Braintrust · Shell Strategy · Notifications    │   │
-│  └────────────────────────────────────────────────┘   │
-└───────────────────────────────────────────────────────┘
+┌────────────────────────────────────────────────────┐
+│                    OpenCode Runtime                  │
+├────────────────────────────────────────────────────┤
+│  ┌──────────────────────────────────────────────┐  │
+│  │              Ariadne Staging                 │  │
+│  │  ┌────────────────────┐ ┌─────────────────┐  │  │
+│  │  │  Qwen 3.5 35B-A3B │ │ Claude Haiku 4-5│  │  │
+│  │  └────────────────────┘ └─────────────────┘  │  │
+│  └──────────────────────────────────────────────┘  │
+│  ┌──────────────────────────────────────────────┐  │
+│  │              Matrixx Agent Layer              │  │
+│  │  morpheus · oracle · seraph · cipher · niobe │  │
+│  │  sentinel · smith · merovingian · operator   │  │
+│  │  trinity · construct · zion · mouse · keymaker│  │
+│  └──────────────────────────────────────────────┘  │
+│  ┌──────────────────────────────────────────────┐  │
+│  │                Plugin Layer                   │  │
+│  │  DCP · Type Inject · EnvSitter · CCUsage     │  │
+│  │  Braintrust · Shell Strategy · Notifications  │  │
+│  └──────────────────────────────────────────────┘  │
+└────────────────────────────────────────────────────┘
 ```
 
 ---
 
 ## 🧠 Matrixx Agent Profile
 
-The [`matrixx.jsonc`](./matrixx.jsonc) defines a **free-profile** agent fleet with tiered model assignment:
+[Matrixx](https://github.com/klpanagi/matrixx) is the agent runtime & profile system that defines **who does what** in your AI dev team. The [`matrixx.jsonc`](./matrixx.jsonc) declares an agent fleet with tiered model assignment, role-specific thinking budgets, and runtime fallback strategy.
+
+### Profiles
+
+Matrixx supports multiple built-in profiles that bundle model assignments per agent. One line switches your entire stack:
+
+| Profile | Models | Use Case |
+|---------|--------|----------|
+| `free` | Kimi K2.5 Free, Gemini 3.1 Pro, MiniMax, Grok, GLM | **Zero-cost operation** — current active profile |
+| `balanced` | Claude Sonnet 4.6, Gemini 3.1 Pro | Production-grade, moderate cost |
+| `power` | Claude Sonnet 4.6, Gemini 3.1 Pro, GPT-5 | Maximum capability, higher cost |
+
+```jsonc
+// matrixx.jsonc — switch profiles in one line
+{
+  "$schema": "https://raw.githubusercontent.com/klpanagi/matrixx/dev/assets/matrixx.schema.json",
+  "profile": "free"     // ← change to "balanced" or "power" to swap all agent models
+}
+```
+
+When a profile is active, models are **inherited automatically** — you only override non-model settings (temperature, thinking budget, fallback chain) in `matrixx.jsonc`. This keeps configs DRY: swap profiles without touching agent definitions.
+
+### Agent Fleet
+
+The **free profile** assigns agents across tiers:
 
 | Tier | Model | Agents | Thinking |
 |------|-------|--------|----------|
@@ -98,6 +117,31 @@ The [`matrixx.jsonc`](./matrixx.jsonc) defines a **free-profile** agent fleet wi
 | **Merovingian** | Code review & debugging consultation | — |
 | **Mouse** | Focused task executor | 16k |
 
+### Usage
+
+Matrixx profiles are wired into OpenCode via the `matrixx.jsonc` config. At runtime, they work through two mechanisms:
+
+**Default agent** — The `morpheus` agent is your primary orchestrator. When you chat with OpenCode, Morpheus reads your request, classifies the work, and delegates to the right specialist agent (Oracle for architecture, Cipher for DSLs, Sentinel for security, etc.).
+
+**Explicit delegation** — You (or Morpheus) can invoke any agent directly via the `task()` API:
+
+```
+task(agent="oracle", prompt="Architecture review of the auth flow...")
+task(agent="sentinel", prompt="SAST scan this codebase...")
+task(category="broadcast", prompt="Write the release notes...")
+```
+
+**Runtime fallback** — If an agent's assigned model fails (rate limit, downtime), the fallback chain kicks in automatically:
+
+| Setting | Value |
+|---------|-------|
+| Max retries | 3 |
+| Cooldown | 30s |
+| Triggers | 429, 500, 502, 503, 504 |
+| Notification | Desktop alert on fallback |
+
+**Switching profiles** — Change `"profile"` in `matrixx.jsonc` and restart OpenCode. All agents inherit their new models automatically — no per-agent edits needed.
+
 ---
 
 ## 🎛️ Dynamic Context Pruning
@@ -118,49 +162,6 @@ The [`matrixx.jsonc`](./matrixx.jsonc) defines a **free-profile** agent fleet wi
 - **Auto-dedup** — strips duplicate tool calls automatically
 - **Error purge** — prunes errored tool inputs after 4 turns
 - **No manual babysitting** — `/dcp` commands available if needed
-
----
-
-## ⚡ Kimi K2.5 + Vertex AI
-
-A dedicated Vertex AI endpoint running **Kimi K2.5** on 8× NVIDIA B200 GPUs (vLLM, 65536 tokens).
-
-### Provider Config
-
-```jsonc
-{
-  "provider": {
-    "kimi-vertex": {
-      "npm": "@ai-sdk/openai-compatible",
-      "name": "Kimi K2.5 (Vertex)",
-      "options": {
-        "baseURL": "https://[vertex-endpoint-id-redacted].us-central1-558205681231.prediction.vertexai.goog/...",
-      },
-      "models": {
-        "moonshotai/Kimi-K2.5": { "name": "Kimi K2.5" }
-      }
-    }
-  }
-}
-```
-
-### Quick Auth
-
-```bash
-gcloud auth print-access-token              # get token (expires 1h)
-```
-
-In OpenCode: `/connect` → select `kimi-vertex` → paste token. Repeat hourly.
-
-### Endpoint Specs
-
-| Field | Value |
-|-------|-------|
-| **Model** | `publishers/moonshotai/models/kimi-k2-5` |
-| **Hardware** | `a4-highgpu-8g` · 8× NVIDIA B200 |
-| **Region** | `us-central1` |
-| **Context** | 65536 tokens |
-| **Auth** | Google Cloud OAuth (hourly refresh) |
 
 ---
 
@@ -254,7 +255,6 @@ Drop in a file and it's automatically picked up — no registry edits needed.
 | 2 | **Empty dirs are intentional** — `agents/`, `skills/`, `tools/` ready for you |
 | 3 | **JSONC format** — `.jsonc` allows comments (standard JSON doesn't) |
 | 4 | **Ariadne provider** — custom OpenAI-compatible endpoint, not standard OpenAI |
-| 5 | **Vertex auth** — OAuth token expires hourly, set a cron/alias for refresh |
 
 ---
 
