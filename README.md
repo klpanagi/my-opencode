@@ -72,50 +72,48 @@ This repository holds the **central configuration** for your OpenCode AI agent e
 
 ### Profiles
 
-Matrixx supports multiple built-in profiles that bundle model assignments per agent. One line switches your entire stack:
+Matrixx ships with **5 built-in profiles** that bundle model assignments per agent. One line switches your entire stack:
 
-| Profile | Models | Use Case |
-|---------|--------|----------|
-| `free` | Kimi K2.5 Free, Gemini 3.1 Pro, MiniMax, Grok, GLM | **Zero-cost operation** — current active profile |
-| `balanced` | Claude Sonnet 4.6, Gemini 3.1 Pro | Production-grade, moderate cost |
-| `power` | Claude Sonnet 4.6, Gemini 3.1 Pro, GPT-5 | Maximum capability, higher cost |
+| Profile | Key Models | Use Case |
+|---------|-----------|----------|
+| `free` | Kimi K2.5 Free, Grok, GLM, MiniMax | **Zero-cost** — current active |
+| `budget` | Claude Sonnet 4.6, Haiku 4-5 | Low-cost, quality upgrade |
+| `economy` | Claude Sonnet 4.6, Haiku 4-5 | Balanced cost / quality |
+| `balanced` | Claude Opus 4.6, Sonnet 4.6, Haiku 4-5 | Production-grade |
+| `performance` | Claude Opus 4.6, Sonnet 4.6, Haiku 4-5 | Maximum capability |
 
 ```jsonc
-// matrixx.jsonc — switch profiles in one line
+// matrixx.jsonc — switch in one line
 {
   "$schema": "https://raw.githubusercontent.com/klpanagi/matrixx/dev/assets/matrixx.schema.json",
-  "profile": "free"     // ← change to "balanced" or "power" to swap all agent models
+  "profile": "free"  // ← "budget" | "economy" | "balanced" | "performance"
 }
 ```
 
-When a profile is active, models are **inherited automatically** — you only override non-model settings (temperature, thinking budget, fallback chain) in `matrixx.jsonc`. This keeps configs DRY: swap profiles without touching agent definitions.
+Profiles use **model inheritance** — `matrixx.jsonc` only overrides temperature, thinking budget, and fallback chains. Swap profiles without touching agent definitions.
 
 ### Agent Fleet
 
-The **free profile** assigns agents across tiers:
+The **`free` profile** assigns these models (full list from [`profiles.ts`](https://github.com/klpanagi/matrixx/blob/dev/src/config/profiles.ts)):
 
-| Tier | Model | Agents | Thinking |
-|------|-------|--------|----------|
-| 🔥 **Heavy Reasoning** | Kimi K2.5 Free | `morpheus`, `oracle`, `seraph`, `keymaker`, `sentinel` | 16–32k |
-| 🧬 **DSL & Research** | Kimi K2.5 Free | `cipher`, `niobe` | — |
-| ⚡ **Medium** | Gemini 3.1 Pro | `smith`, `merovingian` | 16k |
-| 🪶 **Lightweight** | MiniMax / Grok / GLM | `architect`, `mouse`, `zion`, `operator`, `trinity`, `construct` | — |
-| 🔧 **Built-in** | Kimi K2.5 Free | `build`, `plan` | — |
-
-### Agent Roles
-
-| Agent | Role | Thinking |
-|-------|------|----------|
-| **Morpheus** | Primary orchestrator — reads you, delegates everything | 32k |
-| **Oracle** | Architecture, hard problems, read-only consultation | 32k |
-| **Seraph** | Pre-planning — finds ambiguity before you do | 32k |
-| **Keymaker** | Key decisions, critical path analysis | 16k |
-| **Sentinel** | Security auditing — SAST, secrets, deps, OWASP | 32k |
-| **Cipher** | DSL engineering — grammars, parsers, codegen | — |
-| **Niobe** | Research lifecycle — EU proposals, papers, project mgmt | — |
-| **Smith** | Plan review — catches gaps before implementation | 16k |
-| **Merovingian** | Code review & debugging consultation | — |
-| **Mouse** | Focused task executor | 16k |
+| Agent | Model | Thinking |
+|-------|-------|----------|
+| **Morpheus** | Kimi K2.5 Free | 32k |
+| **Oracle** | Kimi K2.5 Free | 32k |
+| **Seraph** | Kimi K2.5 Free | 32k |
+| **Keymaker** | Kimi K2.5 Free | 16k |
+| **Sentinel** | Kimi K2.5 Free | 32k |
+| **Cipher** | Kimi K2.5 Free | — |
+| **Niobe** | Kimi K2.5 Free | — |
+| **Smith** | Kimi K2.5 Free | 16k |
+| **Merovingian** | Kimi K2.5 Free | — |
+| **Architect** | Kimi K2.5 Free | — |
+| **Construct** | Kimi K2.5 Free | — |
+| **Operator** | GLM 4.7 (`zai-coding-plan`) | — |
+| **Trinity** | Grok Code Fast (`xai/grok-code-fast-1`) | — |
+| **Mouse** | MiniMax M2.5 Free | 16k |
+| **Zion** | MiniMax M2.5 Free | — |
+| **Built-in** (`build`, `plan`) | Kimi K2.5 Free | — |
 
 ### Usage
 
