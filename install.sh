@@ -9,6 +9,7 @@ SYMLINK_ITEMS=(
   opencode.jsonc
   matrixx.jsonc
   dcp.jsonc
+  tui.json
   agents
   skills
   tools
