@@ -6,7 +6,6 @@
 		"@tarquinen/opencode-dcp",
 		"@nick-vi/opencode-type-inject",
 		"envsitter-guard",
-		"@ccusage/opencode",
 		"@slkiser/opencode-quota"
 	],
 	// ─── PROVIDERS ─────────────────────────────────────────────────────────────
@@ -15,7 +14,7 @@
 			"npm": "@ai-sdk/openai-compatible",
 			"name": "Ariadne Staging",
 			"options": {
-				"baseURL": "https://beta.ariadne.issel-portal.com/api/v1",
+				"baseURL": "https://ariadne.issel.ee.auth.gr/api/v1",
 				"apiKey": "{env:ARIADNE_STAGING_API_KEY}"
 			},
 			"models": {

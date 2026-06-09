@@ -1,6 +1,6 @@
 {
 	"$schema": "https://raw.githubusercontent.com/klpanagi/matrixx/dev/assets/matrixx.schema.json",
-	// Use only free/zero-cost models (Kimi K2.5 Free, Grok, Gemini, GLM, MiniMax)
+	// Use OpenCode Go subscription models (Kimi K2.6, DeepSeek V4, GLM 5.1, etc.)
 	"profile": "free",
 	// ─── AGENTS ──────────────────────────────────────────────────────────────────
 	// Models are inherited from the "free" profile.
