@@ -1,12 +1,11 @@
 {
 	"$schema": "https://raw.githubusercontent.com/klpanagi/matrixx/dev/assets/matrixx.schema.json",
-	// Use OpenCode Go subscription models (Kimi K2.6, DeepSeek V4, GLM 5.1, etc.)
-	"profile": "free",
+	"profile": "go-trio",
 	// ─── AGENTS ──────────────────────────────────────────────────────────────────
-	// Models are inherited from the "free" profile.
+	// Models are inherited from the profile.
 	// Only non-model settings (temperature, thinking, fallbackChain) are specified here.
 	"agents": {
-		// ── HEAVY REASONING AGENTS → Kimi K2.5 Free ───────────────────────────────
+		// ── HEAVY REASONING AGENTS ───────────────────────────────
 		"morpheus": {
 			"temperature": 0.1,
 			"thinking": {
@@ -38,9 +37,6 @@
 		"cipher": {
 			"temperature": 0.1
 		},
-		"niobe": {
-			"temperature": 0.15
-		},
 		"sentinel": {
 			"temperature": 0.1,
 			"thinking": {
@@ -48,7 +44,7 @@
 				"budgetTokens": 32000
 			}
 		},
-		// ── MEDIUM AGENTS → Gemini 3.1 Pro ────────────────────────────────────────
+		// ── MEDIUM AGENTS ────────────────────────────────────────
 		"smith": {
 			"temperature": 0.1,
 			"thinking": {
@@ -59,7 +55,7 @@
 		"merovingian": {
 			"temperature": 0.1
 		},
-		// ── LIGHTWEIGHT AGENTS → MiniMax Free / Grok / GLM ───────────────────────
+		// ── LIGHTWEIGHT AGENTS ───────────────────────
 		"architect": {
 			"temperature": 0.1
 		},
@@ -70,9 +66,6 @@
 				"budgetTokens": 16000
 			}
 		},
-		"zion": {
-			"temperature": 0.1
-		},
 		"operator": {
 			"temperature": 0.1
 		},
@@ -81,14 +74,6 @@
 		},
 		"construct": {
 			"temperature": 0.1
-		},
-		// ── OPENCODE BUILT-INS ────────────────────────────────────────────────────
-		// Free models for build & plan to match the "free" profile
-		"build": {
-			"model": "opencode/kimi-k2.5-free"
-		},
-		"plan": {
-			"model": "opencode/kimi-k2.5-free"
 		}
 	},
 	// ─── CATEGORIES ──────────────────────────────────────────────────────────────
