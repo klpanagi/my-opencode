@@ -27,13 +27,13 @@
 		"permission": "allow",
 		"showCompression": false,
 		"summaryBuffer": true,
-		"maxContextLimit": 75000,
-		"minContextLimit": 40000,
-		"nudgeFrequency": 3,
+		"maxContextLimit": 100000,
+		"minContextLimit": 50000,
+		"nudgeFrequency": 5,
 		"iterationNudgeThreshold": 15,
 		"nudgeForce": "soft",
-		"protectedTools": [],
-		"protectUserMessages": false
+		"protectedTools": ["task", "todowrite", "todoread"],
+		"protectUserMessages": true
 	},
 	"strategies": {
 		"deduplication": {
@@ -42,8 +42,8 @@
 		},
 		"purgeErrors": {
 			"enabled": true,
-			"turns": 2,
-			"protectedTools": []
+		"turns": 3,
+		"protectedTools": ["task", "todowrite", "todoread"]
 		}
 	}
 	/* ═══════════════════════════════════════════════════════════════════════════════
