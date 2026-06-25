@@ -1,11 +1,10 @@
 {
 	"$schema": "https://raw.githubusercontent.com/klpanagi/matrixx/dev/assets/matrixx.schema.json",
-	"profile": "go-trio",
+	"profile": "go-duo",
 	// ─── AGENTS ──────────────────────────────────────────────────────────────────
-	// Models are inherited from the profile.
-	// Only non-model settings (temperature, thinking, fallbackChain) are specified here.
+	// Models inherited from go-trio profile (minimax-m3 / mimo-v2.5 / deepseek-v4-flash)
 	"agents": {
-		// ── HEAVY REASONING AGENTS ───────────────────────────────
+		// ── TIER 1: HEAVY REASONING ──────────────────────────────
 		"morpheus": {
 			"temperature": 0.1,
 			"thinking": {
@@ -34,9 +33,6 @@
 				"budgetTokens": 16000
 			}
 		},
-		"cipher": {
-			"temperature": 0.1
-		},
 		"sentinel": {
 			"temperature": 0.1,
 			"thinking": {
@@ -44,7 +40,14 @@
 				"budgetTokens": 32000
 			}
 		},
-		// ── MEDIUM AGENTS ────────────────────────────────────────
+		"cipher": {
+			"temperature": 0.1,
+			"thinking": {
+				"type": "enabled",
+				"budgetTokens": 32000
+			}
+		},
+		// ── TIER 2: MEDIUM ──────────────────────────────────────
 		"smith": {
 			"temperature": 0.1,
 			"thinking": {
@@ -53,11 +56,19 @@
 			}
 		},
 		"merovingian": {
-			"temperature": 0.1
+			"temperature": 0.1,
+			"thinking": {
+				"type": "enabled",
+				"budgetTokens": 16000
+			}
 		},
-		// ── LIGHTWEIGHT AGENTS ───────────────────────
+		// ── TIER 3: LIGHTWEIGHT ────────────────────────────────
 		"architect": {
-			"temperature": 0.1
+			"temperature": 0.1,
+			"thinking": {
+				"type": "enabled",
+				"budgetTokens": 8000
+			}
 		},
 		"mouse": {
 			"temperature": 0.1,
@@ -72,37 +83,95 @@
 		"trinity": {
 			"temperature": 0.1
 		},
+		"sati": {
+			"temperature": 0.1,
+			"thinking": {
+				"type": "enabled",
+				"budgetTokens": 16000
+			},
+			"prompt_append": "Use React/Next.js patterns with Tailwind CSS. Prefer Server Components, server actions for mutations. WCAG AA and Core Web Vitals are requirements."
+		},
 		"construct": {
 			"temperature": 0.1
-		}
+		},
 	},
 	// ─── CATEGORIES ──────────────────────────────────────────────────────────────
-	// Models are inherited from the "free" profile.
-	// Only non-model settings (temperature, fallback_models) are specified here.
+	// Models inherited from go-trio profile. Added descriptions + fallback_models.
 	"categories": {
 		"source": {
-			"temperature": 0.1
+			"temperature": 0.1,
+			"description": "Deep logical reasoning and complex architecture decisions",
+			"fallback_models": [
+				"mimo-v2.5"
+			]
 		},
 		"deep-jack": {
-			"temperature": 0.1
+			"temperature": 0.1,
+			"description": "Goal-oriented autonomous problem-solving with thorough research",
+			"fallback_models": [
+				"mimo-v2.5",
+				"deepseek-v4-flash"
+			]
 		},
 		"red-pill": {
-			"temperature": 0.1
+			"temperature": 0.1,
+			"description": "Complex high-effort tasks that don't fit other categories"
 		},
 		"construct": {
-			"temperature": 0.1
+			"temperature": 0.1,
+			"description": "UI/UX, design, styling, animation, frontend architecture"
 		},
 		"matrix-bend": {
-			"temperature": 0.1
+			"temperature": 0.1,
+			"model": "mimo-v2.5",
+			"description": "Creative problem-solving beyond standard patterns"
 		},
 		"blue-pill": {
-			"temperature": 0.1
+			"temperature": 0.1,
+			"description": "Simple low-effort tasks that don't fit other categories"
 		},
 		"broadcast": {
-			"temperature": 0.1
+			"temperature": 0.1,
+			"description": "Documentation, prose, technical writing"
 		},
 		"bullet-time": {
-			"temperature": 0.1
+			"temperature": 0.1,
+			"description": "Trivial single-file changes, typo fixes, simple modifications"
+		}
+	},
+	// ─── MORPHEUS AGENT ──────────────────────────────────────────────────────────
+	"morpheus_agent": {
+		"disabled": false,
+		"default_builder_enabled": false,
+		"planner_enabled": true,
+		"replace_plan": true
+	},
+	// ─── SECURITY ────────────────────────────────────────────────────────────────
+	"security": {
+		"secret_scanning": {
+			"enabled": true,
+			"block_on_detection": true
+		},
+		"env_file_guard": {
+			"enabled": true,
+			"allowed_paths": [
+				".env.example"
+			]
+		},
+		"dependency_audit": {
+			"enabled": true,
+			"on_package_change": true
+		}
+	},
+	// ─── BACKGROUND TASKS ────────────────────────────────────────────────────────
+	"background_task": {
+		"defaultConcurrency": 7,
+		"staleTimeoutMs": 180000,
+		"messageStalenessTimeoutMs": 600000,
+		"circuitBreaker": {
+			"enabled": true,
+			"maxToolCalls": 50,
+			"consecutiveThreshold": 10
 		}
 	},
 	// ─── RUNTIME FALLBACK ────────────────────────────────────────────────────────
@@ -119,8 +188,29 @@
 		"cooldown_seconds": 30,
 		"notify_on_fallback": true
 	},
-	// ─── BACKGROUND TASK CONCURRENCY ─────────────────────────────────────────────
-	"background_task": {
-		"defaultConcurrency": 5
+	// ─── TMUX ────────────────────────────────────────────────────────────────────
+	// Visual multi-agent monitoring: spawns subagent panes when inside a tmux session
+	"tmux": {
+		"enabled": true,
+		"layout": "main-vertical",
+		"main_pane_size": 60,
+		"main_pane_min_width": 120,
+		"agent_pane_min_width": 40
+	},
+	// ─── EXPERIMENTAL ────────────────────────────────────────────────────────────
+	"experimental": {
+		"hashline_edit": true,
+		"auto_resume": true,
+		"preemptive_compaction": true
+	},
+	// ─── DISABLED HOOKS ──────────────────────────────────────────────────────────
+	// Remove noisy reminders that clutter every tool output
+	"disabled_hooks": [
+		"agent-usage-reminder",
+		"category-skill-reminder"
+	],
+	// ─── SKILLS ──────────────────────────────────────────────────────────────────
+	"skills": {
+		"disable": []
 	}
 }
