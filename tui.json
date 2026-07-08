@@ -44,5 +44,8 @@
 		"messages_page_down": "pagedown,ctrl+alt+f",
 		"messages_first": "ctrl+g,home",
 		"messages_last": "ctrl+alt+g,end"
-	}
+  },
+  "plugin": [
+    "@tarquinen/opencode-dcp@3.1.14"
+  ]
 }

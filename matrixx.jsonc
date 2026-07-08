@@ -1,9 +1,34 @@
 {
 	"$schema": "https://raw.githubusercontent.com/klpanagi/matrixx/dev/assets/matrixx.schema.json",
-	"profile": "go-trio",
+	// ─── PROFILE ─────────────────────────────────────────────────────────────────
+	// Built-in profiles: free | budget | economy | balanced | performance | go |
+	//   xiaomi-ultimate | go-ultimate | go-trio | go-duo
+	// Each profile sets model/variant for every agent + category.
+	// Anything you set in `agents.{name}` overrides the profile value.
+	"profile": "go-duo",
+	// ─── DISABLE FEATURES ────────────────────────────────────────────────────────
+	// Disable specific MCPs, agents, skills, hooks, commands, or tools by name.
+	// Useful to reduce context weight or block unwanted features.
+	// "disabled_mcps": ["websearch", "context7"],
+	// "disabled_agents": ["construct", "sentinel"],
+	// "disabled_skills": ["dsl-core", "dsl-grammar"],
+	// "disabled_hooks": ["matrix-loop", "architect"],
+	// "disabled_commands": ["remove-deadcode"],
+	// "disabled_tools": ["consensus", "google_search"],
 	// ─── AGENTS ──────────────────────────────────────────────────────────────────
-	// Models are inherited from the profile.
-	// Only non-model settings (temperature, thinking, fallbackChain) are specified here.
+	// Override model, variant, temperature, thinking, fallback chain, permissions
+	// and other agent-level settings for any of 14 built-in agents.
+	//
+	// Available agents: morpheus, oracle, seraph, architect, merovingian, smith,
+	//   cipher, sentinel, sati, keymaker, mouse, trinity, construct, operator
+	//
+	// Available override fields:
+	//   model, variant, category, skills, temperature, top_p, prompt, prompt_append,
+	//   tools, disable, description, mode, color, permission, maxTokens, thinking,
+	//   reasoningEffort, textVerbosity, providerOptions, fallbackChain
+	//
+	// permission sub-fields:
+	//   edit, bash, webfetch, task, doom_loop, external_directory
 	"agents": {
 		// ── HEAVY REASONING AGENTS ───────────────────────────────
 		"morpheus": {
@@ -55,7 +80,7 @@
 		"merovingian": {
 			"temperature": 0.1
 		},
-		// ── LIGHTWEIGHT AGENTS ───────────────────────
+		// ── LIGHTWEIGHT AGENTS ───────────────────────────────────
 		"architect": {
 			"temperature": 0.1
 		},
@@ -74,38 +99,48 @@
 		},
 		"construct": {
 			"temperature": 0.1
+		},
+		"sati": {
+			// Frontend specialist — React/Next.js, Svelte/SvelteKit, accessibility
+			"temperature": 0.1
 		}
 	},
 	// ─── CATEGORIES ──────────────────────────────────────────────────────────────
-	// Models are inherited from the "free" profile.
-	// Only non-model settings (temperature, fallback_models) are specified here.
+	// task() categories route work to a model optimized for the task domain.
+	// Fields: description, model, variant, temperature, top_p, maxTokens, thinking,
+	//   reasoningEffort, textVerbosity, tools, prompt_append, is_unstable_agent
+	//
+	// Categories: source, deep-jack, red-pill, matrix-bend, construct, blue-pill,
+	//   broadcast, bullet-time
 	"categories": {
 		"source": {
 			"temperature": 0.1
-		},
+		}, // Logic-heavy code
 		"deep-jack": {
 			"temperature": 0.1
-		},
+		}, // Autonomous research
 		"red-pill": {
 			"temperature": 0.1
-		},
+		}, // High-effort general
 		"construct": {
 			"temperature": 0.1
-		},
+		}, // Frontend/UI
 		"matrix-bend": {
 			"temperature": 0.1
-		},
+		}, // Creative/unconventional
 		"blue-pill": {
 			"temperature": 0.1
-		},
+		}, // Low-effort general
 		"broadcast": {
 			"temperature": 0.1
-		},
+		}, // Documentation/prose
 		"bullet-time": {
 			"temperature": 0.1
-		}
+		} // Trivial one-shot
 	},
 	// ─── RUNTIME FALLBACK ────────────────────────────────────────────────────────
+	// When an API call fails (rate limit, server error), auto-retry with fallback
+	// model from the agent's fallback chain.
 	"runtime_fallback": {
 		"enabled": true,
 		"retry_on_errors": [
@@ -117,10 +152,159 @@
 		],
 		"max_fallback_attempts": 3,
 		"cooldown_seconds": 30,
+		"timeout_seconds": 30,
 		"notify_on_fallback": true
 	},
 	// ─── BACKGROUND TASK CONCURRENCY ─────────────────────────────────────────────
+	// Controls how many sub-agent tasks can run in parallel.
+	// You can also set per-provider or per-model concurrency limits.
 	"background_task": {
 		"defaultConcurrency": 5
-	}
+		// "providerConcurrency": { "google": 3, "ariadne-staging": 1 },
+		// "modelConcurrency": { "deepseek-v4-flash": 6 },
+		// "staleTimeoutMs": 300000,
+		// "messageStalenessTimeoutMs": 60000,
+		// "circuitBreaker": { "failureThreshold": 5, "resetTimeoutMs": 30000 }
+	},
+	// ─── SECURITY ────────────────────────────────────────────────────────────────
+	// Built-in security scanning features. All are opt-in (disabled by default).
+	"security": {
+		// Secret scanning via gitleaks — runs on file writes and commits
+		// "secret_scanning": {
+		// 	"enabled": true,
+		// 	"tool": "gitleaks",
+		// 	"block_on_detection": false,
+		// 	"allowlist_paths": [".env.example"]
+		// },
+		// Guard .env files from being read/shown
+		// "env_file_guard": {
+		// 	"enabled": true,
+		// 	"allowed_paths": [".env.example"]
+		// },
+		// Dependency audit (runs on package.json changes)
+		// "dependency_audit": {
+		// 	"enabled": true,
+		// 	"on_package_change": true
+		// }
+	},
+	// ─── ASSEMBLY ───────────────────────────────────────────────────────────────
+	// Multi-model voting on critical decisions. Spawns N voters from different
+	// providers and synthesizes their outputs.
+	"assembly": {
+		"enabled": true,
+		"providers": [
+			{
+				"providerID": "opencode-go",
+				"modelID": "mimo-v2.5"
+			},
+			{
+				"providerID": "opencode-go",
+				"modelID": "deepseek-v4-flash"
+			}
+		],
+		"default_voters": 3,
+		"default_rounds": 2,
+		"timeout_ms": 60000
+	},
+	// ─── TMUX ────────────────────────────────────────────────────────────────────
+	// Terminal multiplexer integration for interactive sessions.
+	// "tmux": {
+	// 	"enabled": true,
+	// 	"layout": "main-vertical",
+	// 	"main_pane_size": "60%",
+	// 	"main_pane_min_width": 80,
+	// 	"agent_pane_min_width": 40
+	// },
+	// ─── MATRIX LOOP ─────────────────────────────────────────────────────────────
+	// Self-referential development loop: plan → code → test → review → repeat.
+	// "matrix_loop": {
+	// 	"enabled": true,
+	// 	"default_max_iterations": 5,
+	// 	"state_dir": ".matrixx/matrix-loop"
+	// },
+	// ─── WEBSEARCH ───────────────────────────────────────────────────────────────
+	// Web search provider for research.
+	// "websearch": {
+	// 	"provider": "exa"        // "exa" | "tavily"
+	// },
+	// ─── BROWSER AUTOMATION ──────────────────────────────────────────────────────
+	// Engine for browser-related tasks (playwright, screenshots, scraping).
+	// "browser_automation_engine": {
+	// 	"provider": "playwright"  // "playwright" | "agent-browser" | "dev-browser" | "playwright-cli"
+	// },
+	// ─── MORPHEUS AGENT ──────────────────────────────────────────────────────────
+	// Controls the morpheus agent orchestration behavior.
+	"morpheus_agent": {
+		// "disabled": false,
+		// "default_builder_enabled": true,   // adds OpenCode-Builder agent
+		// "planner_enabled": true,           // adds Oracle-as-planner mode
+		// "replace_plan": false
+	},
+	// ─── SKILLS ──────────────────────────────────────────────────────────────────
+	// Load skills from external sources or define inline.
+	// "skills": {
+	// 	"sources": [
+	// 		{ "type": "github", "value": "owner/repo", "skills": ["skill-name"] }
+	// 	],
+	// 	"enable": [],
+	// 	"disable": []
+	// },
+	// ─── CLAUDE CODE COMPAT ──────────────────────────────────────────────────────
+	// Bridge settings for Claude Code config files (.claude/, ~/.claude/).
+	"claude_code": {
+		// "mcp": true,        // import .mcp.json
+		// "commands": true,   // import .claude/commands/
+		// "skills": true,     // import .claude/skills/
+		// "agents": true,     // import .claude/agents/
+		// "plugins": true,    // import Claude Code plugins
+		// "plugins_override": ["opencode-mem"]
+	},
+	// ─── EXPERIMENTAL ────────────────────────────────────────────────────────────
+	// Experimental/advanced features.
+	"experimental": {
+		"hashline_edit": true
+		// "auto_resume": true,
+		// "preemptive_compaction": true,
+		// "truncate_all_tool_outputs": false,
+		// "aggressive_truncation": false,
+		// "task_system": "v2",
+		// "plugin_load_timeout_ms": 10000,
+		// "safe_hook_creation": true
+	},
+	// ─── NOTIFICATIONS ───────────────────────────────────────────────────────────
+	// OS-level notifications for background task completion, fallback, etc.
+	// "notification": {
+	// 	"force_enable": true
+	// },
+	// ─── TDD ENFORCER ────────────────────────────────────────────────────────────
+	// Enforces test-before-code discipline.
+	// "tdd_enforcer": {
+	// 	"enabled": true
+	// },
+	// ─── COMMENT CHECKER ─────────────────────────────────────────────────────────
+	// Detects/prevents AI slop comments in generated code.
+	// "comment_checker": {
+	// 	"custom_prompt": ""
+	// },
+	// ─── BABYSITTING ─────────────────────────────────────────────────────────────
+	// Timeout for unstable/unresponsive agent detection.
+	// "babysitting": {
+	// 	"timeout_ms": 120000
+	// },
+	// ─── AUTO UPDATE ─────────────────────────────────────────────────────────────
+	// "auto_update": "notify",    // "notify" | "auto" | "off"
+	// ─── MORPHEUS TASK SYSTEM ────────────────────────────────────────────────────
+	// "morpheus": {
+	// 	"tasks": {
+	// 		"enabled": true,
+	// 		"storage_path": ".matrixx/tasks",
+	// 		"claude_code_compat": true
+	// 	}
+	// },
+	// ─── SELF CONFIG ─────────────────────────────────────────────────────────────
+	// Let the assistant modify its own config when asked.
+	// "matrixx_self_config": {
+	// 	"enabled": true,
+	// 	"proactive": false    // only act when asked
+	// }
 }
