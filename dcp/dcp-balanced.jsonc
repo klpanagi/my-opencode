@@ -1,0 +1,21 @@
+{
+  // Balanced — recommended default, moderate context windows
+  "pruneNotification": "minimal",
+  "compress": {
+    "maxContextLimit": "75%",
+    "minContextLimit": "40%",
+    "nudgeFrequency": 3
+  },
+  "turnProtection": {
+    "enabled": true,
+    "turns": 2
+  },
+  "experimental": {
+    "allowSubAgents": true
+  },
+  "strategies": {
+    "purgeErrors": {
+      "turns": 2
+    }
+  }
+}

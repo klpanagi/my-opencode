@@ -1,0 +1,21 @@
+{
+  // Performance — quality-focused, wider context windows
+  "pruneNotification": "minimal",
+  "compress": {
+    "maxContextLimit": "80%",
+    "minContextLimit": "40%",
+    "nudgeFrequency": 4
+  },
+  "turnProtection": {
+    "enabled": true,
+    "turns": 3
+  },
+  "experimental": {
+    "allowSubAgents": true
+  },
+  "strategies": {
+    "purgeErrors": {
+      "turns": 2
+    }
+  }
+}

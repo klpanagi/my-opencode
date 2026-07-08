@@ -1,0 +1,22 @@
+{
+  // Ultimate — maximum quality, widest context windows, full protection
+  "pruneNotification": "detailed",
+  "compress": {
+    "maxContextLimit": "85%",
+    "minContextLimit": "50%",
+    "nudgeFrequency": 5,
+    "protectTags": true
+  },
+  "turnProtection": {
+    "enabled": true,
+    "turns": 5
+  },
+  "experimental": {
+    "allowSubAgents": true
+  },
+  "strategies": {
+    "purgeErrors": {
+      "turns": 4
+    }
+  }
+}

@@ -1,0 +1,21 @@
+{
+  // Economy — aggressive cost savings, shortest context windows
+  "pruneNotification": "off",
+  "compress": {
+    "maxContextLimit": "60%",
+    "minContextLimit": "30%",
+    "nudgeFrequency": 2,
+    "nudgeForce": "strong"
+  },
+  "turnProtection": {
+    "enabled": false
+  },
+  "experimental": {
+    "allowSubAgents": false
+  },
+  "strategies": {
+    "purgeErrors": {
+      "turns": 1
+    }
+  }
+}
