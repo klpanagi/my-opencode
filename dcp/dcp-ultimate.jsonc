@@ -3,8 +3,10 @@
   "pruneNotification": "detailed",
   "compress": {
     "maxContextLimit": "85%",
-    "minContextLimit": "50%",
+    "minContextLimit": "40%",
     "nudgeFrequency": 5,
+    "nudgeForce": "strong",
+    "iterationNudgeThreshold": 15,
     "protectTags": true
   },
   "turnProtection": {

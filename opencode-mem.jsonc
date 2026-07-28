@@ -1,0 +1,31 @@
+{
+	"storagePath": "~/.opencode-mem/data",
+	"userEmailOverride": "klpanagi@gmail.com",
+	"userNameOverride": "klpanagi",
+	"embeddingModel": "Xenova/nomic-embed-text-v1",
+	"memory": {
+		"defaultScope": "project",
+	},
+	"webServerEnabled": true,
+	"webServerPort": 4747,
+	"autoCaptureEnabled": true,
+	"autoCaptureLanguage": "auto",
+	"opencodeProvider": "opencode",
+	"opencodeModel": "deepseek-v4-flash-free",
+	"showAutoCaptureToasts": true,
+	"showUserProfileToasts": true,
+	"showErrorToasts": true,
+	"userProfileAnalysisInterval": 10,
+	"maxMemories": 10,
+	"compaction": {
+		"enabled": true,
+		"memoryLimit": 10,
+	},
+	"chatMessage": {
+		"enabled": true,
+		"maxMemories": 3,
+		"excludeCurrentSession": true,
+		"maxAgeDays": null,
+		"injectOn": "first",
+	},
+}

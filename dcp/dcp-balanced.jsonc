@@ -1,10 +1,12 @@
 {
-  // Balanced — recommended default, moderate context windows
+  // Balanced — recommended default, moderate aggression
   "pruneNotification": "minimal",
   "compress": {
-    "maxContextLimit": "75%",
-    "minContextLimit": "40%",
-    "nudgeFrequency": 3
+    "maxContextLimit": "60%",
+    "minContextLimit": "30%",
+    "nudgeFrequency": 3,
+    "nudgeForce": "strong",
+    "iterationNudgeThreshold": 10
   },
   "turnProtection": {
     "enabled": true,

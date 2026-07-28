@@ -1,11 +1,12 @@
 {
-  // Economy — aggressive cost savings, shortest context windows
+  // Economy — most aggressive, earliest and most frequent nudges
   "pruneNotification": "off",
   "compress": {
-    "maxContextLimit": "60%",
-    "minContextLimit": "30%",
+    "maxContextLimit": "30%",
+    "minContextLimit": "20%",
     "nudgeFrequency": 2,
-    "nudgeForce": "strong"
+    "nudgeForce": "strong",
+    "iterationNudgeThreshold": 7
   },
   "turnProtection": {
     "enabled": false

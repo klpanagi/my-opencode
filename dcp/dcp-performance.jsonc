@@ -1,10 +1,12 @@
 {
-  // Performance — quality-focused, wider context windows
+  // Performance — quality-focused, moderate context windows
   "pruneNotification": "minimal",
   "compress": {
     "maxContextLimit": "80%",
-    "minContextLimit": "40%",
-    "nudgeFrequency": 4
+    "minContextLimit": "35%",
+    "nudgeFrequency": 4,
+    "nudgeForce": "strong",
+    "iterationNudgeThreshold": 12
   },
   "turnProtection": {
     "enabled": true,

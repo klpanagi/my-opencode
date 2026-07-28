@@ -8,10 +8,10 @@
   "compress": {
     "mode": "range",
     "permission": "allow",
-    "showCompression": false,
+    "showCompression": true,
     "summaryBuffer": true,
-    "nudgeForce": "soft",
-    "iterationNudgeThreshold": 15,
+    "nudgeForce": "strong",
+    "iterationNudgeThreshold": 5,
     "protectedTools": [],
     "protectUserMessages": false
   },

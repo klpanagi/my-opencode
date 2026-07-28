@@ -7,14 +7,14 @@
   "compress": {
     "mode": "range",
     "permission": "allow",
-    "showCompression": false,
+    "showCompression": true,
     "summaryBuffer": true,
-    "nudgeForce": "soft",
-    "iterationNudgeThreshold": 15,
+    "nudgeForce": "strong",
+    "iterationNudgeThreshold": 12,
     "protectedTools": [],
     "protectUserMessages": false,
     "maxContextLimit": "80%",
-    "minContextLimit": "40%",
+    "minContextLimit": "35%",
     "nudgeFrequency": 4
   },
   "strategies": {

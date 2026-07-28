@@ -1,11 +1,11 @@
 {
-	"$schema": "https://raw.githubusercontent.com/klpanagi/matrixx/dev/assets/matrixx.schema.json",
+	"$schema": "https://raw.githubusercontent.com/klpanagi/matrixx/dev/assets/scholia.schema.json",
 	// ─── GLOBAL MODEL OVERRIDE ─────────────────────────────────────────────────────
 	// When set, uses this single provider/model for ALL agents and categories.
 	// Overrides every per-agent and per-category model selection.
 	// Example: "anthropic/claude-sonnet-4-6"
-	// "global_model": "opencode-go/deepseek-v4-flash",
-	"global_model": "opencode/deepseek-v4-flash-free", // now set per-agent
+	// "global_model": "opencode-go/qwen3.6-plus",
+	"global_model": "opencode-go/qwen3.6-plus", // now set per-agent
 	// "global_model": "opencode/big-pickle",
 	// ─── PROFILE ─────────────────────────────────────────────────────────────────
 	// Built-in profiles: free | budget | economy | balanced | performance | go |
@@ -25,7 +25,7 @@
 	// Override model, variant, temperature, thinking, fallback chain, permissions
 	// and other agent-level settings for any of 14 built-in agents.
 	//
-	// Available agents: morpheus, oracle, seraph, architect, merovingian, smith,
+	// Available agents: athena, oracle, seraph, architect, merovingian, smith,
 	//   cipher, sentinel, sati, keymaker, mouse, trinity, construct, operator
 	//
 	// Available override fields:
@@ -37,7 +37,7 @@
 	//   edit, bash, webfetch, task, doom_loop, external_directory
 	"agents": {
 		// ── HEAVY REASONING AGENTS ───────────────────────────────
-		"morpheus": {
+		"athena": {
 			"model": "opencode-go/qwen3.7-plus",
 			"temperature": 0.1,
 			"thinking": {
@@ -45,7 +45,7 @@
 				"budgetTokens": 32000
 			},
 		},
-		"oracle": {
+		"pythagoras": {
 			"model": "opencode-go/qwen3.7-plus",
 			"temperature": 0.1,
 			"thinking": {
@@ -53,7 +53,7 @@
 				"budgetTokens": 32000
 			}
 		},
-		"seraph": {
+		"protagoras": {
 			"model": "opencode-go/qwen3.7-plus",
 			"temperature": 0.3,
 			"thinking": {
@@ -61,7 +61,7 @@
 				"budgetTokens": 32000
 			}
 		},
-		"keymaker": {
+		"hypatia": {
 			"model": "opencode-go/qwen3.7-plus",
 			"temperature": 0.1,
 			"thinking": {
@@ -69,11 +69,9 @@
 				"budgetTokens": 16000
 			},
 		},
-		"cipher": {
 			"model": "opencode-go/qwen3.7-plus",
 			"temperature": 0.1
 		},
-		"sentinel": {
 			"model": "opencode-go/qwen3.7-plus",
 			"temperature": 0.1,
 			"thinking": {
@@ -82,7 +80,7 @@
 			}
 		},
 		// ── MEDIUM AGENTS ────────────────────────────────────────
-		"smith": {
+		"aristotle": {
 			"model": "opencode-go/qwen3.7-plus",
 			"temperature": 0.1,
 			"thinking": {
@@ -90,16 +88,16 @@
 				"budgetTokens": 16000
 			}
 		},
-		"merovingian": {
+		"eratosthenes": {
 			"model": "opencode-go/qwen3.7-plus",
 			"temperature": 0.1
 		},
 		// ── LIGHTWEIGHT AGENTS ───────────────────────────────────
-		"architect": {
+		"ictinus": {
 			"model": "opencode-go/qwen3.7-plus",
 			"temperature": 0.1
 		},
-		"mouse": {
+		"strabo": {
 			"model": "opencode-go/deepseek-v4-flash",
 			"temperature": 0.1,
 			"thinking": {
@@ -107,19 +105,18 @@
 				"budgetTokens": 16000
 			}
 		},
-		"operator": {
+		"pliny": {
 			"model": "opencode-go/deepseek-v4-flash",
 			"temperature": 0.1
 		},
-		"trinity": {
+		"callimachus": {
 			"model": "opencode-go/deepseek-v4-flash",
 			"temperature": 0.1
 		},
-		"construct": {
+		"alberti": {
 			"model": "opencode-go/deepseek-v4-flash",
 			"temperature": 0.1
 		},
-		"sati": {
 			"model": "opencode-go/deepseek-v4-flash",
 			// Frontend specialist — React/Next.js, Svelte/SvelteKit, accessibility
 			"temperature": 0.1
@@ -145,7 +142,7 @@
 			"model": "opencode-go/qwen3.7-plus",
 			"temperature": 0.1
 		}, // High-effort general
-		"construct": {
+		"alberti": {
 			"model": "opencode-go/deepseek-v4-flash",
 			"temperature": 0.1
 		}, // Frontend/UI
@@ -170,7 +167,7 @@
 	// When an API call fails (rate limit, server error), auto-retry with fallback
 	// model from the agent's fallback chain.
 	"runtime_fallback": {
-		"enabled": true,
+    "enabled": false,
 		"retry_on_errors": [
 			429,
 			500,
@@ -199,19 +196,16 @@
 	"security": {
 		// Secret scanning via gitleaks — runs on file writes and commits
 		// "secret_scanning": {
-		// 	"enabled": true,
 		// 	"tool": "gitleaks",
 		// 	"block_on_detection": false,
 		// 	"allowlist_paths": [".env.example"]
 		// },
 		// Guard .env files from being read/shown
 		// "env_file_guard": {
-		// 	"enabled": true,
 		// 	"allowed_paths": [".env.example"]
 		// },
 		// Dependency audit (runs on package.json changes)
 		// "dependency_audit": {
-		// 	"enabled": true,
 		// 	"on_package_change": true
 		// }
 	},
@@ -219,7 +213,6 @@
 	// Multi-model voting on critical decisions. Spawns N voters from different
 	// providers and synthesizes their outputs.
 	"assembly": {
-		"enabled": true,
 		"providers": [
 			{
 				"providerID": "opencode-go",
@@ -237,7 +230,6 @@
 	// ─── TMUX ────────────────────────────────────────────────────────────────────
 	// Terminal multiplexer integration for interactive sessions.
 	// "tmux": {
-	// 	"enabled": true,
 	// 	"layout": "main-vertical",
 	// 	"main_pane_size": "60%",
 	// 	"main_pane_min_width": 80,
@@ -246,7 +238,6 @@
 	// ─── MATRIX LOOP ─────────────────────────────────────────────────────────────
 	// Self-referential development loop: plan → code → test → review → repeat.
 	// "matrix_loop": {
-	// 	"enabled": true,
 	// 	"default_max_iterations": 5,
 	// 	"state_dir": ".matrixx/matrix-loop"
 	// },
@@ -260,9 +251,9 @@
 	// "browser_automation_engine": {
 	// 	"provider": "playwright"  // "playwright" | "agent-browser" | "dev-browser" | "playwright-cli"
 	// },
-	// ─── MORPHEUS AGENT ──────────────────────────────────────────────────────────
-	// Controls the morpheus agent orchestration behavior.
-	"morpheus_agent": {
+	// ─── ATHENA AGENT ──────────────────────────────────────────────────────────
+	// Controls the athena agent orchestration behavior.
+	"athena_agent": {
 		// "disabled": false,
 		// "default_builder_enabled": true,   // adds OpenCode-Builder agent
 		// "planner_enabled": true,           // adds Oracle-as-planner mode
@@ -296,9 +287,9 @@
 	// },
 	// ─── TDD ENFORCER ────────────────────────────────────────────────────────────
 	// Enforces test-before-code discipline.
-	"tdd_enforcer": {
-		"enabled": true
-	},
+	// "tdd_enforcer": {
+	// 	"enabled": true
+	// },
 	// ─── COMMENT CHECKER ─────────────────────────────────────────────────────────
 	// Detects/prevents AI slop comments in generated code.
 	// "comment_checker": {
@@ -309,18 +300,18 @@
 	// "babysitting": {
 	// 	"timeout_ms": 120000
 	// },
-	// ─── MORPHEUS TASK SYSTEM ────────────────────────────────────────────────────
-	"morpheus": {
-		"tasks": {
-			"enabled": true,
-			"storage_path": ".matrixx/tasks",
-			"claude_code_compat": true
-		}
-	},
+	// ─── AUTO UPDATE ─────────────────────────────────────────────────────────────
+	// "auto_update": "notify",    // "notify" | "auto" | "off"
+	// ─── ATHENA TASK SYSTEM ────────────────────────────────────────────────────
+	// "athena": {
+	// 	"tasks": {
+	// 		"storage_path": ".matrixx/tasks",
+	// 		"claude_code_compat": true
+	// 	}
+	// },
 	// ─── SELF CONFIG ─────────────────────────────────────────────────────────────
 	// Let the assistant modify its own config when asked.
-	"matrixx_self_config": {
-		"enabled": true,
-		"proactive": false // only act when asked
-	}
+	// "matrixx_self_config": {
+	// 	"proactive": false    // only act when asked
+	// }
 }
