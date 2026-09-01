@@ -4,7 +4,7 @@
 	// When set, uses this single provider/model for ALL agents and categories.
 	// Overrides every per-agent and per-category model selection.
 	// Can be a provider/model string: "anthropic/claude-opus-4-6"
-	"global_model": "opencode-go/deepseek-v4-flash",
+	"global_model": "opencode-go/muse-spark-1.2-contributor",
 	// ─── DEFAULT TIER ───────────────────────────────────────────────────────────────
 	// Fallback tier for every agent and category that has no explicit `model` or `tier`.
 	// Tier → concrete model resolved at config-load time.
@@ -66,23 +66,39 @@
 	"agents": {
 		// ── PRIMARY / HEAVY REASONING ──────────────────────────────
 		"morpheus": {
-			"model": "opencode-go/qwen3.7-plus",
+			"model": "opencode-go/muse-spark-1.2-contributor",
 			"temperature": 0.1,
 			"thinking": {
 				"type": "enabled",
 				"budgetTokens": 32000
-			}
+			},
+			"fallbackChain": [
+				{
+					"providers": [
+						"opencode-go"
+					],
+					"model": "muse-spark-1.2-contributor"
+				}
+			]
 		},
 		"oracle": {
-			"model": "opencode-go/qwen3.7-plus",
+			"model": "opencode-go/muse-spark-1.2-contributor",
 			"temperature": 0.1,
 			"thinking": {
 				"type": "enabled",
 				"budgetTokens": 32000
-			}
+			},
+			"fallbackChain": [
+				{
+					"providers": [
+						"opencode-go"
+					],
+					"model": "muse-spark-1.2-contributor"
+				}
+			]
 		},
 		"seraph": {
-			"model": "opencode-go/qwen3.7-plus",
+			"model": "opencode-go/muse-spark-1.2-contributor",
 			"temperature": 0.3,
 			"thinking": {
 				"type": "enabled",
@@ -90,28 +106,44 @@
 			}
 		},
 		"keymaker": {
-			"model": "opencode-go/qwen3.7-plus",
+			"model": "opencode-go/muse-spark-1.2-contributor",
 			"temperature": 0.1,
 			"thinking": {
 				"type": "enabled",
 				"budgetTokens": 16000
-			}
+			},
+			"fallbackChain": [
+				{
+					"providers": [
+						"opencode-go"
+					],
+					"model": "muse-spark-1.2-contributor"
+				}
+			]
 		},
 		"cipher": {
-			"model": "opencode-go/qwen3.7-plus",
+			"model": "opencode-go/muse-spark-1.2-contributor",
 			"temperature": 0.1
 		},
 		"sentinel": {
-			"model": "opencode-go/qwen3.7-plus",
+			"model": "opencode-go/muse-spark-1.2-contributor",
 			"temperature": 0.1,
 			"thinking": {
 				"type": "enabled",
 				"budgetTokens": 16000
-			}
+			},
+			"fallbackChain": [
+				{
+					"providers": [
+						"opencode-go"
+					],
+					"model": "muse-spark-1.2-contributor"
+				}
+			]
 		},
 		// ── MEDIUM AGENTS ──────────────────────────────────────────
 		"smith": {
-			"model": "opencode-go/qwen3.7-plus",
+			"model": "opencode-go/muse-spark-1.2-contributor",
 			"temperature": 0.1,
 			"thinking": {
 				"type": "enabled",
@@ -119,16 +151,16 @@
 			}
 		},
 		"merovingian": {
-			"model": "opencode-go/qwen3.7-plus",
+			"model": "opencode-go/muse-spark-1.2-contributor",
 			"temperature": 0.1
 		},
 		// ── LIGHTWEIGHT AGENTS ─────────────────────────────────────
 		"architect": {
-			"model": "opencode-go/qwen3.7-plus",
+			"model": "opencode-go/muse-spark-1.2-contributor",
 			"temperature": 0.1
 		},
 		"mouse": {
-			"model": "opencode-go/deepseek-v4-flash",
+			"model": "opencode-go/muse-spark-1.2-contributor",
 			"temperature": 0.1,
 			"thinking": {
 				"type": "enabled",
@@ -136,23 +168,32 @@
 			}
 		},
 		"operator": {
-			"model": "opencode-go/deepseek-v4-flash",
-			"temperature": 0.1
+			"model": "opencode-go/muse-spark-1.2-contributor",
+			"temperature": 0.1,
+			"permission": {
+				"bash": "ask"
+			}
 		},
 		"trinity": {
-			"model": "opencode-go/deepseek-v4-flash",
-			"temperature": 0.1
+			"model": "opencode-go/muse-spark-1.2-contributor",
+			"temperature": 0.1,
+			"permission": {
+				"bash": "ask"
+			}
 		},
 		"construct": {
-			"model": "opencode-go/deepseek-v4-flash",
-			"temperature": 0.1
+			"model": "opencode-go/muse-spark-1.2-contributor",
+			"temperature": 0.1,
+			"permission": {
+				"bash": "ask"
+			}
 		},
 		"sati": {
-			"model": "opencode-go/deepseek-v4-flash",
+			"model": "opencode-go/muse-spark-1.2-contributor",
 			"temperature": 0.1
 		}
-		// "bdd-contract": { "model": "opencode-go/deepseek-v4-flash" },
-		// "build": { "model": "opencode-go/deepseek-v4-flash" },
+		// "bdd-contract": { "model": "opencode-go/muse-spark-1.2-contributor" },
+		// "build": { "model": "opencode-go/muse-spark-1.2-contributor" },
 		// "plan": { "mode": "subagent" },
 		// "OpenCode-Builder": { "disable": false }
 	},
@@ -180,35 +221,43 @@
 	//   complexity_downgrades - Record<"1"|"2"|"3"|"4"|"5", string> (complexity→model)
 	"categories": {
 		"source": {
-			"model": "opencode-go/qwen3.7-plus",
-			"temperature": 0.1
+			"model": "opencode-go/muse-spark-1.2-contributor",
+			"temperature": 0.1,
+			"complexity_downgrades": {
+				"1": "opencode-go/muse-spark-1.2-contributor",
+				"2": "opencode-go/muse-spark-1.2-contributor"
+			}
 		}, // Logic-heavy code — give goals, not steps
 		"deep-jack": {
-			"model": "opencode-go/qwen3.7-plus",
+			"model": "opencode-go/muse-spark-1.2-contributor",
 			"temperature": 0.1
 		}, // Goal-oriented autonomous problem-solving
 		"red-pill": {
-			"model": "opencode-go/qwen3.7-plus",
-			"temperature": 0.1
+			"model": "opencode-go/muse-spark-1.2-contributor",
+			"temperature": 0.1,
+			"complexity_downgrades": {
+				"1": "opencode-go/muse-spark-1.2-contributor",
+				"2": "opencode-go/muse-spark-1.2-contributor"
+			}
 		}, // High-effort unclassifiable tasks
 		"construct": {
-			"model": "opencode-go/deepseek-v4-flash",
+			"model": "opencode-go/muse-spark-1.2-contributor",
 			"temperature": 0.1
 		}, // Frontend/UI/UX/design/animation
 		"matrix-bend": {
-			"model": "opencode-go/qwen3.7-plus",
+			"model": "opencode-go/muse-spark-1.2-contributor",
 			"temperature": 0.1
 		}, // Creative, unconventional approaches
 		"blue-pill": {
-			"model": "opencode-go/deepseek-v4-flash",
+			"model": "opencode-go/muse-spark-1.2-contributor",
 			"temperature": 0.1
 		}, // Low-effort unclassifiable
 		"broadcast": {
-			"model": "opencode-go/deepseek-v4-flash",
+			"model": "opencode-go/muse-spark-1.2-contributor",
 			"temperature": 0.1
 		}, // Documentation, prose, technical writing
 		"bullet-time": {
-			"model": "opencode-go/deepseek-v4-flash",
+			"model": "opencode-go/muse-spark-1.2-contributor",
 			"temperature": 0.1
 		} // Trivial: one file, typo fix, simple mod
 		// CUSTOM CATEGORY EXAMPLE:
@@ -415,11 +464,11 @@
 		"providers": [
 			{
 				"providerID": "opencode-go",
-				"modelID": "mimo-v2.5"
+				"modelID": "muse-spark-1.2-contributor"
 			},
 			{
 				"providerID": "opencode-go",
-				"modelID": "deepseek-v4-flash"
+				"modelID": "muse-spark-1.2-contributor"
 			}
 		],
 		"default_voters": 3,
@@ -495,11 +544,11 @@
 	// ─── RTK (BASH COMPRESSION) ──────────────────────────────────────────────────
 	// RTK rewriter compresses bash tool output by 60-90%.
 	// Requires rtk binary: https://github.com/rtk-ai/rtk
-	// "rtk": {
-	//   "enabled": false,                    // Enable (default: false — opt-in)
-	//   "binary_path": "/usr/local/bin/rtk",  // Path to binary (default: "rtk" in PATH)
-	//   "timeout_ms": 5000                   // Subprocess timeout (1000-30000ms)
-	// },
+	"rtk": {
+		"enabled": true,
+		"binary_path": "/home/klpanagi/.local/bin/rtk",
+		"timeout_ms": 5000
+	},
 	// ─── MIGRATIONS (SYSTEM-MANAGED) ─────────────────────────────────────────────
 	// Migration history to prevent re-applying model/agent migrations.
 	// Do NOT edit manually — it's maintained by the plugin's migration system.
