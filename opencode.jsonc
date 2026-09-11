@@ -42,6 +42,109 @@
 					"name": "Qwen 3.5 35B"
 				}
 			}
+		},
+		"byteplus-plan": {
+			"npm": "@ai-sdk/openai-compatible",
+			"name": "BytePlus Coding Plan",
+			"options": {
+				// Dedicated Coding Plan subscription endpoint
+				"baseURL": "https://ark.ap-southeast.bytepluses.com/api/coding/v3",
+				"apiKey": "{env:BYTEPLUS_CODING_KEY}"
+			},
+			"models": {
+				// -----------------------------------------------------------------
+				// 1. DYNAMIC AUTO / ROUTING MODEL
+				// -----------------------------------------------------------------
+				"ark-code-latest": {
+					"name": "ark-code-latest",
+					"limit": {
+						"context": 256000,
+						"output": 32000
+					}
+				},
+				// -----------------------------------------------------------------
+				// 2. BYTEDANCE / DOLA SEED NATIVE MODELS
+				// -----------------------------------------------------------------
+				"dola-seed-2.0-pro": {
+					"name": "dola-seed-2.0-pro",
+					"limit": {
+						"context": 256000,
+						"output": 32000
+					}
+				},
+				"dola-seed-2.0-lite": {
+					"name": "dola-seed-2.0-lite",
+					"limit": {
+						"context": 128000,
+						"output": 16000
+					}
+				},
+				"dola-seed-2.0-code": {
+					"name": "dola-seed-2.0-code",
+					"limit": {
+						"context": 256000,
+						"output": 32000
+					}
+				},
+				"bytedance-seed-code": {
+					"name": "bytedance-seed-code",
+					"limit": {
+						"context": 128000,
+						"output": 16000
+					}
+				},
+				// -----------------------------------------------------------------
+				// 3. DEEPSEEK MODELS
+				// -----------------------------------------------------------------
+				"deepseek-v4-flash": {
+					"name": "deepseek-v4-flash",
+					"limit": {
+						"context": 1024000,
+						"output": 384000
+					}
+				},
+				"deepseek-v4-pro": {
+					"name": "deepseek-v4-pro",
+					"limit": {
+						"context": 1024000,
+						"output": 384000
+					}
+				},
+				// -----------------------------------------------------------------
+				// 4. TSINGHUA GLM SERIES
+				// -----------------------------------------------------------------
+				"glm-5.2": {
+					"name": "glm-5.2",
+					"limit": {
+						"context": 1000000,
+						"output": 32000
+					}
+				},
+				"glm-5.1": {
+					"name": "glm-5.1",
+					"limit": {
+						"context": 1000000,
+						"output": 32000
+					}
+				},
+				// -----------------------------------------------------------------
+				// 5. MOONSHOT KIMI & OPEN SOURCE FRONTIER
+				// -----------------------------------------------------------------
+				"kimi-k2.5": {
+					"name": "kimi-k2.5",
+					"limit": {
+						"context": 256000,
+						"output": 32000
+					}
+				},
+				"gpt-oss-120b": {
+					"name": "gpt-oss-120b",
+					"limit": {
+						"context": 128000,
+						"output": 16000
+					}
+				}
+			}
 		}
 	}
 }
