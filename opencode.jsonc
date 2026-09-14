@@ -1,6 +1,7 @@
 {
 	"$schema": "https://opencode.ai/config.json",
 	"autoupdate": "notify",
+	"model": "commandcode/deepseek/deepseek-v4-flash",
 	"plugin": [
 		// "/home/klpanagi/scholia",
 		"/home/klpanagi/matrixx",
@@ -99,8 +100,10 @@
 				"deepseek-v4-flash": {
 					"name": "deepseek-v4-flash",
 					"limit": {
-						"context": 1024000,
-						"output": 384000
+						// "context": 1024000,
+						"context": 256000,
+						// "output": 384000,
+						"output": 32000
 					}
 				},
 				"deepseek-v4-pro": {
@@ -142,6 +145,549 @@
 					"limit": {
 						"context": 128000,
 						"output": 16000
+					}
+				}
+			}
+		},
+		"commandcode": {
+			"npm": "@ai-sdk/openai-compatible",
+			"name": "Command Code (GOAT)",
+			"options": {
+				"baseURL": "https://api.commandcode.ai/provider/v1",
+				"apiKey": "{env:CMD_API_KEY}"
+				// Uncomment to enforce zero data retention on every request:
+				// "headers": { "x-cmd-zdr": "1" }
+			},
+			// Model IDs + context limits verified 2026-09-14 against the live
+			// registry (GET /provider/v1/models → 69 models) cross-checked with
+			// https://commandcode.ai/docs/reference/cli/models.
+			// Notes:
+			// - Live API canonical Haiku ID is dated (claude-haiku-4-5-20251001);
+			//   the docs table shows the undated short form.
+			// - gpt-6-astra is docs-only (absent from live /models at check time).
+			// - output limits are opencode-side defaults; live API only publishes context_length.
+			"models": {
+				// ── Alibaba / Qwen (9) ───────────────────────────────────
+				"Qwen/Qwen3.6-Max-Preview": {
+					"name": "Qwen 3.6 Max Preview",
+					"limit": {
+						"context": 200000,
+						"output": 32768
+					}
+				},
+				"Qwen/Qwen3.6-Plus": {
+					"name": "Qwen 3.6 Plus",
+					"limit": {
+						"context": 200000,
+						"output": 32768
+					}
+				},
+				"Qwen/Qwen3.7-Flash": {
+					"name": "Qwen 3.7 Flash",
+					"small": true,
+					"limit": {
+						"context": 1000000,
+						"output": 32768
+					}
+				},
+				"Qwen/Qwen3.7-Max": {
+					"name": "Qwen 3.7 Max",
+					"limit": {
+						"context": 1000000,
+						"output": 32768
+					}
+				},
+				"Qwen/Qwen3.7-Plus": {
+					"name": "Qwen 3.7 Plus",
+					"limit": {
+						"context": 1000000,
+						"output": 32768
+					}
+				},
+				"Qwen/Qwen3.8-27B": {
+					"name": "Qwen 3.8 27B",
+					"small": true,
+					"limit": {
+						"context": 262144,
+						"output": 32768
+					}
+				},
+				"Qwen/Qwen3.8-Flash": {
+					"name": "Qwen 3.8 Flash",
+					"small": true,
+					"limit": {
+						"context": 1000000,
+						"output": 32768
+					}
+				},
+				"Qwen/Qwen3.8-Max": {
+					"name": "Qwen 3.8 Max",
+					"limit": {
+						"context": 1000000,
+						"output": 32768
+					}
+				},
+				"Qwen/Qwen3.8-Max-0902": {
+					"name": "Qwen 3.8 Max 0902",
+					"limit": {
+						"context": 1000000,
+						"output": 32768
+					}
+				},
+				// ── Anthropic (8; live canonical Haiku ID is dated) ──────
+				"claude-fable-5": {
+					"name": "Claude Fable 5",
+					"limit": {
+						"context": 1000000,
+						"output": 32768
+					}
+				},
+				"claude-fable-5-1": {
+					"name": "Claude Fable 5.1",
+					"limit": {
+						"context": 1000000,
+						"output": 32768
+					}
+				},
+				"claude-haiku-4-5-20251001": {
+					"name": "Claude Haiku 4.5",
+					"small": true,
+					"limit": {
+						"context": 200000,
+						"output": 32768
+					}
+				},
+				"claude-opus-4-7": {
+					"name": "Claude Opus 4.7",
+					"limit": {
+						"context": 1000000,
+						"output": 32768
+					}
+				},
+				"claude-opus-4-8": {
+					"name": "Claude Opus 4.8",
+					"limit": {
+						"context": 1000000,
+						"output": 32768
+					}
+				},
+				"claude-opus-5": {
+					"name": "Claude Opus 5",
+					"limit": {
+						"context": 1000000,
+						"output": 32768
+					}
+				},
+				"claude-sonnet-4-6": {
+					"name": "Claude Sonnet 4.6",
+					"limit": {
+						"context": 1000000,
+						"output": 32768
+					}
+				},
+				"claude-sonnet-5": {
+					"name": "Claude Sonnet 5",
+					"limit": {
+						"context": 1000000,
+						"output": 32768
+					}
+				},
+				// ── DeepSeek (5, default: v4-flash) ──────────────────────
+				"deepseek/deepseek-v4-flash": {
+					"name": "DeepSeek V4 Flash",
+					"limit": {
+						"context": 1000000,
+						"output": 32768
+					}
+				},
+				"deepseek/deepseek-v4-flash-fast": {
+					"name": "DeepSeek V4 Flash Fast",
+					"small": true,
+					"limit": {
+						"context": 1000000,
+						"output": 32768
+					}
+				},
+				"deepseek/deepseek-v4-flash-vision-exp": {
+					"name": "DeepSeek V4 Flash Vision (exp)",
+					"limit": {
+						"context": 1000000,
+						"output": 32768
+					}
+				},
+				"deepseek/deepseek-v4-pro": {
+					"name": "DeepSeek V4 Pro",
+					"limit": {
+						"context": 1000000,
+						"output": 32768
+					}
+				},
+				"deepseek/deepseek-v4.1-flash": {
+					"name": "DeepSeek V4.1 Flash",
+					"limit": {
+						"context": 1000000,
+						"output": 32768
+					}
+				},
+				// ── Google Gemini (6) ────────────────────────────────────
+				"google/gemini-3.1-flash-lite": {
+					"name": "Gemini 3.1 Flash Lite",
+					"small": true,
+					"limit": {
+						"context": 1000000,
+						"output": 32768
+					}
+				},
+				"google/gemini-3.5-flash": {
+					"name": "Gemini 3.5 Flash",
+					"limit": {
+						"context": 1000000,
+						"output": 32768
+					}
+				},
+				"google/gemini-3.5-flash-lite": {
+					"name": "Gemini 3.5 Flash Lite",
+					"small": true,
+					"limit": {
+						"context": 1000000,
+						"output": 32768
+					}
+				},
+				"google/gemini-3.6-flash": {
+					"name": "Gemini 3.6 Flash",
+					"limit": {
+						"context": 1000000,
+						"output": 32768
+					}
+				},
+				"google/gemini-3.7-flash": {
+					"name": "Gemini 3.7 Flash",
+					"limit": {
+						"context": 1048576,
+						"output": 32768
+					}
+				},
+				"google/gemini-3.8-flash": {
+					"name": "Gemini 3.8 Flash",
+					"limit": {
+						"context": 1000000,
+						"output": 32768
+					}
+				},
+				// ── inclusionAI / Meituan / Poolside free tiers ──────────
+				"inclusionai/ling-3.0-flash-sante:free": {
+					"name": "Ling 3.0 Flash Sante (free)",
+					"small": true,
+					"limit": {
+						"context": 262144,
+						"output": 32000
+					}
+				},
+				"meituan/LongCat-2.0:free": {
+					"name": "LongCat 2.0 (free)",
+					"limit": {
+						"context": 1048576,
+						"output": 32768
+					}
+				},
+				"poolside/laguna-s-2.1-free": {
+					"name": "Laguna S 2.1 (free)",
+					"limit": {
+						"context": 256000,
+						"output": 32000
+					}
+				},
+				// ── Meta / Muse Spark (5) ────────────────────────────────
+				"meta/muse-spark-1.1": {
+					"name": "Muse Spark 1.1",
+					"limit": {
+						"context": 1048576,
+						"output": 32768
+					}
+				},
+				"meta/muse-spark-1.2": {
+					"name": "Muse Spark 1.2",
+					"limit": {
+						"context": 1048576,
+						"output": 32768
+					}
+				},
+				"meta/muse-spark-1.2-contributor": {
+					"name": "Muse Spark 1.2 Contributor",
+					"limit": {
+						"context": 1048576,
+						"output": 32768
+					}
+				},
+				"meta/muse-spark-1.3": {
+					"name": "Muse Spark 1.3",
+					"limit": {
+						"context": 1048576,
+						"output": 32768
+					}
+				},
+				"meta/muse-spark-1.3-contributor": {
+					"name": "Muse Spark 1.3 Contributor",
+					"limit": {
+						"context": 1048576,
+						"output": 32768
+					}
+				},
+				// ── MiniMax (3) ──────────────────────────────────────────
+				"MiniMaxAI/MiniMax-M2.5": {
+					"name": "MiniMax M2.5",
+					"limit": {
+						"context": 200000,
+						"output": 32768
+					}
+				},
+				"MiniMaxAI/MiniMax-M2.7": {
+					"name": "MiniMax M2.7",
+					"limit": {
+						"context": 200000,
+						"output": 32768
+					}
+				},
+				"MiniMaxAI/MiniMax-M3": {
+					"name": "MiniMax M3",
+					"limit": {
+						"context": 1000000,
+						"output": 32768
+					}
+				},
+				// ── Moonshot Kimi (5) ────────────────────────────────────
+				"moonshotai/Kimi-K2.5": {
+					"name": "Kimi K2.5",
+					"limit": {
+						"context": 256000,
+						"output": 32768
+					}
+				},
+				"moonshotai/Kimi-K2.6": {
+					"name": "Kimi K2.6",
+					"limit": {
+						"context": 256000,
+						"output": 32768
+					}
+				},
+				"moonshotai/Kimi-K2.7-Code": {
+					"name": "Kimi K2.7 Code",
+					"limit": {
+						"context": 256000,
+						"output": 32768
+					}
+				},
+				"moonshotai/Kimi-K2.7-Code-Highspeed": {
+					"name": "Kimi K2.7 Code HighSpeed",
+					"limit": {
+						"context": 262000,
+						"output": 32768
+					}
+				},
+				"moonshotai/Kimi-K3": {
+					"name": "Kimi K3",
+					"limit": {
+						"context": 1000000,
+						"output": 32768
+					}
+				},
+				// ── NVIDIA (1) ───────────────────────────────────────────
+				"nvidia/nemotron-3-ultra-550b-a55b": {
+					"name": "Nemotron 3 Ultra",
+					"limit": {
+						"context": 1000000,
+						"output": 32768
+					}
+				},
+				// ── OpenAI (8; gpt-6-astra docs-only, not in live API yet) ─
+				"gpt-5.3-codex": {
+					"name": "GPT-5.3 Codex",
+					"limit": {
+						"context": 400000,
+						"output": 32768
+					}
+				},
+				"gpt-5.4": {
+					"name": "GPT-5.4",
+					"limit": {
+						"context": 400000,
+						"output": 32768
+					}
+				},
+				"gpt-5.4-mini": {
+					"name": "GPT-5.4 Mini",
+					"small": true,
+					"limit": {
+						"context": 400000,
+						"output": 32768
+					}
+				},
+				"gpt-5.5": {
+					"name": "GPT-5.5",
+					"limit": {
+						"context": 400000,
+						"output": 32768
+					}
+				},
+				"gpt-5.6-luna": {
+					"name": "GPT-5.6 Luna",
+					"small": true,
+					"limit": {
+						"context": 1050000,
+						"output": 32768
+					}
+				},
+				"gpt-5.6-sol": {
+					"name": "GPT-5.6 Sol",
+					"limit": {
+						"context": 1050000,
+						"output": 32768
+					}
+				},
+				"gpt-5.6-terra": {
+					"name": "GPT-5.6 Terra",
+					"small": true,
+					"limit": {
+						"context": 1050000,
+						"output": 32768
+					}
+				},
+				"gpt-6-astra": {
+					"name": "GPT-6 Astra",
+					"limit": {
+						"context": 1000000,
+						"output": 32768
+					}
+				},
+				// ── Sakana (1) ───────────────────────────────────────────
+				"sakana/fugu-ultra": {
+					"name": "Fugu Ultra",
+					"limit": {
+						"context": 1000000,
+						"output": 32768
+					}
+				},
+				// ── StepFun (2) ──────────────────────────────────────────
+				"stepfun/Step-3.5-Flash": {
+					"name": "Step 3.5 Flash",
+					"small": true,
+					"limit": {
+						"context": 1000000,
+						"output": 32768
+					}
+				},
+				"stepfun/Step-3.7-Flash": {
+					"name": "Step 3.7 Flash",
+					"small": true,
+					"limit": {
+						"context": 256000,
+						"output": 32768
+					}
+				},
+				// ── Tencent (2) ──────────────────────────────────────────
+				"tencent/hy3-paid": {
+					"name": "Tencent Hy3",
+					"limit": {
+						"context": 262144,
+						"output": 32768
+					}
+				},
+				"tencent/hy4-preview": {
+					"name": "Tencent Hy4 Preview",
+					"limit": {
+						"context": 1048576,
+						"output": 32768
+					}
+				},
+				// ── Thinking Machines (2) ────────────────────────────────
+				"thinkingmachines/inkling": {
+					"name": "Inkling",
+					"limit": {
+						"context": 256000,
+						"output": 32768
+					}
+				},
+				"thinkingmachines/inkling-small": {
+					"name": "Inkling Small",
+					"small": true,
+					"limit": {
+						"context": 1000000,
+						"output": 32768
+					}
+				},
+				// ── xAI (2) ──────────────────────────────────────────────
+				"xai/grok-4.5": {
+					"name": "Grok 4.5",
+					"limit": {
+						"context": 500000,
+						"output": 32768
+					}
+				},
+				"xai/grok-4.6": {
+					"name": "Grok 4.6",
+					"limit": {
+						"context": 500000,
+						"output": 32768
+					}
+				},
+				// ── Xiaomi (2) ───────────────────────────────────────────
+				"xiaomi/mimo-v2.5": {
+					"name": "MiMo V2.5",
+					"limit": {
+						"context": 1000000,
+						"output": 32768
+					}
+				},
+				"xiaomi/mimo-v2.5-pro": {
+					"name": "MiMo V2.5 Pro",
+					"limit": {
+						"context": 1000000,
+						"output": 32768
+					}
+				},
+				// ── Z AI / GLM (6) ───────────────────────────────────────
+				"zai-org/GLM-5": {
+					"name": "GLM-5",
+					"limit": {
+						"context": 200000,
+						"output": 32768
+					}
+				},
+				"zai-org/GLM-5.1": {
+					"name": "GLM-5.1",
+					"limit": {
+						"context": 200000,
+						"output": 32768
+					}
+				},
+				"zai-org/GLM-5.2": {
+					"name": "GLM-5.2",
+					"limit": {
+						"context": 1000000,
+						"output": 32768
+					}
+				},
+				"zai-org/GLM-5.2-Fast": {
+					"name": "GLM-5.2 Fast",
+					"small": true,
+					"limit": {
+						"context": 1000000,
+						"output": 32768
+					}
+				},
+				"zai-org/GLM-5.3": {
+					"name": "GLM-5.3",
+					"limit": {
+						"context": 1000000,
+						"output": 32768
+					}
+				},
+				"z-ai/glm-5.3-flash": {
+					"name": "GLM-5.3 Flash",
+					"small": true,
+					"limit": {
+						"context": 1048576,
+						"output": 32768
 					}
 				}
 			}

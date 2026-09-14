@@ -1,10 +1,11 @@
 {
 	"$schema": "https://raw.githubusercontent.com/klpanagi/matrixx/dev/assets/matrixx.schema.json",
-	"global_model": "byteplus-plan/dola-seed-2.0-code",
+	// Entry agent for new sessions.
 	"default_run_agent": "morpheus",
+	// Per-agent overrides (temperature, thinking budgets in output tokens, failover chains).
+	// Model selection lives in model_presets below, not here.
 	"agents": {
 		"morpheus": {
-			"model": "byteplus-plan/dola-seed-2.0-code",
 			"temperature": 0.1,
 			"thinking": {
 				"type": "enabled",
@@ -13,30 +14,28 @@
 			"fallbackChain": [
 				{
 					"providers": [
-						"byteplus-plan"
+						"opencode-go"
 					],
-					"model": "dola-seed-2.0-code"
+					"model": "deepseek-v4-flash"
 				}
 			]
 		},
 		"oracle": {
-			"model": "byteplus-plan/dola-seed-2.0-code",
 			"temperature": 0.1,
 			"thinking": {
 				"type": "enabled",
-				"budgetTokens": 32000
+				"budgetTokens": 16000
 			},
 			"fallbackChain": [
 				{
 					"providers": [
-						"byteplus-plan"
+						"opencode-go"
 					],
-					"model": "dola-seed-2.0-code"
+					"model": "deepseek-v4-flash"
 				}
 			]
 		},
 		"seraph": {
-			"model": "byteplus-plan/dola-seed-2.0-code",
 			"temperature": 0.3,
 			"thinking": {
 				"type": "enabled",
@@ -44,7 +43,6 @@
 			}
 		},
 		"keymaker": {
-			"model": "byteplus-plan/dola-seed-2.0-code",
 			"temperature": 0.1,
 			"thinking": {
 				"type": "enabled",
@@ -53,18 +51,16 @@
 			"fallbackChain": [
 				{
 					"providers": [
-						"byteplus-plan"
+						"opencode-go"
 					],
-					"model": "dola-seed-2.0-code"
+					"model": "deepseek-v4-flash"
 				}
 			]
 		},
 		"cipher": {
-			"model": "byteplus-plan/dola-seed-2.0-code",
 			"temperature": 0.1
 		},
 		"sentinel": {
-			"model": "byteplus-plan/dola-seed-2.0-code",
 			"temperature": 0.1,
 			"thinking": {
 				"type": "enabled",
@@ -73,14 +69,13 @@
 			"fallbackChain": [
 				{
 					"providers": [
-						"byteplus-plan"
+						"opencode-go"
 					],
-					"model": "dola-seed-2.0-code"
+					"model": "deepseek-v4-flash"
 				}
 			]
 		},
 		"smith": {
-			"model": "byteplus-plan/dola-seed-2.0-code",
 			"temperature": 0.1,
 			"thinking": {
 				"type": "enabled",
@@ -88,101 +83,90 @@
 			}
 		},
 		"merovingian": {
-			"model": "byteplus-plan/dola-seed-2.0-code",
 			"temperature": 0.1
 		},
 		"architect": {
-			"model": "byteplus-plan/dola-seed-2.0-code",
 			"temperature": 0.1
 		},
 		"mouse": {
-			"model": "byteplus-plan/dola-seed-2.0-code",
 			"temperature": 0.1,
 			"thinking": {
 				"type": "enabled",
-				"budgetTokens": 16000
+				"budgetTokens": 8000
 			}
 		},
 		"operator": {
-			"model": "byteplus-plan/dola-seed-2.0-code",
 			"temperature": 0.1,
 			"permission": {
 				"bash": "ask"
 			}
 		},
 		"trinity": {
-			"model": "byteplus-plan/dola-seed-2.0-code",
 			"temperature": 0.1,
 			"permission": {
 				"bash": "ask"
 			}
 		},
 		"construct": {
-			"model": "byteplus-plan/dola-seed-2.0-code",
 			"temperature": 0.1,
 			"permission": {
 				"bash": "ask"
 			}
 		},
 		"sati": {
-			"model": "byteplus-plan/dola-seed-2.0-code",
 			"temperature": 0.1
 		}
 	},
+	// Delegation tiers used by task(category=...). complexity_downgrades route
+	// trivial work to cheap models (note: still reference the retired opencode-go provider).
 	"categories": {
 		"source": {
-			"model": "byteplus-plan/dola-seed-2.0-code",
 			"temperature": 0.1,
 			"complexity_downgrades": {
-				"1": "byteplus-plan/dola-seed-2.0-code",
-				"2": "byteplus-plan/dola-seed-2.0-code"
+				"1": "opencode-go/deepseek-v4-flash",
+				"2": "opencode-go/deepseek-v4-flash"
 			}
 		},
 		"deep-jack": {
-			"model": "byteplus-plan/dola-seed-2.0-code",
 			"temperature": 0.1
 		},
 		"red-pill": {
-			"model": "byteplus-plan/dola-seed-2.0-code",
 			"temperature": 0.1,
 			"complexity_downgrades": {
-				"1": "byteplus-plan/dola-seed-2.0-code",
-				"2": "byteplus-plan/dola-seed-2.0-code"
+				"1": "opencode-go/deepseek-v4-flash",
+				"2": "opencode-go/deepseek-v4-flash"
 			}
 		},
 		"construct": {
-			"model": "byteplus-plan/dola-seed-2.0-code",
 			"temperature": 0.1
 		},
 		"matrix-bend": {
-			"model": "byteplus-plan/dola-seed-2.0-code",
 			"temperature": 0.1
 		},
 		"blue-pill": {
-			"model": "byteplus-plan/dola-seed-2.0-code",
 			"temperature": 0.1
 		},
 		"broadcast": {
-			"model": "byteplus-plan/dola-seed-2.0-code",
 			"temperature": 0.1
 		},
 		"bullet-time": {
-			"model": "byteplus-plan/dola-seed-2.0-code",
 			"temperature": 0.1
 		}
 	},
+	// Preview features: auto session resume, early compaction, safe hook/plugin setup.
 	"experimental": {
 		"hashline_edit": true,
 		"auto_resume": true,
 		"preemptive_compaction": true,
-		"task_system": true,
 		"safe_hook_creation": true
 	},
+	// Autonomous iterate-until-done loop (cap iterations, state dir for resume).
 	"matrix_loop": {
 		"enabled": true,
 		"default_max_iterations": 100,
 		"state_dir": ".opencode/"
 	},
+	// Parallel subagent limits: concurrency, staleness timeouts, circuit breaker.
 	"background_task": {
 		"defaultConcurrency": 8,
 		"messageStalenessTimeoutMs": 120000,
@@ -193,27 +177,31 @@
 			"consecutiveThreshold": 10
 		}
 	},
+	// File-backed task system (.matrixx/tasks/); project-scoped, survives restarts.
+	"tasks": {
+		"enabled": true,
+		"scope": "project",
+		"pollTimeoutMs": 900000
+	},
+	// Test-first enforcement: failing test before implementation, never delete failing tests.
 	"tdd_enforcer": {
 		"enabled": true
 	},
+	// Engine used by browser-automation skills.
 	"browser_automation_engine": {
 		"provider": "playwright"
 	},
-	"morpheus": {
-		"tasks": {
-			"scope": "project"
-		}
-	},
+	// Multi-model voting: independent voters x synthesis rounds (bias reduction for big calls).
 	"assembly": {
 		"enabled": true,
 		"providers": [
 			{
-				"providerID": "byteplus-plan",
-				"modelID": "dola-seed-2.0-code"
+				"providerID": "opencode-go",
+				"modelID": "deepseek-v4-flash"
 			},
 			{
-				"providerID": "byteplus-plan",
-				"modelID": "dola-seed-2.0-code"
+				"providerID": "opencode-go",
+				"modelID": "deepseek-v4-flash"
 			}
 		],
 		"default_voters": 3,
@@ -221,6 +209,7 @@
 		"timeout_ms": 60000
 	},
 	"security": {},
+	// Provider failover on retryable errors (429/5xx): attempts, cooldown, notify.
 	"runtime_fallback": {
 		"enabled": true,
 		"retry_on_errors": [
@@ -235,93 +224,67 @@
 		"timeout_seconds": 30,
 		"notify_on_fallback": true
 	},
+	// Allow the plugin to propose its own config tuning (proactive = unprompted).
 	"matrixx_self_config": {
 		"enabled": true,
 		"proactive": false
 	},
+	// Helper CLI used by the plugin for system tasks.
 	"rtk": {
 		"enabled": true,
 		"binary_path": "/home/klpanagi/.local/bin/rtk",
 		"timeout_ms": 5000
 	},
-	// ───────────────────────────────────────────────────────────────────────
-	// Headroom — network-proxy compression (L4) — CacheAligner→ContentRouter→CCR
-	// Enable/disable via `enabled` below + run `headroom wrap opencode`
-	// Docs: https://github.com/headroomlabs-ai/headroom
-	// Install: uv tool install headroom-ai[all]  or  pipx install headroom-ai[all]
-	// Verify: headroom --version && headroom doctor
-	// Example (disabled by default — uncomment to enable):
-	// ───────────────────────────────────────────────────────────────────────
-	// "headroom": {
-	//   "enabled": true,
-	//   "proxyUrl": "http://127.0.0.1:8787",
-	//   "project": "my-project",
-	//   "backend": "openai"
-	// },
-	// ───────────────────────────────────────────────────────────────────────
-	// DCP — Dynamic Context Pruning (L3) — profile switcher
-	// Install: add "@tarquinen/opencode-dcp" to opencode.jsonc plugin array
-	// Switch: /dcp-profile [economy|balanced|performance|ultimate]
-	// Docs: https://github.com/tarquinen/opencode-dcp
-	// Enabled by default when plugin installed (true). Full config example:
-	// See repo matrixx.example.jsonc for exhaustive DCP base/profiles example.
-	// ───────────────────────────────────────────────────────────────────────
-	// "dcp": {
-	//   "enabled": true,
-	//   "default_profile": "balanced",
-	//   "base": {
-	//     "autoUpdate": false,
-	//     "debug": false,
-	//     "pruneNotificationType": "chat",
-	//     "compress": {
-	//       "mode": "range",
-	//       "permission": "allow",
-	//       "showCompression": true,
-	//       "summaryBuffer": true,
-	//       "nudgeForce": "strong",
-	//       "iterationNudgeThreshold": 5,
-	//       "protectedTools": [],
-	//       "protectUserMessages": false
-	//     },
-	//     "strategies": {
-	//       "deduplication": { "enabled": true, "protectedTools": [] },
-	//       "purgeErrors": { "enabled": true, "protectedTools": [] }
-	//     },
-	//     "commands": { "enabled": true, "protectedTools": [] },
-	//     "manualMode": { "enabled": false, "automaticStrategies": true },
-	//     "protectedFilePatterns": []
-	//   }
-	// },
-	// ───────────────────────────────────────────────────────────────────────
-	// context-mode — tool output sandboxing (L2) — FTS5 sandbox, ctx_* tools
-	// External plugin: add "context-mode" to opencode.jsonc `plugin` array + this gate.
-	// Matrixx auto-detects ctx_* tools and injects MUST discipline.
-	//
-	// ENABLING (default):
-	//   1. opencode.jsonc: { "plugin": ["context-mode", "opencode-matrixx"] }
-	//   2. matrixx.jsonc: { "context_mode": { "enabled": true } }  ← default true, omit to keep enabled
-	//   3. Restart OpenCode. Verify via `ctx stats` or `bunx opencode-matrixx doctor`
-	//
-	// DISABLING:
-	//   - Soft (keep plugin): { "context_mode": { "enabled": false } }
-	//   - Hard (remove plugin): remove "context-mode" from opencode.jsonc `plugin` array
-	//   - Per-hook: { "disabled_hooks": ["context-mode-enforcer"] }
-	//
-	// ENFORCEMENT (hard block vs soft warn):
-	//   { "context_mode": { "enabled": true, "enforce": true, "blocked_tools": ["grep","glob"] } }
-	//   - enforce:false (default) → grep/glob/read warn via hook message (prompt says MUST)
-	//   - enforce:true  → grep/glob throw/block, read/bash warn (edit chain exempt)
-	//   - blocked_tools: tools to gate (default ["grep","glob"]; add "read","bash" to also cover those)
-	//
-	// Docs: https://github.com/mksglu/context-mode
-	// Guide: docs/context-management.md#22-context-mode
-	// ───────────────────────────────────────────────────────────────────────
-	// Hide tools from the LLM entirely (top-level only -- context_mode strips
-	// unknown keys, so nesting disabled_tools inside it is silently ignored).
+	// DCP profile switcher. base = shared mechanics (kept across tiers); profiles =
+	// aggressiveness dial (built-ins: economy/balanced/performance/ultimate, extendable
+	// via dcp.profiles.<name>). default_profile applies on bare switch. The live
+	// dcp.jsonc is GENERATED from this block on every switch — don't hand-edit that file.
+	"dcp": {
+		"enabled": true,
+		"default_profile": "economy",
+		"base": {
+			"autoUpdate": false,
+			"debug": false,
+			"pruneNotificationType": "chat",
+			"compress": {
+				"mode": "range",
+				"permission": "allow",
+				"showCompression": true,
+				"summaryBuffer": true,
+				"nudgeForce": "strong",
+				"iterationNudgeThreshold": 5,
+				"protectedTools": [],
+				"protectUserMessages": false
+			},
+			"strategies": {
+				"deduplication": {
+					"enabled": true,
+					"protectedTools": []
+				},
+				"purgeErrors": {
+					"enabled": true,
+					"protectedTools": []
+				}
+			},
+			"commands": {
+				"enabled": true,
+				"protectedTools": []
+			},
+			"manualMode": {
+				"enabled": false,
+				"automaticStrategies": true
+			},
+			"protectedFilePatterns": []
+		}
+	},
+	// Tools hidden from the model (paired with context_mode enforcement below).
 	"disabled_tools": [
 		"grep",
-		"glob"
+		"glob",
+		"read",
+		"edit"
 	],
+	// Hard block on raw grep/glob/read/edit: use ctx_* tools instead (saves context).
 	"context_mode": {
 		"enabled": true,
 		"enforce": true,
@@ -329,10 +292,236 @@
 			"grep",
 			"glob",
 			"read",
-			"write"
+			"edit"
 		]
 	},
+	// Applied config migrations. Managed by the plugin — don't touch.
 	"_migrations": [
 		"tasks_project_scope_default"
-	]
+	],
+	// Per-subscription model maps: default_model + per-agent/per-category pins.
+	// opencode-go/byteplus presets are stale (retired providers) — kept as reference.
+	"model_presets": {
+		"opencode-go": {
+			"default_model": "opencode-go/deepseek-v4-flash",
+			"agents": {
+				"morpheus": {
+					"model": "opencode-go/deepseek-v4-flash"
+				},
+				"oracle": {
+					"model": "opencode-go/deepseek-v4-flash"
+				},
+				"seraph": {
+					"model": "opencode-go/deepseek-v4-flash"
+				},
+				"keymaker": {
+					"model": "opencode-go/deepseek-v4-flash"
+				},
+				"cipher": {
+					"model": "opencode-go/deepseek-v4-flash"
+				},
+				"sentinel": {
+					"model": "opencode-go/deepseek-v4-flash"
+				},
+				"smith": {
+					"model": "opencode-go/deepseek-v4-flash"
+				},
+				"merovingian": {
+					"model": "opencode-go/deepseek-v4-flash"
+				},
+				"architect": {
+					"model": "opencode-go/deepseek-v4-flash"
+				},
+				"mouse": {
+					"model": "opencode-go/muse-spark-1.3-contributor"
+				},
+				"operator": {
+					"model": "opencode-go/muse-spark-1.3-contributor"
+				},
+				"trinity": {
+					"model": "opencode-go/muse-spark-1.3-contributor"
+				},
+				"construct": {
+					"model": "opencode-go/muse-spark-1.3-contributor"
+				},
+				"sati": {
+					"model": "opencode-go/deepseek-v4-flash"
+				}
+			},
+			"categories": {
+				"source": {
+					"model": "opencode-go/muse-spark-1.3-contributor"
+				},
+				"deep-jack": {
+					"model": "opencode-go/muse-spark-1.3-contributor"
+				},
+				"red-pill": {
+					"model": "opencode-go/muse-spark-1.3-contributor"
+				},
+				"construct": {
+					"model": "opencode-go/muse-spark-1.3-contributor"
+				},
+				"matrix-bend": {
+					"model": "opencode-go/muse-spark-1.3-contributor"
+				},
+				"blue-pill": {
+					"model": "opencode-go/muse-spark-1.3-contributor"
+				},
+				"broadcast": {
+					"model": "opencode-go/muse-spark-1.3-contributor"
+				},
+				"bullet-time": {
+					"model": "opencode-go/muse-spark-1.3-contributor"
+				}
+			}
+		},
+		"byteplus": {
+			"default_model": "byteplus-plan/deepseek-v4-flash",
+			"agents": {
+				"morpheus": {
+					"model": "byteplus-plan/deepseek-v4-flash"
+				},
+				"oracle": {
+					"model": "byteplus-plan/deepseek-v4-flash"
+				},
+				"seraph": {
+					"model": "byteplus-plan/deepseek-v4-flash"
+				},
+				"keymaker": {
+					"model": "byteplus-plan/deepseek-v4-flash"
+				},
+				"cipher": {
+					"model": "byteplus-plan/deepseek-v4-flash"
+				},
+				"sentinel": {
+					"model": "byteplus-plan/deepseek-v4-flash"
+				},
+				"smith": {
+					"model": "byteplus-plan/deepseek-v4-flash"
+				},
+				"merovingian": {
+					"model": "byteplus-plan/deepseek-v4-flash"
+				},
+				"architect": {
+					"model": "byteplus-plan/deepseek-v4-flash"
+				},
+				"mouse": {
+					"model": "byteplus-plan/deepseek-v4-flash"
+				},
+				"operator": {
+					"model": "byteplus-plan/deepseek-v4-flash"
+				},
+				"trinity": {
+					"model": "byteplus-plan/deepseek-v4-flash"
+				},
+				"construct": {
+					"model": "byteplus-plan/deepseek-v4-flash"
+				},
+				"sati": {
+					"model": "byteplus-plan/deepseek-v4-flash"
+				}
+			},
+			"categories": {
+				"source": {
+					"model": "byteplus-plan/deepseek-v4-flash"
+				},
+				"deep-jack": {
+					"model": "byteplus-plan/deepseek-v4-flash"
+				},
+				"red-pill": {
+					"model": "byteplus-plan/deepseek-v4-flash"
+				},
+				"construct": {
+					"model": "byteplus-plan/deepseek-v4-flash"
+				},
+				"matrix-bend": {
+					"model": "byteplus-plan/deepseek-v4-flash"
+				},
+				"blue-pill": {
+					"model": "byteplus-plan/deepseek-v4-flash"
+				},
+				"broadcast": {
+					"model": "byteplus-plan/deepseek-v4-flash"
+				},
+				"bullet-time": {
+					"model": "byteplus-plan/deepseek-v4-flash"
+				}
+			}
+		},
+		"commandcode": {
+			"default_model": "commandcode/deepseek/deepseek-v4-flash",
+			"agents": {
+				"morpheus": {
+					"model": "commandcode/deepseek/deepseek-v4-flash"
+				},
+				"oracle": {
+					"model": "commandcode/deepseek/deepseek-v4-flash"
+				},
+				"seraph": {
+					"model": "commandcode/deepseek/deepseek-v4-flash"
+				},
+				"keymaker": {
+					"model": "commandcode/deepseek/deepseek-v4-flash"
+				},
+				"cipher": {
+					"model": "commandcode/deepseek/deepseek-v4-flash"
+				},
+				"sentinel": {
+					"model": "commandcode/deepseek/deepseek-v4-flash"
+				},
+				"smith": {
+					"model": "commandcode/deepseek/deepseek-v4-flash"
+				},
+				"merovingian": {
+					"model": "commandcode/deepseek/deepseek-v4-flash"
+				},
+				"architect": {
+					"model": "commandcode/deepseek/deepseek-v4-flash"
+				},
+				"mouse": {
+					"model": "commandcode/xiaomi/mimo-v2.5"
+				},
+				"operator": {
+					"model": "commandcode/xiaomi/mimo-v2.5"
+				},
+				"trinity": {
+					"model": "commandcode/xiaomi/mimo-v2.5"
+				},
+				"construct": {
+					"model": "commandcode/xiaomi/mimo-v2.5"
+				},
+				"sati": {
+					"model": "commandcode/deepseek/deepseek-v4-flash"
+				}
+			},
+			"categories": {
+				"source": {
+					"model": "commandcode/deepseek/deepseek-v4-flash"
+				},
+				"deep-jack": {
+					"model": "commandcode/deepseek/deepseek-v4-flash"
+				},
+				"red-pill": {
+					"model": "commandcode/deepseek/deepseek-v4-flash"
+				},
+				"construct": {
+					"model": "commandcode/deepseek/deepseek-v4-flash"
+				},
+				"matrix-bend": {
+					"model": "commandcode/deepseek/deepseek-v4-flash"
+				},
+				"blue-pill": {
+					"model": "commandcode/xiaomi/mimo-v2.5"
+				},
+				"broadcast": {
+					"model": "commandcode/xiaomi/mimo-v2.5"
+				},
+				"bullet-time": {
+					"model": "commandcode/xiaomi/mimo-v2.5"
+				}
+			}
+		}
+	},
+	// Live preset selection. Restart the session after changing.
+	"active_preset": "commandcode"
 }

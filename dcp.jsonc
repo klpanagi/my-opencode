@@ -3,31 +3,31 @@
   "enabled": true,
   "autoUpdate": false,
   "debug": false,
+  "pruneNotification": "off",
   "pruneNotificationType": "chat",
   "compress": {
     "mode": "range",
     "permission": "allow",
     "showCompression": true,
     "summaryBuffer": true,
+    "maxContextLimit": "30%",
+    "minContextLimit": "20%",
+    "nudgeFrequency": 2,
+    "iterationNudgeThreshold": 7,
     "nudgeForce": "strong",
-    "iterationNudgeThreshold": 10,
     "protectedTools": [],
-    "protectUserMessages": false,
-    "maxContextLimit": "60%",
-    "minContextLimit": "30%",
-    "nudgeFrequency": 3
+    "protectTags": false,
+    "protectUserMessages": false
   },
-  "strategies": {
-    "deduplication": {
-      "enabled": true,
-      "protectedTools": []
-    },
-    "purgeErrors": {
-      "enabled": true,
-      "protectedTools": [],
-      "turns": 2
-    }
+  "turnProtection": {
+    "enabled": false,
+    "turns": 2
   },
+  "experimental": {
+    "allowSubAgents": false,
+    "customPrompts": false
+  },
+  "protectedFilePatterns": [],
   "commands": {
     "enabled": true,
     "protectedTools": []
@@ -36,13 +36,15 @@
     "enabled": false,
     "automaticStrategies": true
   },
-  "protectedFilePatterns": [],
-  "pruneNotification": "minimal",
-  "turnProtection": {
-    "enabled": true,
-    "turns": 2
-  },
-  "experimental": {
-    "allowSubAgents": true
+  "strategies": {
+    "deduplication": {
+      "enabled": true,
+      "protectedTools": []
+    },
+    "purgeErrors": {
+      "enabled": true,
+      "turns": 1,
+      "protectedTools": []
+    }
   }
 }
