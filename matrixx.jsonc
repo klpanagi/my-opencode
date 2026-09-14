@@ -448,6 +448,82 @@
 				}
 			}
 		},
+		"commandcode-free": {
+			// Free / best-effort preset — all free deals (no credits while capacity lasts).
+			// LongCat-2.0 1M context for heavy agents/categories, Laguna S 2.1 for cheap slots.
+			// Do NOT use as daily driver — free pool has no SLA and ling:free is 100/day.
+			"default_model": "commandcode/meituan/LongCat-2.0:free",
+			"agents": {
+				"morpheus": {
+					"model": "commandcode/meituan/LongCat-2.0:free"
+				},
+				"oracle": {
+					"model": "commandcode/meituan/LongCat-2.0:free"
+				},
+				"seraph": {
+					"model": "commandcode/meituan/LongCat-2.0:free"
+				},
+				"keymaker": {
+					"model": "commandcode/meituan/LongCat-2.0:free"
+				},
+				"cipher": {
+					"model": "commandcode/meituan/LongCat-2.0:free"
+				},
+				"sentinel": {
+					"model": "commandcode/meituan/LongCat-2.0:free"
+				},
+				"smith": {
+					"model": "commandcode/meituan/LongCat-2.0:free"
+				},
+				"merovingian": {
+					"model": "commandcode/meituan/LongCat-2.0:free"
+				},
+				"architect": {
+					"model": "commandcode/meituan/LongCat-2.0:free"
+				},
+				"mouse": {
+					"model": "commandcode/poolside/laguna-s-2.1-free"
+				},
+				"operator": {
+					"model": "commandcode/poolside/laguna-s-2.1-free"
+				},
+				"trinity": {
+					"model": "commandcode/poolside/laguna-s-2.1-free"
+				},
+				"construct": {
+					"model": "commandcode/poolside/laguna-s-2.1-free"
+				},
+				"sati": {
+					"model": "commandcode/meituan/LongCat-2.0:free"
+				}
+			},
+			"categories": {
+				"source": {
+					"model": "commandcode/meituan/LongCat-2.0:free"
+				},
+				"deep-jack": {
+					"model": "commandcode/meituan/LongCat-2.0:free"
+				},
+				"red-pill": {
+					"model": "commandcode/meituan/LongCat-2.0:free"
+				},
+				"construct": {
+					"model": "commandcode/meituan/LongCat-2.0:free"
+				},
+				"matrix-bend": {
+					"model": "commandcode/meituan/LongCat-2.0:free"
+				},
+				"blue-pill": {
+					"model": "commandcode/poolside/laguna-s-2.1-free"
+				},
+				"broadcast": {
+					"model": "commandcode/poolside/laguna-s-2.1-free"
+				},
+				"bullet-time": {
+					"model": "commandcode/poolside/laguna-s-2.1-free"
+				}
+			}
+		},
 		"commandcode": {
 			"default_model": "commandcode/deepseek/deepseek-v4-flash",
 			"agents": {
