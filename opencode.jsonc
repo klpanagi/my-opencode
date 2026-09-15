@@ -1,7 +1,8 @@
 {
 	"$schema": "https://opencode.ai/config.json",
 	"autoupdate": "notify",
-	"model": "commandcode/deepseek/deepseek-v4-flash",
+	"lsp": true,
+	// "model": "commandcode/deepseek/deepseek-v4-flash",
 	"plugin": [
 		// "/home/klpanagi/scholia",
 		"/home/klpanagi/matrixx",
@@ -240,14 +241,16 @@
 					"limit": {
 						"context": 1000000,
 						"output": 32768
-					}
+					},
+					"reasoning": true
 				},
 				"claude-fable-5-1": {
 					"name": "Claude Fable 5.1",
 					"limit": {
 						"context": 1000000,
 						"output": 32768
-					}
+					},
+					"reasoning": true
 				},
 				"claude-haiku-4-5-20251001": {
 					"name": "Claude Haiku 4.5",
@@ -255,42 +258,48 @@
 					"limit": {
 						"context": 200000,
 						"output": 32768
-					}
+					},
+					"reasoning": true
 				},
 				"claude-opus-4-7": {
 					"name": "Claude Opus 4.7",
 					"limit": {
 						"context": 1000000,
 						"output": 32768
-					}
+					},
+					"reasoning": true
 				},
 				"claude-opus-4-8": {
 					"name": "Claude Opus 4.8",
 					"limit": {
 						"context": 1000000,
 						"output": 32768
-					}
+					},
+					"reasoning": true
 				},
 				"claude-opus-5": {
 					"name": "Claude Opus 5",
 					"limit": {
 						"context": 1000000,
 						"output": 32768
-					}
+					},
+					"reasoning": true
 				},
 				"claude-sonnet-4-6": {
 					"name": "Claude Sonnet 4.6",
 					"limit": {
 						"context": 1000000,
 						"output": 32768
-					}
+					},
+					"reasoning": true
 				},
 				"claude-sonnet-5": {
 					"name": "Claude Sonnet 5",
 					"limit": {
 						"context": 1000000,
 						"output": 32768
-					}
+					},
+					"reasoning": true
 				},
 				// ── DeepSeek (5, default: v4-flash) ──────────────────────
 				"deepseek/deepseek-v4-flash": {
@@ -298,7 +307,8 @@
 					"limit": {
 						"context": 1000000,
 						"output": 32768
-					}
+					},
+					"reasoning": true
 				},
 				"deepseek/deepseek-v4-flash-fast": {
 					"name": "DeepSeek V4 Flash Fast",
@@ -320,14 +330,16 @@
 					"limit": {
 						"context": 1000000,
 						"output": 32768
-					}
+					},
+					"reasoning": true
 				},
 				"deepseek/deepseek-v4.1-flash": {
 					"name": "DeepSeek V4.1 Flash",
 					"limit": {
 						"context": 1000000,
 						"output": 32768
-					}
+					},
+					"reasoning": true
 				},
 				// ── Google Gemini (6) ────────────────────────────────────
 				"google/gemini-3.1-flash-lite": {
@@ -336,14 +348,16 @@
 					"limit": {
 						"context": 1000000,
 						"output": 32768
-					}
+					},
+					"reasoning": true
 				},
 				"google/gemini-3.5-flash": {
 					"name": "Gemini 3.5 Flash",
 					"limit": {
 						"context": 1000000,
 						"output": 32768
-					}
+					},
+					"reasoning": true
 				},
 				"google/gemini-3.5-flash-lite": {
 					"name": "Gemini 3.5 Flash Lite",
@@ -351,28 +365,32 @@
 					"limit": {
 						"context": 1000000,
 						"output": 32768
-					}
+					},
+					"reasoning": true
 				},
 				"google/gemini-3.6-flash": {
 					"name": "Gemini 3.6 Flash",
 					"limit": {
 						"context": 1000000,
 						"output": 32768
-					}
+					},
+					"reasoning": true
 				},
 				"google/gemini-3.7-flash": {
 					"name": "Gemini 3.7 Flash",
 					"limit": {
 						"context": 1048576,
 						"output": 32768
-					}
+					},
+					"reasoning": true
 				},
 				"google/gemini-3.8-flash": {
 					"name": "Gemini 3.8 Flash",
 					"limit": {
 						"context": 1000000,
 						"output": 32768
-					}
+					},
+					"reasoning": true
 				},
 				// ── inclusionAI / Meituan / Poolside free tiers ──────────
 				"inclusionai/ling-3.0-flash-sante:free": {
@@ -381,21 +399,24 @@
 					"limit": {
 						"context": 262144,
 						"output": 32000
-					}
+					},
+					"reasoning": true
 				},
 				"meituan/LongCat-2.0:free": {
 					"name": "LongCat 2.0 (free)",
 					"limit": {
 						"context": 1048576,
 						"output": 32768
-					}
+					},
+					"reasoning": true
 				},
 				"poolside/laguna-s-2.1-free": {
 					"name": "Laguna S 2.1 (free)",
 					"limit": {
 						"context": 256000,
 						"output": 32000
-					}
+					},
+					"reasoning": true
 				},
 				// ── Meta / Muse Spark (5) ────────────────────────────────
 				"meta/muse-spark-1.1": {
@@ -403,35 +424,40 @@
 					"limit": {
 						"context": 1048576,
 						"output": 32768
-					}
+					},
+					"reasoning": true
 				},
 				"meta/muse-spark-1.2": {
 					"name": "Muse Spark 1.2",
 					"limit": {
 						"context": 1048576,
 						"output": 32768
-					}
+					},
+					"reasoning": true
 				},
 				"meta/muse-spark-1.2-contributor": {
 					"name": "Muse Spark 1.2 Contributor",
 					"limit": {
 						"context": 1048576,
 						"output": 32768
-					}
+					},
+					"reasoning": true
 				},
 				"meta/muse-spark-1.3": {
 					"name": "Muse Spark 1.3",
 					"limit": {
 						"context": 1048576,
 						"output": 32768
-					}
+					},
+					"reasoning": true
 				},
 				"meta/muse-spark-1.3-contributor": {
 					"name": "Muse Spark 1.3 Contributor",
 					"limit": {
 						"context": 1048576,
 						"output": 32768
-					}
+					},
+					"reasoning": true
 				},
 				// ── MiniMax (3) ──────────────────────────────────────────
 				"MiniMaxAI/MiniMax-M2.5": {
@@ -497,7 +523,8 @@
 					"limit": {
 						"context": 1000000,
 						"output": 32768
-					}
+					},
+					"reasoning": true
 				},
 				// ── OpenAI (8; gpt-6-astra docs-only, not in live API yet) ─
 				"gpt-5.3-codex": {
@@ -505,14 +532,16 @@
 					"limit": {
 						"context": 400000,
 						"output": 32768
-					}
+					},
+					"reasoning": true
 				},
 				"gpt-5.4": {
 					"name": "GPT-5.4",
 					"limit": {
 						"context": 400000,
 						"output": 32768
-					}
+					},
+					"reasoning": true
 				},
 				"gpt-5.4-mini": {
 					"name": "GPT-5.4 Mini",
@@ -520,14 +549,16 @@
 					"limit": {
 						"context": 400000,
 						"output": 32768
-					}
+					},
+					"reasoning": true
 				},
 				"gpt-5.5": {
 					"name": "GPT-5.5",
 					"limit": {
 						"context": 400000,
 						"output": 32768
-					}
+					},
+					"reasoning": true
 				},
 				"gpt-5.6-luna": {
 					"name": "GPT-5.6 Luna",
@@ -535,14 +566,16 @@
 					"limit": {
 						"context": 1050000,
 						"output": 32768
-					}
+					},
+					"reasoning": true
 				},
 				"gpt-5.6-sol": {
 					"name": "GPT-5.6 Sol",
 					"limit": {
 						"context": 1050000,
 						"output": 32768
-					}
+					},
+					"reasoning": true
 				},
 				"gpt-5.6-terra": {
 					"name": "GPT-5.6 Terra",
@@ -550,14 +583,16 @@
 					"limit": {
 						"context": 1050000,
 						"output": 32768
-					}
+					},
+					"reasoning": true
 				},
 				"gpt-6-astra": {
 					"name": "GPT-6 Astra",
 					"limit": {
 						"context": 1000000,
 						"output": 32768
-					}
+					},
+					"reasoning": true
 				},
 				// ── Sakana (1) ───────────────────────────────────────────
 				"sakana/fugu-ultra": {
@@ -565,7 +600,8 @@
 					"limit": {
 						"context": 1000000,
 						"output": 32768
-					}
+					},
+					"reasoning": true
 				},
 				// ── StepFun (2) ──────────────────────────────────────────
 				"stepfun/Step-3.5-Flash": {
@@ -574,7 +610,8 @@
 					"limit": {
 						"context": 1000000,
 						"output": 32768
-					}
+					},
+					"reasoning": true
 				},
 				"stepfun/Step-3.7-Flash": {
 					"name": "Step 3.7 Flash",
@@ -582,7 +619,8 @@
 					"limit": {
 						"context": 256000,
 						"output": 32768
-					}
+					},
+					"reasoning": true
 				},
 				// ── Tencent (2) ──────────────────────────────────────────
 				"tencent/hy3-paid": {
@@ -590,14 +628,16 @@
 					"limit": {
 						"context": 262144,
 						"output": 32768
-					}
+					},
+					"reasoning": true
 				},
 				"tencent/hy4-preview": {
 					"name": "Tencent Hy4 Preview",
 					"limit": {
 						"context": 1048576,
 						"output": 32768
-					}
+					},
+					"reasoning": true
 				},
 				// ── Thinking Machines (2) ────────────────────────────────
 				"thinkingmachines/inkling": {
@@ -605,7 +645,8 @@
 					"limit": {
 						"context": 256000,
 						"output": 32768
-					}
+					},
+					"reasoning": true
 				},
 				"thinkingmachines/inkling-small": {
 					"name": "Inkling Small",
@@ -613,7 +654,8 @@
 					"limit": {
 						"context": 1000000,
 						"output": 32768
-					}
+					},
+					"reasoning": true
 				},
 				// ── xAI (2) ──────────────────────────────────────────────
 				"xai/grok-4.5": {
@@ -621,14 +663,16 @@
 					"limit": {
 						"context": 500000,
 						"output": 32768
-					}
+					},
+					"reasoning": true
 				},
 				"xai/grok-4.6": {
 					"name": "Grok 4.6",
 					"limit": {
 						"context": 500000,
 						"output": 32768
-					}
+					},
+					"reasoning": true
 				},
 				// ── Xiaomi (2) ───────────────────────────────────────────
 				"xiaomi/mimo-v2.5": {
@@ -636,14 +680,16 @@
 					"limit": {
 						"context": 1000000,
 						"output": 32768
-					}
+					},
+					"reasoning": true
 				},
 				"xiaomi/mimo-v2.5-pro": {
 					"name": "MiMo V2.5 Pro",
 					"limit": {
 						"context": 1000000,
 						"output": 32768
-					}
+					},
+					"reasoning": true
 				},
 				// ── Z AI / GLM (6) ───────────────────────────────────────
 				"zai-org/GLM-5": {
@@ -665,7 +711,8 @@
 					"limit": {
 						"context": 1000000,
 						"output": 32768
-					}
+					},
+					"reasoning": true
 				},
 				"zai-org/GLM-5.2-Fast": {
 					"name": "GLM-5.2 Fast",
@@ -673,7 +720,8 @@
 					"limit": {
 						"context": 1000000,
 						"output": 32768
-					}
+					},
+					"reasoning": true
 				},
 				"zai-org/GLM-5.3": {
 					"name": "GLM-5.3",

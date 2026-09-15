@@ -236,23 +236,23 @@
 		"timeout_ms": 5000
 	},
 	// DCP profile switcher. base = shared mechanics (kept across tiers); profiles =
-	// aggressiveness dial (built-ins: economy/balanced/performance/ultimate, extendable
+	// aggressiveness dial (built-ins: brutal/economy/balanced/performance/ultimate, extendable
 	// via dcp.profiles.<name>). default_profile applies on bare switch. The live
 	// dcp.jsonc is GENERATED from this block on every switch — don't hand-edit that file.
 	"dcp": {
 		"enabled": true,
-		"default_profile": "economy",
+		"default_profile": "brutal",
 		"base": {
 			"autoUpdate": false,
 			"debug": false,
-			"pruneNotificationType": "chat",
+			"pruneNotificationType": "toast",
 			"compress": {
 				"mode": "range",
 				"permission": "allow",
 				"showCompression": true,
-				"summaryBuffer": true,
+				"summaryBuffer": false,
 				"nudgeForce": "strong",
-				"iterationNudgeThreshold": 5,
+				"iterationNudgeThreshold": 2,
 				"protectedTools": [],
 				"protectUserMessages": false
 			},
@@ -274,8 +274,11 @@
 				"enabled": false,
 				"automaticStrategies": true
 			},
-			"protectedFilePatterns": []
-		}
+			"protectedFilePatterns": [],
+			"experimental": {
+				"allowSubAgents": true
+			}
+		},
 	},
 	// Tools hidden from the model (paired with context_mode enforcement below).
 	"disabled_tools": [
@@ -524,35 +527,186 @@
 				}
 			}
 		},
-		"commandcode": {
-			"default_model": "commandcode/deepseek/deepseek-v4-flash",
+		"commandcode-spark": {
+			// Balanced daily driver — Spark 1.3 Contributor (score 53.0, 221 tok/s,
+			// $0.10/$0.20, $0.002 cache read) for reasoning agents; Qwen 3.7 Flash
+			// ($0.03/$0.13, 1M ctx) for high-volume executor/search slots.
+			"default_model": "commandcode/meta/muse-spark-1.3-contributor",
 			"agents": {
 				"morpheus": {
-					"model": "commandcode/deepseek/deepseek-v4-flash"
+					"model": "commandcode/meta/muse-spark-1.3-contributor"
 				},
 				"oracle": {
-					"model": "commandcode/deepseek/deepseek-v4-flash"
+					"model": "commandcode/meta/muse-spark-1.3-contributor"
 				},
 				"seraph": {
-					"model": "commandcode/deepseek/deepseek-v4-flash"
+					"model": "commandcode/meta/muse-spark-1.3-contributor"
 				},
 				"keymaker": {
-					"model": "commandcode/deepseek/deepseek-v4-flash"
+					"model": "commandcode/meta/muse-spark-1.3-contributor"
 				},
 				"cipher": {
-					"model": "commandcode/deepseek/deepseek-v4-flash"
+					"model": "commandcode/meta/muse-spark-1.3-contributor"
 				},
 				"sentinel": {
-					"model": "commandcode/deepseek/deepseek-v4-flash"
+					"model": "commandcode/meta/muse-spark-1.3-contributor"
 				},
 				"smith": {
-					"model": "commandcode/deepseek/deepseek-v4-flash"
+					"model": "commandcode/meta/muse-spark-1.3-contributor"
 				},
 				"merovingian": {
-					"model": "commandcode/deepseek/deepseek-v4-flash"
+					"model": "commandcode/meta/muse-spark-1.3-contributor"
 				},
 				"architect": {
-					"model": "commandcode/deepseek/deepseek-v4-flash"
+					"model": "commandcode/meta/muse-spark-1.3-contributor"
+				},
+				"mouse": {
+					"model": "commandcode/Qwen/Qwen3.7-Flash"
+				},
+				"operator": {
+					"model": "commandcode/Qwen/Qwen3.7-Flash"
+				},
+				"trinity": {
+					"model": "commandcode/Qwen/Qwen3.7-Flash"
+				},
+				"construct": {
+					"model": "commandcode/Qwen/Qwen3.7-Flash"
+				},
+				"sati": {
+					"model": "commandcode/meta/muse-spark-1.3-contributor"
+				}
+			},
+			"categories": {
+				"source": {
+					"model": "commandcode/meta/muse-spark-1.3-contributor"
+				},
+				"deep-jack": {
+					"model": "commandcode/meta/muse-spark-1.3-contributor"
+				},
+				"red-pill": {
+					"model": "commandcode/meta/muse-spark-1.3-contributor"
+				},
+				"construct": {
+					"model": "commandcode/meta/muse-spark-1.3-contributor"
+				},
+				"matrix-bend": {
+					"model": "commandcode/meta/muse-spark-1.3-contributor"
+				},
+				"blue-pill": {
+					"model": "commandcode/Qwen/Qwen3.7-Flash"
+				},
+				"broadcast": {
+					"model": "commandcode/Qwen/Qwen3.7-Flash"
+				},
+				"bullet-time": {
+					"model": "commandcode/Qwen/Qwen3.7-Flash"
+				}
+			}
+		},
+		"commandcode-spark-max": {
+			// Max quality — Spark 1.3 Contributor everywhere (top score 53.0 at
+			// $0.10/$0.20 with $0.002 cache read; still cheap enough for bulk use).
+			"default_model": "commandcode/meta/muse-spark-1.3-contributor",
+			"agents": {
+				"morpheus": {
+					"model": "commandcode/meta/muse-spark-1.3-contributor"
+				},
+				"oracle": {
+					"model": "commandcode/meta/muse-spark-1.3-contributor"
+				},
+				"seraph": {
+					"model": "commandcode/meta/muse-spark-1.3-contributor"
+				},
+				"keymaker": {
+					"model": "commandcode/meta/muse-spark-1.3-contributor"
+				},
+				"cipher": {
+					"model": "commandcode/meta/muse-spark-1.3-contributor"
+				},
+				"sentinel": {
+					"model": "commandcode/meta/muse-spark-1.3-contributor"
+				},
+				"smith": {
+					"model": "commandcode/meta/muse-spark-1.3-contributor"
+				},
+				"merovingian": {
+					"model": "commandcode/meta/muse-spark-1.3-contributor"
+				},
+				"architect": {
+					"model": "commandcode/meta/muse-spark-1.3-contributor"
+				},
+				"mouse": {
+					"model": "commandcode/meta/muse-spark-1.3-contributor"
+				},
+				"operator": {
+					"model": "commandcode/meta/muse-spark-1.3-contributor"
+				},
+				"trinity": {
+					"model": "commandcode/meta/muse-spark-1.3-contributor"
+				},
+				"construct": {
+					"model": "commandcode/meta/muse-spark-1.3-contributor"
+				},
+				"sati": {
+					"model": "commandcode/meta/muse-spark-1.3-contributor"
+				}
+			},
+			"categories": {
+				"source": {
+					"model": "commandcode/meta/muse-spark-1.3-contributor"
+				},
+				"deep-jack": {
+					"model": "commandcode/meta/muse-spark-1.3-contributor"
+				},
+				"red-pill": {
+					"model": "commandcode/meta/muse-spark-1.3-contributor"
+				},
+				"construct": {
+					"model": "commandcode/meta/muse-spark-1.3-contributor"
+				},
+				"matrix-bend": {
+					"model": "commandcode/meta/muse-spark-1.3-contributor"
+				},
+				"blue-pill": {
+					"model": "commandcode/meta/muse-spark-1.3-contributor"
+				},
+				"broadcast": {
+					"model": "commandcode/meta/muse-spark-1.3-contributor"
+				},
+				"bullet-time": {
+					"model": "commandcode/meta/muse-spark-1.3-contributor"
+				}
+			}
+		},
+		"commandcode": {
+			"default_model": "commandcode/deepseek/deepseek-v4.1-flash",
+			"agents": {
+				"morpheus": {
+					"model": "commandcode/deepseek/deepseek-v4.1-flash"
+				},
+				"oracle": {
+					"model": "commandcode/deepseek/deepseek-v4.1-flash"
+				},
+				"seraph": {
+					"model": "commandcode/deepseek/deepseek-v4.1-flash"
+				},
+				"keymaker": {
+					"model": "commandcode/deepseek/deepseek-v4.1-flash"
+				},
+				"cipher": {
+					"model": "commandcode/deepseek/deepseek-v4.1-flash"
+				},
+				"sentinel": {
+					"model": "commandcode/deepseek/deepseek-v4.1-flash"
+				},
+				"smith": {
+					"model": "commandcode/deepseek/deepseek-v4.1-flash"
+				},
+				"merovingian": {
+					"model": "commandcode/deepseek/deepseek-v4.1-flash"
+				},
+				"architect": {
+					"model": "commandcode/deepseek/deepseek-v4.1-flash"
 				},
 				"mouse": {
 					"model": "commandcode/xiaomi/mimo-v2.5"
@@ -567,24 +721,24 @@
 					"model": "commandcode/xiaomi/mimo-v2.5"
 				},
 				"sati": {
-					"model": "commandcode/deepseek/deepseek-v4-flash"
+					"model": "commandcode/deepseek/deepseek-v4.1-flash"
 				}
 			},
 			"categories": {
 				"source": {
-					"model": "commandcode/deepseek/deepseek-v4-flash"
+					"model": "commandcode/deepseek/deepseek-v4.1-flash"
 				},
 				"deep-jack": {
-					"model": "commandcode/deepseek/deepseek-v4-flash"
+					"model": "commandcode/deepseek/deepseek-v4.1-flash"
 				},
 				"red-pill": {
-					"model": "commandcode/deepseek/deepseek-v4-flash"
+					"model": "commandcode/deepseek/deepseek-v4.1-flash"
 				},
 				"construct": {
-					"model": "commandcode/deepseek/deepseek-v4-flash"
+					"model": "commandcode/deepseek/deepseek-v4.1-flash"
 				},
 				"matrix-bend": {
-					"model": "commandcode/deepseek/deepseek-v4-flash"
+					"model": "commandcode/deepseek/deepseek-v4.1-flash"
 				},
 				"blue-pill": {
 					"model": "commandcode/xiaomi/mimo-v2.5"
@@ -595,9 +749,9 @@
 				"bullet-time": {
 					"model": "commandcode/xiaomi/mimo-v2.5"
 				}
-			}
+			},
 		}
 	},
 	// Live preset selection. Restart the session after changing.
-	"active_preset": "commandcode"
+	"active_preset": "byteplus"
 }
