@@ -279,6 +279,15 @@
 				"allowSubAgents": true
 			}
 		},
+		// Handoff-boundary compression for background agent results.
+		// When enabled, background agent session messages > maxMessages are
+		// truncated to keepFirst + keepLast before being returned to the parent.
+		"handoffCompression": {
+			"enabled": true,
+			"maxMessages": 6,
+			"keepFirst": 2,
+			"keepLast": 3
+		},
 	},
 	// Tools hidden from the model (paired with context_mode enforcement below).
 	"disabled_tools": [
