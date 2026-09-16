@@ -8,7 +8,7 @@ CONFIG_DIR="${HOME}/.config/opencode"
 SYMLINK_ITEMS=(
 	opencode.jsonc
 	matrixx.jsonc
-	dcp.jsonc
+	opencode-mem.jsonc
 	tui.json
 	agents
 	skills

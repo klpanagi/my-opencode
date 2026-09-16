@@ -120,37 +120,69 @@
 	// Delegation tiers used by task(category=...). complexity_downgrades route
 	// trivial work to cheap models (note: still reference the retired opencode-go provider).
 	"categories": {
+		// Heavy reasoning — thinking ON with generous budget
 		"source": {
 			"temperature": 0.1,
+			"thinking": {
+				"type": "enabled",
+				"budgetTokens": 32000
+			},
 			"complexity_downgrades": {
 				"1": "opencode-go/deepseek-v4-flash",
 				"2": "opencode-go/deepseek-v4-flash"
 			}
 		},
 		"deep-jack": {
-			"temperature": 0.1
+			"temperature": 0.1,
+			"thinking": {
+				"type": "enabled",
+				"budgetTokens": 32000
+			}
 		},
+		"matrix-bend": {
+			"temperature": 0.1,
+			"thinking": {
+				"type": "enabled",
+				"budgetTokens": 32000
+			}
+		},
+		// Moderate reasoning
 		"red-pill": {
 			"temperature": 0.1,
+			"thinking": {
+				"type": "enabled",
+				"budgetTokens": 16000
+			},
 			"complexity_downgrades": {
 				"1": "opencode-go/deepseek-v4-flash",
 				"2": "opencode-go/deepseek-v4-flash"
 			}
 		},
 		"construct": {
-			"temperature": 0.1
+			"temperature": 0.1,
+			"thinking": {
+				"type": "enabled",
+				"budgetTokens": 16000
+			}
 		},
-		"matrix-bend": {
-			"temperature": 0.1
-		},
+		// Thinking OFF — simple/cheap tasks
 		"blue-pill": {
-			"temperature": 0.1
+			"temperature": 0.1,
+			"thinking": {
+				"type": "disabled"
+			}
 		},
 		"broadcast": {
-			"temperature": 0.1
+			"temperature": 0.1,
+			"thinking": {
+				"type": "disabled"
+			}
 		},
 		"bullet-time": {
-			"temperature": 0.1
+			"temperature": 0.1,
+			"thinking": {
+				"type": "disabled"
+			}
 		}
 	},
 	// Preview features: auto session resume, early compaction, safe hook/plugin setup.
@@ -762,5 +794,5 @@
 		}
 	},
 	// Live preset selection. Restart the session after changing.
-	"active_preset": "byteplus"
+	"active_preset": "commandcode-spark"
 }
