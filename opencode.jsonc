@@ -11,7 +11,7 @@
 		"envsitter-guard@latest",
 		// "@slkiser/opencode-quota@latest",
 		"context-mode@latest",
-		"opencode-mem@latest",
+		// "opencode-mem@latest",
 		"opencode-plugin-auto-update@latest"
 	],
 	"provider": {

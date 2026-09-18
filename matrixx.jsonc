@@ -11,14 +11,14 @@
 				"type": "enabled",
 				"budgetTokens": 32000
 			},
-			"fallbackChain": [
-				{
-					"providers": [
-						"opencode-go"
-					],
-					"model": "deepseek-v4-flash"
-				}
-			]
+			// "fallbackChain": [
+			// 	{
+			// 		"providers": [
+			// 			"opencode-go"
+			// 		],
+			// 		"model": "deepseek-v4-flash"
+			// 	}
+			// ]
 		},
 		"oracle": {
 			"temperature": 0.1,
@@ -26,14 +26,6 @@
 				"type": "enabled",
 				"budgetTokens": 16000
 			},
-			"fallbackChain": [
-				{
-					"providers": [
-						"opencode-go"
-					],
-					"model": "deepseek-v4-flash"
-				}
-			]
 		},
 		"seraph": {
 			"temperature": 0.3,
@@ -48,14 +40,6 @@
 				"type": "enabled",
 				"budgetTokens": 16000
 			},
-			"fallbackChain": [
-				{
-					"providers": [
-						"opencode-go"
-					],
-					"model": "deepseek-v4-flash"
-				}
-			]
 		},
 		"cipher": {
 			"temperature": 0.1
@@ -66,14 +50,6 @@
 				"type": "enabled",
 				"budgetTokens": 16000
 			},
-			"fallbackChain": [
-				{
-					"providers": [
-						"opencode-go"
-					],
-					"model": "deepseek-v4-flash"
-				}
-			]
 		},
 		"smith": {
 			"temperature": 0.1,
@@ -127,10 +103,10 @@
 				"type": "enabled",
 				"budgetTokens": 32000
 			},
-			"complexity_downgrades": {
-				"1": "opencode-go/deepseek-v4-flash",
-				"2": "opencode-go/deepseek-v4-flash"
-			}
+			// "complexity_downgrades": {
+			// 	"1": "opencode-go/deepseek-v4-flash",
+			// 	"2": "opencode-go/deepseek-v4-flash"
+			// }
 		},
 		"deep-jack": {
 			"temperature": 0.1,
@@ -153,10 +129,6 @@
 				"type": "enabled",
 				"budgetTokens": 16000
 			},
-			"complexity_downgrades": {
-				"1": "opencode-go/deepseek-v4-flash",
-				"2": "opencode-go/deepseek-v4-flash"
-			}
 		},
 		"construct": {
 			"temperature": 0.1,
@@ -284,7 +256,7 @@
 				"showCompression": true,
 				"summaryBuffer": false,
 				"nudgeForce": "strong",
-				"iterationNudgeThreshold": 2,
+				"iterationNudgeThreshold": 1,
 				"protectedTools": [],
 				"protectUserMessages": false
 			},
@@ -309,6 +281,13 @@
 			"protectedFilePatterns": [],
 			"experimental": {
 				"allowSubAgents": true
+			}
+		},
+		"profiles": {
+			"brutal": {
+				"experimental": {
+					"allowSubAgents": true
+				}
 			}
 		},
 		// Handoff-boundary compression for background agent results.
@@ -347,34 +326,34 @@
 	// opencode-go/byteplus presets are stale (retired providers) — kept as reference.
 	"model_presets": {
 		"opencode-go": {
-			"default_model": "opencode-go/deepseek-v4-flash",
+			"default_model": "opencode-go/muse-spark-1.3-contributor",
 			"agents": {
 				"morpheus": {
-					"model": "opencode-go/deepseek-v4-flash"
+					"model": "opencode-go/muse-spark-1.3-contributor"
 				},
 				"oracle": {
-					"model": "opencode-go/deepseek-v4-flash"
+					"model": "opencode-go/muse-spark-1.3-contributor"
 				},
 				"seraph": {
-					"model": "opencode-go/deepseek-v4-flash"
+					"model": "opencode-go/muse-spark-1.3-contributor"
 				},
 				"keymaker": {
-					"model": "opencode-go/deepseek-v4-flash"
+					"model": "opencode-go/muse-spark-1.3-contributor"
 				},
 				"cipher": {
-					"model": "opencode-go/deepseek-v4-flash"
+					"model": "opencode-go/muse-spark-1.3-contributor"
 				},
 				"sentinel": {
-					"model": "opencode-go/deepseek-v4-flash"
+					"model": "opencode-go/muse-spark-1.3-contributor"
 				},
 				"smith": {
-					"model": "opencode-go/deepseek-v4-flash"
+					"model": "opencode-go/muse-spark-1.3-contributor"
 				},
 				"merovingian": {
-					"model": "opencode-go/deepseek-v4-flash"
+					"model": "opencode-go/muse-spark-1.3-contributor"
 				},
 				"architect": {
-					"model": "opencode-go/deepseek-v4-flash"
+					"model": "opencode-go/muse-spark-1.3-contributor"
 				},
 				"mouse": {
 					"model": "opencode-go/muse-spark-1.3-contributor"
@@ -389,7 +368,7 @@
 					"model": "opencode-go/muse-spark-1.3-contributor"
 				},
 				"sati": {
-					"model": "opencode-go/deepseek-v4-flash"
+					"model": "opencode-go/muse-spark-1.3-contributor"
 				}
 			},
 			"categories": {
@@ -791,8 +770,87 @@
 					"model": "commandcode/xiaomi/mimo-v2.5"
 				}
 			},
+		},
+		"opencode-free": {
+			// All-opencode free pool — Muse Spark 1.3 Contributor Free preferred everywhere.
+			// Free models (no credits while capacity lasts, no SLA):
+			// opencode/muse-spark-1.3-contributor-free, opencode/big-pickle,
+			// opencode/union-alpha, opencode/mimo-v2.5-free,
+			// opencode/ling-3.0-flash-fin-free, opencode/nemotron-3-ultra-free,
+			// opencode/nemotron-3.5-lightning-free
+			"default_model": "opencode/muse-spark-1.3-contributor-free",
+			"agents": {
+				"morpheus": {
+					"model": "opencode/muse-spark-1.3-contributor-free"
+				},
+				"oracle": {
+					"model": "opencode/muse-spark-1.3-contributor-free"
+				},
+				"seraph": {
+					"model": "opencode/muse-spark-1.3-contributor-free"
+				},
+				"keymaker": {
+					"model": "opencode/muse-spark-1.3-contributor-free"
+				},
+				"cipher": {
+					"model": "opencode/muse-spark-1.3-contributor-free"
+				},
+				"sentinel": {
+					"model": "opencode/muse-spark-1.3-contributor-free"
+				},
+				"smith": {
+					"model": "opencode/muse-spark-1.3-contributor-free"
+				},
+				"merovingian": {
+					"model": "opencode/muse-spark-1.3-contributor-free"
+				},
+				"architect": {
+					"model": "opencode/muse-spark-1.3-contributor-free"
+				},
+				"mouse": {
+					"model": "opencode/muse-spark-1.3-contributor-free"
+				},
+				"operator": {
+					"model": "opencode/muse-spark-1.3-contributor-free"
+				},
+				"trinity": {
+					"model": "opencode/muse-spark-1.3-contributor-free"
+				},
+				"construct": {
+					"model": "opencode/muse-spark-1.3-contributor-free"
+				},
+				"sati": {
+					"model": "opencode/muse-spark-1.3-contributor-free"
+				}
+			},
+			"categories": {
+				"source": {
+					"model": "opencode/muse-spark-1.3-contributor-free"
+				},
+				"deep-jack": {
+					"model": "opencode/muse-spark-1.3-contributor-free"
+				},
+				"red-pill": {
+					"model": "opencode/muse-spark-1.3-contributor-free"
+				},
+				"construct": {
+					"model": "opencode/muse-spark-1.3-contributor-free"
+				},
+				"matrix-bend": {
+					"model": "opencode/muse-spark-1.3-contributor-free"
+				},
+				"blue-pill": {
+					"model": "opencode/muse-spark-1.3-contributor-free"
+				},
+				"broadcast": {
+					"model": "opencode/muse-spark-1.3-contributor-free"
+				},
+				"bullet-time": {
+					"model": "opencode/muse-spark-1.3-contributor-free"
+				}
+			}
 		}
 	},
 	// Live preset selection. Restart the session after changing.
-	"active_preset": "commandcode-spark"
+	"active_preset": "opencode-free"
 }
