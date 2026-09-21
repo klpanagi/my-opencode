@@ -239,6 +239,30 @@
 		"binary_path": "/home/klpanagi/.local/bin/rtk",
 		"timeout_ms": 5000
 	},
+	// External knowledge hubs (read-only KB routing).
+	// - Router index (_index.md, truncated to ~6000 tokens) is injected once per session with the
+	//   directive: consult hubs before websearch/webfetch, open files via @hub/path on demand, never bulk-read.
+	// - Guard: hub roots are read-only for Write/Edit/destructive Bash unless the target matches `exclude`.
+	// - Missing `knowledge` = fail-open (nothing injected, writes allowed).
+	"knowledge": {
+		"hubs": [
+			{
+				// Hub handle: reference files as @kb/<relative-path> or hub:kb/<relative-path>.
+				"name": "kb",
+				// Hub root: `~`/`~/` expands to home,
+				"path": "/home/klpanagi/Dropbox/_knowledge",
+				// Router file, relative to path. Default "_index.md".
+				"index": "_index.md",
+				// "global" = shared KB (all projects) | "project" = repo-local. Default "global".
+				"scope": "global",
+				// "router-only" (default) = inject index only; check index first, then read single files on demand, never bulk-read.
+				// "pinned" = router-only + also inject pinned files upfront (extra context, costs tokens).
+				"mode": "router-only"
+				// Optional: "exclude": ["scratch/**"] — extra picomatch patterns merged over DEFAULT_KNOWLEDGE_EXCLUDES
+				// (.*, *.env, *.docx, *.pptx, *.zip, node_modules/**, .publisync_env, .alz_mongo_env); matched paths stay writable.
+			}
+		]
+	},
 	// DCP profile switcher. base = shared mechanics (kept across tiers); profiles =
 	// aggressiveness dial (built-ins: brutal/economy/balanced/performance/ultimate, extendable
 	// via dcp.profiles.<name>). default_profile applies on bare switch. The live
@@ -250,11 +274,14 @@
 			"autoUpdate": false,
 			"debug": false,
 			"pruneNotificationType": "toast",
+			"commands": {
+				"enabled": true
+			},
 			"compress": {
 				"mode": "range",
 				"permission": "allow",
 				"showCompression": true,
-				"summaryBuffer": false,
+				"summaryBuffer": true,
 				"nudgeForce": "strong",
 				"iterationNudgeThreshold": 1,
 				"protectedTools": [],
@@ -270,23 +297,38 @@
 					"protectedTools": []
 				}
 			},
-			"commands": {
-				"enabled": true,
-				"protectedTools": []
-			},
 			"manualMode": {
 				"enabled": false,
 				"automaticStrategies": true
 			},
 			"protectedFilePatterns": [],
 			"experimental": {
-				"allowSubAgents": true
+				"allowSubAgents": false
 			}
 		},
 		"profiles": {
-			"brutal": {
+			// Test-only profile: forces min-band proactive compress to fire early
+			// (max 10% / min 5% — far more aggressive than brutal 20%/10%).
+			// Use for live TUI verification, then remove or keep disabled.
+			"min-band-test": {
+				"pruneNotification": "detailed",
+				"compress": {
+					"maxContextLimit": "10%",
+					"minContextLimit": "5%",
+					"nudgeFrequency": 1,
+					"nudgeForce": "strong",
+					"iterationNudgeThreshold": 1
+				},
+				"turnProtection": {
+					"enabled": false
+				},
 				"experimental": {
-					"allowSubAgents": true
+					"allowSubAgents": false
+				},
+				"strategies": {
+					"purgeErrors": {
+						"turns": 1
+					}
 				}
 			}
 		},
@@ -315,7 +357,8 @@
 			"grep",
 			"glob",
 			"read",
-			"edit"
+			"edit",
+			"write"
 		]
 	},
 	// Applied config migrations. Managed by the plugin — don't touch.
@@ -852,5 +895,5 @@
 		}
 	},
 	// Live preset selection. Restart the session after changing.
-	"active_preset": "opencode-free"
+	"active_preset": "byteplus"
 }

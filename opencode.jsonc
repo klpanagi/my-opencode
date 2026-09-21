@@ -101,8 +101,8 @@
 				"deepseek-v4-flash": {
 					"name": "deepseek-v4-flash",
 					"limit": {
-						// "context": 1024000,
-						"context": 256000,
+						"context": 1024000,
+						// "context": 256000,
 						// "output": 384000,
 						"output": 32000
 					}
