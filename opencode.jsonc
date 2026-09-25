@@ -2,14 +2,12 @@
 	"$schema": "https://opencode.ai/config.json",
 	"autoupdate": "notify",
 	"lsp": true,
-	// "model": "commandcode/deepseek/deepseek-v4-flash",
+	"model": "commandcode/deepseek/deepseek-v4-flash",
 	"plugin": [
-		// "/home/klpanagi/scholia",
 		"/home/klpanagi/matrixx",
 		"@tarquinen/opencode-dcp@latest",
 		"@nick-vi/opencode-type-inject@latest",
 		"envsitter-guard@latest",
-		// "@slkiser/opencode-quota@latest",
 		"context-mode@latest",
 		// "opencode-mem@latest",
 		"opencode-plugin-auto-update@latest"

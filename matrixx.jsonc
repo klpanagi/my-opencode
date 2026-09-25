@@ -6,6 +6,7 @@
 	// Model selection lives in model_presets below, not here.
 	"agents": {
 		"morpheus": {
+			"variant": "low",
 			"temperature": 0.1,
 			"thinking": {
 				"type": "enabled",
@@ -21,6 +22,7 @@
 			// ]
 		},
 		"oracle": {
+			"variant": "low",
 			"temperature": 0.1,
 			"thinking": {
 				"type": "enabled",
@@ -28,6 +30,7 @@
 			},
 		},
 		"seraph": {
+			"variant": "low",
 			"temperature": 0.3,
 			"thinking": {
 				"type": "enabled",
@@ -35,6 +38,7 @@
 			}
 		},
 		"keymaker": {
+			"variant": "low",
 			"temperature": 0.1,
 			"thinking": {
 				"type": "enabled",
@@ -42,9 +46,11 @@
 			},
 		},
 		"cipher": {
+			"variant": "low",
 			"temperature": 0.1
 		},
 		"sentinel": {
+			"variant": "low",
 			"temperature": 0.1,
 			"thinking": {
 				"type": "enabled",
@@ -52,6 +58,7 @@
 			},
 		},
 		"smith": {
+			"variant": "low",
 			"temperature": 0.1,
 			"thinking": {
 				"type": "enabled",
@@ -59,12 +66,15 @@
 			}
 		},
 		"merovingian": {
+			"variant": "low",
 			"temperature": 0.1
 		},
 		"architect": {
+			"variant": "low",
 			"temperature": 0.1
 		},
 		"mouse": {
+			"variant": "low",
 			"temperature": 0.1,
 			"thinking": {
 				"type": "enabled",
@@ -72,24 +82,28 @@
 			}
 		},
 		"operator": {
+			"variant": "low",
 			"temperature": 0.1,
 			"permission": {
 				"bash": "ask"
 			}
 		},
 		"trinity": {
+			"variant": "low",
 			"temperature": 0.1,
 			"permission": {
 				"bash": "ask"
 			}
 		},
 		"construct": {
+			"variant": "low",
 			"temperature": 0.1,
 			"permission": {
 				"bash": "ask"
 			}
 		},
 		"sati": {
+			"variant": "low",
 			"temperature": 0.1
 		}
 	},
@@ -98,6 +112,7 @@
 	"categories": {
 		// Heavy reasoning — thinking ON with generous budget
 		"source": {
+			"variant": "low",
 			"temperature": 0.1,
 			"thinking": {
 				"type": "enabled",
@@ -109,6 +124,7 @@
 			// }
 		},
 		"deep-jack": {
+			"variant": "low",
 			"temperature": 0.1,
 			"thinking": {
 				"type": "enabled",
@@ -116,6 +132,7 @@
 			}
 		},
 		"matrix-bend": {
+			"variant": "low",
 			"temperature": 0.1,
 			"thinking": {
 				"type": "enabled",
@@ -124,6 +141,7 @@
 		},
 		// Moderate reasoning
 		"red-pill": {
+			"variant": "low",
 			"temperature": 0.1,
 			"thinking": {
 				"type": "enabled",
@@ -131,6 +149,7 @@
 			},
 		},
 		"construct": {
+			"variant": "low",
 			"temperature": 0.1,
 			"thinking": {
 				"type": "enabled",
@@ -139,18 +158,21 @@
 		},
 		// Thinking OFF — simple/cheap tasks
 		"blue-pill": {
+			"variant": "low",
 			"temperature": 0.1,
 			"thinking": {
 				"type": "disabled"
 			}
 		},
 		"broadcast": {
+			"variant": "low",
 			"temperature": 0.1,
 			"thinking": {
 				"type": "disabled"
 			}
 		},
 		"bullet-time": {
+			"variant": "low",
 			"temperature": 0.1,
 			"thinking": {
 				"type": "disabled"
@@ -368,76 +390,98 @@
 	// Per-subscription model maps: default_model + per-agent/per-category pins.
 	// opencode-go/byteplus presets are stale (retired providers) — kept as reference.
 	"model_presets": {
-		"opencode-go": {
+		"opencode-spark": {
 			"default_model": "opencode-go/muse-spark-1.3-contributor",
 			"agents": {
 				"morpheus": {
-					"model": "opencode-go/muse-spark-1.3-contributor"
+					"model": "opencode-go/muse-spark-1.3-contributor",
+					"variant": "low"
 				},
 				"oracle": {
-					"model": "opencode-go/muse-spark-1.3-contributor"
+					"model": "opencode-go/muse-spark-1.3-contributor",
+					"variant": "low"
 				},
 				"seraph": {
-					"model": "opencode-go/muse-spark-1.3-contributor"
+					"model": "opencode-go/muse-spark-1.3-contributor",
+					"variant": "low"
 				},
 				"keymaker": {
-					"model": "opencode-go/muse-spark-1.3-contributor"
+					"model": "opencode-go/muse-spark-1.3-contributor",
+					"variant": "low"
 				},
 				"cipher": {
-					"model": "opencode-go/muse-spark-1.3-contributor"
+					"model": "opencode-go/muse-spark-1.3-contributor",
+					"variant": "low"
 				},
 				"sentinel": {
-					"model": "opencode-go/muse-spark-1.3-contributor"
+					"model": "opencode-go/muse-spark-1.3-contributor",
+					"variant": "low"
 				},
 				"smith": {
-					"model": "opencode-go/muse-spark-1.3-contributor"
+					"model": "opencode-go/muse-spark-1.3-contributor",
+					"variant": "low"
 				},
 				"merovingian": {
-					"model": "opencode-go/muse-spark-1.3-contributor"
+					"model": "opencode-go/muse-spark-1.3-contributor",
+					"variant": "low"
 				},
 				"architect": {
-					"model": "opencode-go/muse-spark-1.3-contributor"
+					"model": "opencode-go/muse-spark-1.3-contributor",
+					"variant": "low"
 				},
 				"mouse": {
-					"model": "opencode-go/muse-spark-1.3-contributor"
+					"model": "opencode-go/muse-spark-1.3-contributor",
+					"variant": "low"
 				},
 				"operator": {
-					"model": "opencode-go/muse-spark-1.3-contributor"
+					"model": "opencode-go/muse-spark-1.3-contributor",
+					"variant": "low"
 				},
 				"trinity": {
-					"model": "opencode-go/muse-spark-1.3-contributor"
+					"model": "opencode-go/muse-spark-1.3-contributor",
+					"variant": "low"
 				},
 				"construct": {
-					"model": "opencode-go/muse-spark-1.3-contributor"
+					"model": "opencode-go/muse-spark-1.3-contributor",
+					"variant": "low"
 				},
 				"sati": {
-					"model": "opencode-go/muse-spark-1.3-contributor"
+					"model": "opencode-go/muse-spark-1.3-contributor",
+					"variant": "low"
 				}
 			},
 			"categories": {
 				"source": {
-					"model": "opencode-go/muse-spark-1.3-contributor"
+					"model": "opencode-go/muse-spark-1.3-contributor",
+					"variant": "low"
 				},
 				"deep-jack": {
-					"model": "opencode-go/muse-spark-1.3-contributor"
+					"model": "opencode-go/muse-spark-1.3-contributor",
+					"variant": "low"
 				},
 				"red-pill": {
-					"model": "opencode-go/muse-spark-1.3-contributor"
+					"model": "opencode-go/muse-spark-1.3-contributor",
+					"variant": "low"
 				},
 				"construct": {
-					"model": "opencode-go/muse-spark-1.3-contributor"
+					"model": "opencode-go/muse-spark-1.3-contributor",
+					"variant": "low"
 				},
 				"matrix-bend": {
-					"model": "opencode-go/muse-spark-1.3-contributor"
+					"model": "opencode-go/muse-spark-1.3-contributor",
+					"variant": "low"
 				},
 				"blue-pill": {
-					"model": "opencode-go/muse-spark-1.3-contributor"
+					"model": "opencode-go/muse-spark-1.3-contributor",
+					"variant": "low"
 				},
 				"broadcast": {
-					"model": "opencode-go/muse-spark-1.3-contributor"
+					"model": "opencode-go/muse-spark-1.3-contributor",
+					"variant": "low"
 				},
 				"bullet-time": {
-					"model": "opencode-go/muse-spark-1.3-contributor"
+					"model": "opencode-go/muse-spark-1.3-contributor",
+					"variant": "low"
 				}
 			}
 		},
@@ -445,72 +489,94 @@
 			"default_model": "byteplus-plan/deepseek-v4-flash",
 			"agents": {
 				"morpheus": {
-					"model": "byteplus-plan/deepseek-v4-flash"
+					"model": "byteplus-plan/deepseek-v4-flash",
+					"variant": "low"
 				},
 				"oracle": {
-					"model": "byteplus-plan/deepseek-v4-flash"
+					"model": "byteplus-plan/deepseek-v4-flash",
+					"variant": "low"
 				},
 				"seraph": {
-					"model": "byteplus-plan/deepseek-v4-flash"
+					"model": "byteplus-plan/deepseek-v4-flash",
+					"variant": "low"
 				},
 				"keymaker": {
-					"model": "byteplus-plan/deepseek-v4-flash"
+					"model": "byteplus-plan/deepseek-v4-flash",
+					"variant": "low"
 				},
 				"cipher": {
-					"model": "byteplus-plan/deepseek-v4-flash"
+					"model": "byteplus-plan/deepseek-v4-flash",
+					"variant": "low"
 				},
 				"sentinel": {
-					"model": "byteplus-plan/deepseek-v4-flash"
+					"model": "byteplus-plan/deepseek-v4-flash",
+					"variant": "low"
 				},
 				"smith": {
-					"model": "byteplus-plan/deepseek-v4-flash"
+					"model": "byteplus-plan/deepseek-v4-flash",
+					"variant": "low"
 				},
 				"merovingian": {
-					"model": "byteplus-plan/deepseek-v4-flash"
+					"model": "byteplus-plan/deepseek-v4-flash",
+					"variant": "low"
 				},
 				"architect": {
-					"model": "byteplus-plan/deepseek-v4-flash"
+					"model": "byteplus-plan/deepseek-v4-flash",
+					"variant": "low"
 				},
 				"mouse": {
-					"model": "byteplus-plan/deepseek-v4-flash"
+					"model": "byteplus-plan/deepseek-v4-flash",
+					"variant": "low"
 				},
 				"operator": {
-					"model": "byteplus-plan/deepseek-v4-flash"
+					"model": "byteplus-plan/deepseek-v4-flash",
+					"variant": "low"
 				},
 				"trinity": {
-					"model": "byteplus-plan/deepseek-v4-flash"
+					"model": "byteplus-plan/deepseek-v4-flash",
+					"variant": "low"
 				},
 				"construct": {
-					"model": "byteplus-plan/deepseek-v4-flash"
+					"model": "byteplus-plan/deepseek-v4-flash",
+					"variant": "low"
 				},
 				"sati": {
-					"model": "byteplus-plan/deepseek-v4-flash"
+					"model": "byteplus-plan/deepseek-v4-flash",
+					"variant": "low"
 				}
 			},
 			"categories": {
 				"source": {
-					"model": "byteplus-plan/deepseek-v4-flash"
+					"model": "byteplus-plan/deepseek-v4-flash",
+					"variant": "low"
 				},
 				"deep-jack": {
-					"model": "byteplus-plan/deepseek-v4-flash"
+					"model": "byteplus-plan/deepseek-v4-flash",
+					"variant": "low"
 				},
 				"red-pill": {
-					"model": "byteplus-plan/deepseek-v4-flash"
+					"model": "byteplus-plan/deepseek-v4-flash",
+					"variant": "low"
 				},
 				"construct": {
-					"model": "byteplus-plan/deepseek-v4-flash"
+					"model": "byteplus-plan/deepseek-v4-flash",
+					"variant": "low"
 				},
 				"matrix-bend": {
-					"model": "byteplus-plan/deepseek-v4-flash"
+					"model": "byteplus-plan/deepseek-v4-flash",
+					"variant": "low"
 				},
 				"blue-pill": {
-					"model": "byteplus-plan/deepseek-v4-flash"
+					"model": "byteplus-plan/deepseek-v4-flash",
+					"variant": "low"
 				},
 				"broadcast": {
-					"model": "byteplus-plan/deepseek-v4-flash"
+					"model": "byteplus-plan/deepseek-v4-flash",
+					"variant": "low"
 				},
 				"bullet-time": {
-					"model": "byteplus-plan/deepseek-v4-flash"
+					"model": "byteplus-plan/deepseek-v4-flash",
+					"variant": "low"
 				}
 			}
 		},
@@ -521,72 +587,94 @@
 			"default_model": "commandcode/meituan/LongCat-2.0:free",
 			"agents": {
 				"morpheus": {
-					"model": "commandcode/meituan/LongCat-2.0:free"
+					"model": "commandcode/meituan/LongCat-2.0:free",
+					"variant": "low"
 				},
 				"oracle": {
-					"model": "commandcode/meituan/LongCat-2.0:free"
+					"model": "commandcode/meituan/LongCat-2.0:free",
+					"variant": "low"
 				},
 				"seraph": {
-					"model": "commandcode/meituan/LongCat-2.0:free"
+					"model": "commandcode/meituan/LongCat-2.0:free",
+					"variant": "low"
 				},
 				"keymaker": {
-					"model": "commandcode/meituan/LongCat-2.0:free"
+					"model": "commandcode/meituan/LongCat-2.0:free",
+					"variant": "low"
 				},
 				"cipher": {
-					"model": "commandcode/meituan/LongCat-2.0:free"
+					"model": "commandcode/meituan/LongCat-2.0:free",
+					"variant": "low"
 				},
 				"sentinel": {
-					"model": "commandcode/meituan/LongCat-2.0:free"
+					"model": "commandcode/meituan/LongCat-2.0:free",
+					"variant": "low"
 				},
 				"smith": {
-					"model": "commandcode/meituan/LongCat-2.0:free"
+					"model": "commandcode/meituan/LongCat-2.0:free",
+					"variant": "low"
 				},
 				"merovingian": {
-					"model": "commandcode/meituan/LongCat-2.0:free"
+					"model": "commandcode/meituan/LongCat-2.0:free",
+					"variant": "low"
 				},
 				"architect": {
-					"model": "commandcode/meituan/LongCat-2.0:free"
+					"model": "commandcode/meituan/LongCat-2.0:free",
+					"variant": "low"
 				},
 				"mouse": {
-					"model": "commandcode/poolside/laguna-s-2.1-free"
+					"model": "commandcode/poolside/laguna-s-2.1-free",
+					"variant": "low"
 				},
 				"operator": {
-					"model": "commandcode/poolside/laguna-s-2.1-free"
+					"model": "commandcode/poolside/laguna-s-2.1-free",
+					"variant": "low"
 				},
 				"trinity": {
-					"model": "commandcode/poolside/laguna-s-2.1-free"
+					"model": "commandcode/poolside/laguna-s-2.1-free",
+					"variant": "low"
 				},
 				"construct": {
-					"model": "commandcode/poolside/laguna-s-2.1-free"
+					"model": "commandcode/poolside/laguna-s-2.1-free",
+					"variant": "low"
 				},
 				"sati": {
-					"model": "commandcode/meituan/LongCat-2.0:free"
+					"model": "commandcode/meituan/LongCat-2.0:free",
+					"variant": "low"
 				}
 			},
 			"categories": {
 				"source": {
-					"model": "commandcode/meituan/LongCat-2.0:free"
+					"model": "commandcode/meituan/LongCat-2.0:free",
+					"variant": "low"
 				},
 				"deep-jack": {
-					"model": "commandcode/meituan/LongCat-2.0:free"
+					"model": "commandcode/meituan/LongCat-2.0:free",
+					"variant": "low"
 				},
 				"red-pill": {
-					"model": "commandcode/meituan/LongCat-2.0:free"
+					"model": "commandcode/meituan/LongCat-2.0:free",
+					"variant": "low"
 				},
 				"construct": {
-					"model": "commandcode/meituan/LongCat-2.0:free"
+					"model": "commandcode/meituan/LongCat-2.0:free",
+					"variant": "low"
 				},
 				"matrix-bend": {
-					"model": "commandcode/meituan/LongCat-2.0:free"
+					"model": "commandcode/meituan/LongCat-2.0:free",
+					"variant": "low"
 				},
 				"blue-pill": {
-					"model": "commandcode/poolside/laguna-s-2.1-free"
+					"model": "commandcode/poolside/laguna-s-2.1-free",
+					"variant": "low"
 				},
 				"broadcast": {
-					"model": "commandcode/poolside/laguna-s-2.1-free"
+					"model": "commandcode/poolside/laguna-s-2.1-free",
+					"variant": "low"
 				},
 				"bullet-time": {
-					"model": "commandcode/poolside/laguna-s-2.1-free"
+					"model": "commandcode/poolside/laguna-s-2.1-free",
+					"variant": "low"
 				}
 			}
 		},
@@ -597,72 +685,94 @@
 			"default_model": "commandcode/meta/muse-spark-1.3-contributor",
 			"agents": {
 				"morpheus": {
-					"model": "commandcode/meta/muse-spark-1.3-contributor"
+					"model": "commandcode/meta/muse-spark-1.3-contributor",
+					"variant": "low"
 				},
 				"oracle": {
-					"model": "commandcode/meta/muse-spark-1.3-contributor"
+					"model": "commandcode/meta/muse-spark-1.3-contributor",
+					"variant": "low"
 				},
 				"seraph": {
-					"model": "commandcode/meta/muse-spark-1.3-contributor"
+					"model": "commandcode/meta/muse-spark-1.3-contributor",
+					"variant": "low"
 				},
 				"keymaker": {
-					"model": "commandcode/meta/muse-spark-1.3-contributor"
+					"model": "commandcode/meta/muse-spark-1.3-contributor",
+					"variant": "low"
 				},
 				"cipher": {
-					"model": "commandcode/meta/muse-spark-1.3-contributor"
+					"model": "commandcode/meta/muse-spark-1.3-contributor",
+					"variant": "low"
 				},
 				"sentinel": {
-					"model": "commandcode/meta/muse-spark-1.3-contributor"
+					"model": "commandcode/meta/muse-spark-1.3-contributor",
+					"variant": "low"
 				},
 				"smith": {
-					"model": "commandcode/meta/muse-spark-1.3-contributor"
+					"model": "commandcode/meta/muse-spark-1.3-contributor",
+					"variant": "low"
 				},
 				"merovingian": {
-					"model": "commandcode/meta/muse-spark-1.3-contributor"
+					"model": "commandcode/meta/muse-spark-1.3-contributor",
+					"variant": "low"
 				},
 				"architect": {
-					"model": "commandcode/meta/muse-spark-1.3-contributor"
+					"model": "commandcode/meta/muse-spark-1.3-contributor",
+					"variant": "low"
 				},
 				"mouse": {
-					"model": "commandcode/Qwen/Qwen3.7-Flash"
+					"model": "commandcode/Qwen/Qwen3.7-Flash",
+					"variant": "low"
 				},
 				"operator": {
-					"model": "commandcode/Qwen/Qwen3.7-Flash"
+					"model": "commandcode/Qwen/Qwen3.7-Flash",
+					"variant": "low"
 				},
 				"trinity": {
-					"model": "commandcode/Qwen/Qwen3.7-Flash"
+					"model": "commandcode/Qwen/Qwen3.7-Flash",
+					"variant": "low"
 				},
 				"construct": {
-					"model": "commandcode/Qwen/Qwen3.7-Flash"
+					"model": "commandcode/Qwen/Qwen3.7-Flash",
+					"variant": "low"
 				},
 				"sati": {
-					"model": "commandcode/meta/muse-spark-1.3-contributor"
+					"model": "commandcode/meta/muse-spark-1.3-contributor",
+					"variant": "low"
 				}
 			},
 			"categories": {
 				"source": {
-					"model": "commandcode/meta/muse-spark-1.3-contributor"
+					"model": "commandcode/meta/muse-spark-1.3-contributor",
+					"variant": "low"
 				},
 				"deep-jack": {
-					"model": "commandcode/meta/muse-spark-1.3-contributor"
+					"model": "commandcode/meta/muse-spark-1.3-contributor",
+					"variant": "low"
 				},
 				"red-pill": {
-					"model": "commandcode/meta/muse-spark-1.3-contributor"
+					"model": "commandcode/meta/muse-spark-1.3-contributor",
+					"variant": "low"
 				},
 				"construct": {
-					"model": "commandcode/meta/muse-spark-1.3-contributor"
+					"model": "commandcode/meta/muse-spark-1.3-contributor",
+					"variant": "low"
 				},
 				"matrix-bend": {
-					"model": "commandcode/meta/muse-spark-1.3-contributor"
+					"model": "commandcode/meta/muse-spark-1.3-contributor",
+					"variant": "low"
 				},
 				"blue-pill": {
-					"model": "commandcode/Qwen/Qwen3.7-Flash"
+					"model": "commandcode/Qwen/Qwen3.7-Flash",
+					"variant": "low"
 				},
 				"broadcast": {
-					"model": "commandcode/Qwen/Qwen3.7-Flash"
+					"model": "commandcode/Qwen/Qwen3.7-Flash",
+					"variant": "low"
 				},
 				"bullet-time": {
-					"model": "commandcode/Qwen/Qwen3.7-Flash"
+					"model": "commandcode/Qwen/Qwen3.7-Flash",
+					"variant": "low"
 				}
 			}
 		},
@@ -672,72 +782,94 @@
 			"default_model": "commandcode/meta/muse-spark-1.3-contributor",
 			"agents": {
 				"morpheus": {
-					"model": "commandcode/meta/muse-spark-1.3-contributor"
+					"model": "commandcode/meta/muse-spark-1.3-contributor",
+					"variant": "low"
 				},
 				"oracle": {
-					"model": "commandcode/meta/muse-spark-1.3-contributor"
+					"model": "commandcode/meta/muse-spark-1.3-contributor",
+					"variant": "low"
 				},
 				"seraph": {
-					"model": "commandcode/meta/muse-spark-1.3-contributor"
+					"model": "commandcode/meta/muse-spark-1.3-contributor",
+					"variant": "low"
 				},
 				"keymaker": {
-					"model": "commandcode/meta/muse-spark-1.3-contributor"
+					"model": "commandcode/meta/muse-spark-1.3-contributor",
+					"variant": "low"
 				},
 				"cipher": {
-					"model": "commandcode/meta/muse-spark-1.3-contributor"
+					"model": "commandcode/meta/muse-spark-1.3-contributor",
+					"variant": "low"
 				},
 				"sentinel": {
-					"model": "commandcode/meta/muse-spark-1.3-contributor"
+					"model": "commandcode/meta/muse-spark-1.3-contributor",
+					"variant": "low"
 				},
 				"smith": {
-					"model": "commandcode/meta/muse-spark-1.3-contributor"
+					"model": "commandcode/meta/muse-spark-1.3-contributor",
+					"variant": "low"
 				},
 				"merovingian": {
-					"model": "commandcode/meta/muse-spark-1.3-contributor"
+					"model": "commandcode/meta/muse-spark-1.3-contributor",
+					"variant": "low"
 				},
 				"architect": {
-					"model": "commandcode/meta/muse-spark-1.3-contributor"
+					"model": "commandcode/meta/muse-spark-1.3-contributor",
+					"variant": "low"
 				},
 				"mouse": {
-					"model": "commandcode/meta/muse-spark-1.3-contributor"
+					"model": "commandcode/meta/muse-spark-1.3-contributor",
+					"variant": "low"
 				},
 				"operator": {
-					"model": "commandcode/meta/muse-spark-1.3-contributor"
+					"model": "commandcode/meta/muse-spark-1.3-contributor",
+					"variant": "low"
 				},
 				"trinity": {
-					"model": "commandcode/meta/muse-spark-1.3-contributor"
+					"model": "commandcode/meta/muse-spark-1.3-contributor",
+					"variant": "low"
 				},
 				"construct": {
-					"model": "commandcode/meta/muse-spark-1.3-contributor"
+					"model": "commandcode/meta/muse-spark-1.3-contributor",
+					"variant": "low"
 				},
 				"sati": {
-					"model": "commandcode/meta/muse-spark-1.3-contributor"
+					"model": "commandcode/meta/muse-spark-1.3-contributor",
+					"variant": "low"
 				}
 			},
 			"categories": {
 				"source": {
-					"model": "commandcode/meta/muse-spark-1.3-contributor"
+					"model": "commandcode/meta/muse-spark-1.3-contributor",
+					"variant": "low"
 				},
 				"deep-jack": {
-					"model": "commandcode/meta/muse-spark-1.3-contributor"
+					"model": "commandcode/meta/muse-spark-1.3-contributor",
+					"variant": "low"
 				},
 				"red-pill": {
-					"model": "commandcode/meta/muse-spark-1.3-contributor"
+					"model": "commandcode/meta/muse-spark-1.3-contributor",
+					"variant": "low"
 				},
 				"construct": {
-					"model": "commandcode/meta/muse-spark-1.3-contributor"
+					"model": "commandcode/meta/muse-spark-1.3-contributor",
+					"variant": "low"
 				},
 				"matrix-bend": {
-					"model": "commandcode/meta/muse-spark-1.3-contributor"
+					"model": "commandcode/meta/muse-spark-1.3-contributor",
+					"variant": "low"
 				},
 				"blue-pill": {
-					"model": "commandcode/meta/muse-spark-1.3-contributor"
+					"model": "commandcode/meta/muse-spark-1.3-contributor",
+					"variant": "low"
 				},
 				"broadcast": {
-					"model": "commandcode/meta/muse-spark-1.3-contributor"
+					"model": "commandcode/meta/muse-spark-1.3-contributor",
+					"variant": "low"
 				},
 				"bullet-time": {
-					"model": "commandcode/meta/muse-spark-1.3-contributor"
+					"model": "commandcode/meta/muse-spark-1.3-contributor",
+					"variant": "low"
 				}
 			}
 		},
@@ -745,155 +877,505 @@
 			"default_model": "commandcode/deepseek/deepseek-v4.1-flash",
 			"agents": {
 				"morpheus": {
-					"model": "commandcode/deepseek/deepseek-v4.1-flash"
+					"model": "commandcode/deepseek/deepseek-v4.1-flash",
+					"variant": "low"
 				},
 				"oracle": {
-					"model": "commandcode/deepseek/deepseek-v4.1-flash"
+					"model": "commandcode/deepseek/deepseek-v4.1-flash",
+					"variant": "low"
 				},
 				"seraph": {
-					"model": "commandcode/deepseek/deepseek-v4.1-flash"
+					"model": "commandcode/deepseek/deepseek-v4.1-flash",
+					"variant": "low"
 				},
 				"keymaker": {
-					"model": "commandcode/deepseek/deepseek-v4.1-flash"
+					"model": "commandcode/deepseek/deepseek-v4.1-flash",
+					"variant": "low"
 				},
 				"cipher": {
-					"model": "commandcode/deepseek/deepseek-v4.1-flash"
+					"model": "commandcode/deepseek/deepseek-v4.1-flash",
+					"variant": "low"
 				},
 				"sentinel": {
-					"model": "commandcode/deepseek/deepseek-v4.1-flash"
+					"model": "commandcode/deepseek/deepseek-v4.1-flash",
+					"variant": "low"
 				},
 				"smith": {
-					"model": "commandcode/deepseek/deepseek-v4.1-flash"
+					"model": "commandcode/deepseek/deepseek-v4.1-flash",
+					"variant": "low"
 				},
 				"merovingian": {
-					"model": "commandcode/deepseek/deepseek-v4.1-flash"
+					"model": "commandcode/deepseek/deepseek-v4.1-flash",
+					"variant": "low"
 				},
 				"architect": {
-					"model": "commandcode/deepseek/deepseek-v4.1-flash"
+					"model": "commandcode/deepseek/deepseek-v4.1-flash",
+					"variant": "low"
 				},
 				"mouse": {
-					"model": "commandcode/xiaomi/mimo-v2.5"
+					"model": "commandcode/xiaomi/mimo-v2.5",
+					"variant": "low"
 				},
 				"operator": {
-					"model": "commandcode/xiaomi/mimo-v2.5"
+					"model": "commandcode/xiaomi/mimo-v2.5",
+					"variant": "low"
 				},
 				"trinity": {
-					"model": "commandcode/xiaomi/mimo-v2.5"
+					"model": "commandcode/xiaomi/mimo-v2.5",
+					"variant": "low"
 				},
 				"construct": {
-					"model": "commandcode/xiaomi/mimo-v2.5"
+					"model": "commandcode/xiaomi/mimo-v2.5",
+					"variant": "low"
 				},
 				"sati": {
-					"model": "commandcode/deepseek/deepseek-v4.1-flash"
+					"model": "commandcode/deepseek/deepseek-v4.1-flash",
+					"variant": "low"
 				}
 			},
 			"categories": {
 				"source": {
-					"model": "commandcode/deepseek/deepseek-v4.1-flash"
+					"model": "commandcode/deepseek/deepseek-v4.1-flash",
+					"variant": "low"
 				},
 				"deep-jack": {
-					"model": "commandcode/deepseek/deepseek-v4.1-flash"
+					"model": "commandcode/deepseek/deepseek-v4.1-flash",
+					"variant": "low"
 				},
 				"red-pill": {
-					"model": "commandcode/deepseek/deepseek-v4.1-flash"
+					"model": "commandcode/deepseek/deepseek-v4.1-flash",
+					"variant": "low"
 				},
 				"construct": {
-					"model": "commandcode/deepseek/deepseek-v4.1-flash"
+					"model": "commandcode/deepseek/deepseek-v4.1-flash",
+					"variant": "low"
 				},
 				"matrix-bend": {
-					"model": "commandcode/deepseek/deepseek-v4.1-flash"
+					"model": "commandcode/deepseek/deepseek-v4.1-flash",
+					"variant": "low"
 				},
 				"blue-pill": {
-					"model": "commandcode/xiaomi/mimo-v2.5"
+					"model": "commandcode/xiaomi/mimo-v2.5",
+					"variant": "low"
 				},
 				"broadcast": {
-					"model": "commandcode/xiaomi/mimo-v2.5"
+					"model": "commandcode/xiaomi/mimo-v2.5",
+					"variant": "low"
 				},
 				"bullet-time": {
-					"model": "commandcode/xiaomi/mimo-v2.5"
+					"model": "commandcode/xiaomi/mimo-v2.5",
+					"variant": "low"
 				}
 			},
 		},
 		"opencode-free": {
-			// All-opencode free pool — Muse Spark 1.3 Contributor Free preferred everywhere.
-			// Free models (no credits while capacity lasts, no SLA):
+			// All-free Zen pool — Muse Spark 1.3 Contributor Free everywhere (no credits, no SLA).
+			// Current free models (Sep 24 2026, https://opencode.ai/docs/zen/ — no credits while capacity lasts):
 			// opencode/muse-spark-1.3-contributor-free, opencode/big-pickle,
-			// opencode/union-alpha, opencode/mimo-v2.5-free,
-			// opencode/ling-3.0-flash-fin-free, opencode/nemotron-3-ultra-free,
-			// opencode/nemotron-3.5-lightning-free
+			// opencode/space-bunny-free, opencode/mimo-v2.6-flash-free,
+			// opencode/mimo-v2.5-free, opencode/ling-3.0-flash-fin-free,
+			// opencode/nemotron-3-ultra-free, opencode/nemotron-3.5-lightning-free
+			// (opencode/jev-1.13-free is decision-only, not for agents).
 			"default_model": "opencode/muse-spark-1.3-contributor-free",
 			"agents": {
 				"morpheus": {
-					"model": "opencode/muse-spark-1.3-contributor-free"
+					"model": "opencode/muse-spark-1.3-contributor-free",
+					"variant": "low"
 				},
 				"oracle": {
-					"model": "opencode/muse-spark-1.3-contributor-free"
+					"model": "opencode/muse-spark-1.3-contributor-free",
+					"variant": "low"
 				},
 				"seraph": {
-					"model": "opencode/muse-spark-1.3-contributor-free"
+					"model": "opencode/muse-spark-1.3-contributor-free",
+					"variant": "low"
 				},
 				"keymaker": {
-					"model": "opencode/muse-spark-1.3-contributor-free"
+					"model": "opencode/muse-spark-1.3-contributor-free",
+					"variant": "low"
 				},
 				"cipher": {
-					"model": "opencode/muse-spark-1.3-contributor-free"
+					"model": "opencode/muse-spark-1.3-contributor-free",
+					"variant": "low"
 				},
 				"sentinel": {
-					"model": "opencode/muse-spark-1.3-contributor-free"
+					"model": "opencode/muse-spark-1.3-contributor-free",
+					"variant": "low"
 				},
 				"smith": {
-					"model": "opencode/muse-spark-1.3-contributor-free"
+					"model": "opencode/muse-spark-1.3-contributor-free",
+					"variant": "low"
 				},
 				"merovingian": {
-					"model": "opencode/muse-spark-1.3-contributor-free"
+					"model": "opencode/muse-spark-1.3-contributor-free",
+					"variant": "low"
 				},
 				"architect": {
-					"model": "opencode/muse-spark-1.3-contributor-free"
+					"model": "opencode/muse-spark-1.3-contributor-free",
+					"variant": "low"
 				},
 				"mouse": {
-					"model": "opencode/muse-spark-1.3-contributor-free"
+					"model": "opencode/muse-spark-1.3-contributor-free",
+					"variant": "low"
 				},
 				"operator": {
-					"model": "opencode/muse-spark-1.3-contributor-free"
+					"model": "opencode/muse-spark-1.3-contributor-free",
+					"variant": "low"
 				},
 				"trinity": {
-					"model": "opencode/muse-spark-1.3-contributor-free"
+					"model": "opencode/muse-spark-1.3-contributor-free",
+					"variant": "low"
 				},
 				"construct": {
-					"model": "opencode/muse-spark-1.3-contributor-free"
+					"model": "opencode/muse-spark-1.3-contributor-free",
+					"variant": "low"
 				},
 				"sati": {
-					"model": "opencode/muse-spark-1.3-contributor-free"
+					"model": "opencode/muse-spark-1.3-contributor-free",
+					"variant": "low"
 				}
 			},
 			"categories": {
 				"source": {
-					"model": "opencode/muse-spark-1.3-contributor-free"
+					"model": "opencode/muse-spark-1.3-contributor-free",
+					"variant": "low"
 				},
 				"deep-jack": {
-					"model": "opencode/muse-spark-1.3-contributor-free"
+					"model": "opencode/muse-spark-1.3-contributor-free",
+					"variant": "low"
 				},
 				"red-pill": {
-					"model": "opencode/muse-spark-1.3-contributor-free"
+					"model": "opencode/muse-spark-1.3-contributor-free",
+					"variant": "low"
 				},
 				"construct": {
-					"model": "opencode/muse-spark-1.3-contributor-free"
+					"model": "opencode/muse-spark-1.3-contributor-free",
+					"variant": "low"
 				},
 				"matrix-bend": {
-					"model": "opencode/muse-spark-1.3-contributor-free"
+					"model": "opencode/muse-spark-1.3-contributor-free",
+					"variant": "low"
 				},
 				"blue-pill": {
-					"model": "opencode/muse-spark-1.3-contributor-free"
+					"model": "opencode/muse-spark-1.3-contributor-free",
+					"variant": "low"
 				},
 				"broadcast": {
-					"model": "opencode/muse-spark-1.3-contributor-free"
+					"model": "opencode/muse-spark-1.3-contributor-free",
+					"variant": "low"
 				},
 				"bullet-time": {
-					"model": "opencode/muse-spark-1.3-contributor-free"
+					"model": "opencode/muse-spark-1.3-contributor-free",
+					"variant": "low"
+				}
+			}
+		},
+		"opencode-economy": {
+			// Stretch $10 Go + $0 free — heavy reasoning on cheapest $60 Go pool,
+			// bulk/search on free Zen (no credits while capacity lasts, no SLA).
+			// Go (Sep 24 2026, https://opencode.ai/docs/go/): muse-spark-1.3-contributor
+			// $0.10/$0.20, $0.002 cache read, $60/mo, ~45.3k req/5h (largest pool).
+			// Zen free (https://opencode.ai/docs/zen/): mimo-v2.6-flash-free, $0.
+			// Per-model caps (5h = 20% monthly, weekly = 50%) — splitting heavy/bulk
+			// across Go spark + free mimo raises effective throughput vs single-model.
+			"default_model": "opencode-go/muse-spark-1.3-contributor",
+			"agents": {
+				"morpheus": {
+					"model": "opencode-go/muse-spark-1.3-contributor",
+					"variant": "low"
+				},
+				"oracle": {
+					"model": "opencode-go/muse-spark-1.3-contributor",
+					"variant": "low"
+				},
+				"seraph": {
+					"model": "opencode-go/muse-spark-1.3-contributor",
+					"variant": "low"
+				},
+				"keymaker": {
+					"model": "opencode-go/muse-spark-1.3-contributor",
+					"variant": "low"
+				},
+				"cipher": {
+					"model": "opencode-go/muse-spark-1.3-contributor",
+					"variant": "low"
+				},
+				"sentinel": {
+					"model": "opencode-go/muse-spark-1.3-contributor",
+					"variant": "low"
+				},
+				"smith": {
+					"model": "opencode-go/muse-spark-1.3-contributor",
+					"variant": "low"
+				},
+				"merovingian": {
+					"model": "opencode-go/muse-spark-1.3-contributor",
+					"variant": "low"
+				},
+				"architect": {
+					"model": "opencode-go/muse-spark-1.3-contributor",
+					"variant": "low"
+				},
+				"mouse": {
+					"model": "opencode/mimo-v2.6-flash-free",
+					"variant": "low"
+				},
+				"operator": {
+					"model": "opencode/mimo-v2.6-flash-free",
+					"variant": "low"
+				},
+				"trinity": {
+					"model": "opencode/mimo-v2.6-flash-free",
+					"variant": "low"
+				},
+				"construct": {
+					"model": "opencode-go/muse-spark-1.3-contributor",
+					"variant": "low"
+				},
+				"sati": {
+					"model": "opencode-go/muse-spark-1.3-contributor",
+					"variant": "low"
+				}
+			},
+			"categories": {
+				"source": {
+					"model": "opencode-go/muse-spark-1.3-contributor",
+					"variant": "low"
+				},
+				"deep-jack": {
+					"model": "opencode-go/muse-spark-1.3-contributor",
+					"variant": "low"
+				},
+				"red-pill": {
+					"model": "opencode-go/muse-spark-1.3-contributor",
+					"variant": "low"
+				},
+				"construct": {
+					"model": "opencode-go/muse-spark-1.3-contributor",
+					"variant": "low"
+				},
+				"matrix-bend": {
+					"model": "opencode-go/muse-spark-1.3-contributor",
+					"variant": "low"
+				},
+				"blue-pill": {
+					"model": "opencode/mimo-v2.6-flash-free",
+					"variant": "low"
+				},
+				"broadcast": {
+					"model": "opencode/mimo-v2.6-flash-free",
+					"variant": "low"
+				},
+				"bullet-time": {
+					"model": "opencode/mimo-v2.6-flash-free",
+					"variant": "low"
+				}
+			}
+		},
+		"opencode-default": {
+			// Balanced daily driver, all-Go for SLA — cheap heavy, cheapest bulk.
+			// Go (Sep 24 2026, https://opencode.ai/docs/go/): deepseek-v4.1-flash
+			// $0.15/$0.60 off-peak ($0.30/$1.20 peak), $0.003 cache read, $60/mo promo
+			// (4x, ends Sep 27 → then $15/mo), ~26k req/5h promo (~6.5k base).
+			// Peak = Mon-Fri 01:00-04:00 + 06:00-10:00 UTC; else off-peak. ZDR 0-day.
+			// + muse-spark-1.3-contributor $0.10/$0.20, $60/mo, ~45.3k req/5h for
+			// high-volume executor/search slots. If the DeepSeek 5h cap (20%) trips,
+			// /preset set opencode-economy is the fallback.
+			"default_model": "opencode-go/deepseek-v4.1-flash",
+			"agents": {
+				"morpheus": {
+					"model": "opencode-go/deepseek-v4.1-flash",
+					"variant": "low"
+				},
+				"oracle": {
+					"model": "opencode-go/deepseek-v4.1-flash",
+					"variant": "low"
+				},
+				"seraph": {
+					"model": "opencode-go/deepseek-v4.1-flash",
+					"variant": "low"
+				},
+				"keymaker": {
+					"model": "opencode-go/deepseek-v4.1-flash",
+					"variant": "low"
+				},
+				"cipher": {
+					"model": "opencode-go/deepseek-v4.1-flash",
+					"variant": "low"
+				},
+				"sentinel": {
+					"model": "opencode-go/deepseek-v4.1-flash",
+					"variant": "low"
+				},
+				"smith": {
+					"model": "opencode-go/deepseek-v4.1-flash",
+					"variant": "low"
+				},
+				"merovingian": {
+					"model": "opencode-go/deepseek-v4.1-flash",
+					"variant": "low"
+				},
+				"architect": {
+					"model": "opencode-go/deepseek-v4.1-flash",
+					"variant": "low"
+				},
+				"mouse": {
+					"model": "opencode/mimo-v2.6-flash-free",
+					"variant": "low"
+				},
+				"operator": {
+					"model": "opencode/mimo-v2.6-flash-free",
+					"variant": "low"
+				},
+				"trinity": {
+					"model": "opencode/mimo-v2.6-flash-free",
+					"variant": "low"
+				},
+				"construct": {
+					"model": "opencode-go/deepseek-v4.1-flash",
+					"variant": "low"
+				},
+				"sati": {
+					"model": "opencode-go/deepseek-v4.1-flash",
+					"variant": "low"
+				}
+			},
+			"categories": {
+				"source": {
+					"model": "opencode-go/deepseek-v4.1-flash",
+					"variant": "low"
+				},
+				"deep-jack": {
+					"model": "opencode-go/deepseek-v4.1-flash",
+					"variant": "low"
+				},
+				"red-pill": {
+					"model": "opencode-go/deepseek-v4.1-flash",
+					"variant": "low"
+				},
+				"construct": {
+					"model": "opencode-go/deepseek-v4.1-flash",
+					"variant": "low"
+				},
+				"matrix-bend": {
+					"model": "opencode-go/deepseek-v4.1-flash",
+					"variant": "low"
+				},
+				"blue-pill": {
+					"model": "opencode/mimo-v2.6-flash-free",
+					"variant": "low"
+				},
+				"broadcast": {
+					"model": "opencode/mimo-v2.6-flash-free",
+					"variant": "low"
+				},
+				"bullet-time": {
+					"model": "opencode/mimo-v2.6-flash-free",
+					"variant": "low"
+				}
+			}
+		},
+		"opencode-bunny": {
+			// Single-model preset — Space Bunny Free ONLY, every agent and category.
+			// Zen (Sep 24 2026, https://opencode.ai/docs/zen/): opencode/space-bunny-free
+			// is free / free / free, zero-retention provider, limited-time stealth model.
+			// Go also serves opencode-go/space-bunny-free (free, unlimited, limited time)
+			// — swap the prefix below if you prefer the Go route.
+			"default_model": "opencode/space-bunny-free",
+			"agents": {
+				"morpheus": {
+					"model": "opencode/space-bunny-free",
+					"variant": "low"
+				},
+				"oracle": {
+					"model": "opencode/space-bunny-free",
+					"variant": "low"
+				},
+				"seraph": {
+					"model": "opencode/space-bunny-free",
+					"variant": "low"
+				},
+				"keymaker": {
+					"model": "opencode/space-bunny-free",
+					"variant": "low"
+				},
+				"cipher": {
+					"model": "opencode/space-bunny-free",
+					"variant": "low"
+				},
+				"sentinel": {
+					"model": "opencode/space-bunny-free",
+					"variant": "low"
+				},
+				"smith": {
+					"model": "opencode/space-bunny-free",
+					"variant": "low"
+				},
+				"merovingian": {
+					"model": "opencode/space-bunny-free",
+					"variant": "low"
+				},
+				"architect": {
+					"model": "opencode/space-bunny-free",
+					"variant": "low"
+				},
+				"mouse": {
+					"model": "opencode/space-bunny-free",
+					"variant": "low"
+				},
+				"operator": {
+					"model": "opencode/space-bunny-free",
+					"variant": "low"
+				},
+				"trinity": {
+					"model": "opencode/space-bunny-free",
+					"variant": "low"
+				},
+				"construct": {
+					"model": "opencode/space-bunny-free",
+					"variant": "low"
+				},
+				"sati": {
+					"model": "opencode/space-bunny-free",
+					"variant": "low"
+				}
+			},
+			"categories": {
+				"source": {
+					"model": "opencode/space-bunny-free",
+					"variant": "low"
+				},
+				"deep-jack": {
+					"model": "opencode/space-bunny-free",
+					"variant": "low"
+				},
+				"red-pill": {
+					"model": "opencode/space-bunny-free",
+					"variant": "low"
+				},
+				"construct": {
+					"model": "opencode/space-bunny-free",
+					"variant": "low"
+				},
+				"matrix-bend": {
+					"model": "opencode/space-bunny-free",
+					"variant": "low"
+				},
+				"blue-pill": {
+					"model": "opencode/space-bunny-free",
+					"variant": "low"
+				},
+				"broadcast": {
+					"model": "opencode/space-bunny-free",
+					"variant": "low"
+				},
+				"bullet-time": {
+					"model": "opencode/space-bunny-free",
+					"variant": "low"
 				}
 			}
 		}
 	},
 	// Live preset selection. Restart the session after changing.
-	"active_preset": "byteplus"
+	"active_preset": "commandcode"
 }
