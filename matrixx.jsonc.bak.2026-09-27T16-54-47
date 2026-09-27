@@ -205,11 +205,9 @@
 	},
 	// File-backed task system (.matrixx/tasks/); project-scoped, survives restarts.
 	"tasks": {
+		"enabled": true,
 		"scope": "project",
-		"pollTimeoutMs": 900000,
-		"stale_after_hours": 24,
-		"background_stale_after_hours": 2,
-		"session_scoped": true
+		"pollTimeoutMs": 900000
 	},
 	// Test-first enforcement: failing test before implementation, never delete failing tests.
 	"tdd_enforcer": {
