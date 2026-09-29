@@ -215,6 +215,46 @@
 	"tdd_enforcer": {
 		"enabled": true
 	},
+	// Self-evolution loop: captures tool traces, compresses into reusable skills.
+	// Opt-in (default disabled). Governance stays human-in-the-loop: proposals
+	// stage under .matrixx/evolution/ and require approval via /evolution.
+	"evolution": {
+		"enabled": true,
+		"watcher": {
+			"maxArgChars": 4000,
+			"maxOutputChars": 8000,
+			"skipTools": [
+				"evolution-watcher",
+				"evolution-compressor"
+			]
+		},
+		"compressor": {
+			"provider": "llm",
+			"minTraces": 5,
+			"maxInputTokens": 32000,
+			"trigger": "both"
+		},
+		"writer": {
+			"outputDir": "~/.matrixx/evolution/skills",
+			"globalSkills": false,
+			"allowToolGeneration": false,
+			"allowAgentGeneration": false
+		},
+		"governance": {
+			"requireApproval": true,
+			"autoPromote": false,
+			"autoPromoteThreshold": 0.85,
+			"minConfidence": 0.7
+		},
+		"retention": {
+			"traceDays": 30,
+			"maxPending": 50
+		},
+		"budget": {
+			"maxCompressionsPerHour": 10,
+			"maxCostCentsPerDay": 100
+		}
+	},
 	// Engine used by browser-automation skills.
 	"browser_automation_engine": {
 		"provider": "playwright"
@@ -297,7 +337,10 @@
 		"base": {
 			"autoUpdate": false,
 			"debug": false,
-			"pruneNotificationType": "toast",
+			// "off", "minimal", "detailed"
+			"pruneNotification": "detailed",
+			// chat | toast
+			"pruneNotificationType": "chat",
 			"commands": {
 				"enabled": true
 			},
@@ -306,8 +349,11 @@
 				"permission": "allow",
 				"showCompression": true,
 				"summaryBuffer": true,
+				// ("strong" = more likely, "soft" = less likely)
 				"nudgeForce": "strong",
-				"iterationNudgeThreshold": 1,
+				// Start adding compression reminders after this many
+				// messages have happened since the last user message
+				// "iterationNudgeThreshold": 5,
 				"protectedTools": [],
 				"protectUserMessages": false
 			},
@@ -318,6 +364,8 @@
 				},
 				"purgeErrors": {
 					"enabled": true,
+					// Number of turns before errored tool inputs are pruned
+					"turns": 2,
 					"protectedTools": []
 				}
 			},
