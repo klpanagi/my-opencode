@@ -203,12 +203,27 @@
 			"consecutiveThreshold": 10
 		}
 	},
-	// File-backed task system (.matrixx/tasks/); project-scoped, survives restarts.
+	// File-backed task system (T-{uuid}.json files); survives restarts.
+	// NOTE: `scope` and `session_scoped` are different axes, not the same thing:
+	// `scope` = WHERE task files live on disk; `session_scoped` = WHICH tasks
+	// the continuation enforcer considers (own session's vs. all in the store).
 	"tasks": {
+		// Storage location: "project" → .matrixx/tasks/ in the repo (default),
+		// "global" → shared <opencode-config>/tasks/{listId}.
 		"scope": "project",
+		// Max wait for blocking task() calls in ms (default: 600000 = 10 min,
+		// min: 60000). Raise for agents that delegate to subagents (e.g. Oracle→Seraph).
 		"pollTimeoutMs": 900000,
+		// Pending tasks with no file activity for this many hours are stale and
+		// excluded from continuation nudges (default: 24, min: 0.25 = 15 min).
 		"stale_after_hours": 24,
+		// Same idea, but ONLY for background-agent completion gates: a pending task
+		// idle this long stops blocking its background handle (default: 2). Kept
+		// separate because a missed nudge vs. a wedged handle are different failures.
 		"background_stale_after_hours": 2,
+		// Visibility filter for the continuation enforcer: true → only tasks created
+		// by the current session (or its subagents); false → all tasks in the store
+		// regardless of session origin (default: true).
 		"session_scoped": true
 	},
 	// Test-first enforcement: failing test before implementation, never delete failing tests.
@@ -219,39 +234,65 @@
 	// Opt-in (default disabled). Governance stays human-in-the-loop: proposals
 	// stage under .matrixx/evolution/ and require approval via /evolution.
 	"evolution": {
+		// Master switch for the self-evolution loop (default: false — opt-in).
 		"enabled": true,
+		// Trace capture: records tool args/outputs to synthesize reusable skills.
 		"watcher": {
+			// Max chars captured per tool-call arguments (default: 4000).
 			"maxArgChars": 4000,
+			// Max chars captured per tool-call output (default: 8000).
 			"maxOutputChars": 8000,
+			// Tools excluded from trace capture (avoids self-recursion noise).
 			"skipTools": [
 				"evolution-watcher",
 				"evolution-compressor"
 			]
 		},
+		// Trace synthesis: compresses collected traces into skill proposals.
 		"compressor": {
+			// Synthesis backend: "llm" (default) | "dspy-gepa".
 			"provider": "llm",
+			// Minimum traces required before a compression run (default: 5).
 			"minTraces": 5,
+			// Max input tokens for the compressor prompt (default: 32000).
 			"maxInputTokens": 32000,
+			// When compression triggers: "compacting" | "idle" | "both" (default).
 			"trigger": "both"
 		},
+		// Skill generation: where and what the writer may create.
 		"writer": {
+			// Output dir for generated skills (default: ".matrixx/evolution/skills").
 			"outputDir": "~/.matrixx/evolution/skills",
-			"globalSkills": false,
-			"allowToolGeneration": false,
-			"allowAgentGeneration": false
+			// Write skills globally (~/.config) instead of project-local (default: false).
+			"globalSkills": true,
+			// Allow generation of new tools, not just skills (default: false).
+			"allowToolGeneration": true,
+			// Allow generation of new agents, not just skills (default: false).
+			"allowAgentGeneration": true
 		},
+		// Approval policy: human-in-the-loop gate before a skill goes live.
 		"governance": {
+			// Require human approval before promoting a skill (default: true).
 			"requireApproval": true,
+			// Auto-promote high-confidence skills without approval (default: false).
 			"autoPromote": false,
-			"autoPromoteThreshold": 0.85,
+			// Confidence threshold for auto-promotion, 0–1 (default: 0.85).
+			"autoPromoteThreshold": 0.95,
+			// Minimum confidence to stage a skill for approval, 0–1 (default: 0.7).
 			"minConfidence": 0.7
 		},
+		// Disk hygiene for traces and staged proposals.
 		"retention": {
+			// Days to retain trace files (default: 30).
 			"traceDays": 30,
+			// Max pending proposals kept before oldest are dropped (default: 50).
 			"maxPending": 50
 		},
+		// Cost guardrails for compressor runs.
 		"budget": {
+			// Max compressions per hour (default: 10).
 			"maxCompressionsPerHour": 10,
+			// Max compression spend in cents per day (default: 100).
 			"maxCostCentsPerDay": 100
 		}
 	},
