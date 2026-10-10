@@ -12,14 +12,6 @@
 				"type": "enabled",
 				"budgetTokens": 32000
 			},
-			// "fallbackChain": [
-			// 	{
-			// 		"providers": [
-			// 			"opencode-go"
-			// 		],
-			// 		"model": "deepseek-v4-flash"
-			// 	}
-			// ]
 		},
 		"oracle": {
 			"variant": "low",
@@ -118,10 +110,6 @@
 				"type": "enabled",
 				"budgetTokens": 32000
 			},
-			// "complexity_downgrades": {
-			// 	"1": "opencode-go/deepseek-v4-flash",
-			// 	"2": "opencode-go/deepseek-v4-flash"
-			// }
 		},
 		"deep-jack": {
 			"variant": "low",
@@ -226,6 +214,13 @@
 		// regardless of session origin (default: true).
 		"session_scoped": true
 	},
+	// Plan files (.matrixx/plans/*.md): size cap and Oracle review rounds.
+	"plans": {
+		// Max bytes for a single plan file (default: 140000, min: 10240, max: 524288).
+		"max_plan_file_bytes": 140000,
+		// Ceiling on Smith review rounds in Oracle high-accuracy mode (default: 8, min: 2, max: 20).
+		"smith_max_review_rounds": 8
+	},
 	// Test-first enforcement: failing test before implementation, never delete failing tests.
 	"tdd_enforcer": {
 		"enabled": true
@@ -235,7 +230,7 @@
 	// stage under .matrixx/evolution/ and require approval via /evolution.
 	"evolution": {
 		// Master switch for the self-evolution loop (default: false — opt-in).
-		"enabled": true,
+		"enabled": false,
 		// Trace capture: records tool args/outputs to synthesize reusable skills.
 		"watcher": {
 			// Max chars captured per tool-call arguments (default: 4000).
@@ -317,6 +312,11 @@
 		"default_rounds": 2,
 		"timeout_ms": 60000
 	},
+	// Tool registration gating. session_cleanup deletes leaked sessions, so it
+	// is opt-in — flip to false (or remove the key) once the backlog is cleared.
+	"tool_gating": {
+		"session_cleanup": true
+	},
 	"security": {},
 	// Provider failover on retryable errors (429/5xx): attempts, cooldown, notify.
 	"runtime_fallback": {
@@ -368,58 +368,52 @@
 			}
 		]
 	},
-	// DCP profile switcher. base = shared mechanics (kept across tiers); profiles =
-	// aggressiveness dial (built-ins: brutal/economy/balanced/performance/ultimate, extendable
-	// via dcp.profiles.<name>). default_profile applies on bare switch. The live
-	// dcp.jsonc is GENERATED from this block on every switch — don't hand-edit that file.
+	// DCP profile switcher. Per-profile overrides live under dcp.profiles.<name>
+	// (built-ins: brutal/economy/balanced/performance/ultimate). default_profile
+	// applies on bare switch. The live dcp.jsonc is GENERATED from this block
+	// on every switch — don't hand-edit that file.
 	"dcp": {
 		"enabled": true,
 		"default_profile": "brutal",
-		"base": {
-			"autoUpdate": false,
-			"debug": false,
-			// "off", "minimal", "detailed"
-			"pruneNotification": "detailed",
-			// chat | toast
-			"pruneNotificationType": "chat",
-			"commands": {
-				"enabled": true
-			},
-			"compress": {
-				"mode": "range",
-				"permission": "allow",
-				"showCompression": true,
-				"summaryBuffer": true,
-				// ("strong" = more likely, "soft" = less likely)
-				"nudgeForce": "strong",
-				// Start adding compression reminders after this many
-				// messages have happened since the last user message
-				// "iterationNudgeThreshold": 5,
-				"protectedTools": [],
-				"protectUserMessages": false
-			},
-			"strategies": {
-				"deduplication": {
-					"enabled": true,
-					"protectedTools": []
+		"profiles": {
+			"brutal": {
+				"autoUpdate": false,
+				"debug": false,
+				// Notification display: "off", "minimal", or "detailed"
+				"pruneNotification": "minimal",
+				"pruneNotificationType": "chat",
+				"commands": {
+					"enabled": true
 				},
-				"purgeErrors": {
-					"enabled": true,
-					// Number of turns before errored tool inputs are pruned
-					"turns": 2,
-					"protectedTools": []
+				"compress": {
+					"mode": "range",
+					"permission": "allow",
+					"showCompression": true,
+					"summaryBuffer": true,
+					"nudgeForce": "strong",
+					"protectedTools": [],
+					"protectUserMessages": false
+				},
+				"strategies": {
+					"deduplication": {
+						"enabled": true,
+						"protectedTools": []
+					},
+					"purgeErrors": {
+						"enabled": true,
+						"turns": 2,
+						"protectedTools": []
+					}
+				},
+				"manualMode": {
+					"enabled": false,
+					"automaticStrategies": true
+				},
+				"protectedFilePatterns": [],
+				"experimental": {
+					"allowSubAgents": false
 				}
 			},
-			"manualMode": {
-				"enabled": false,
-				"automaticStrategies": true
-			},
-			"protectedFilePatterns": [],
-			"experimental": {
-				"allowSubAgents": false
-			}
-		},
-		"profiles": {
 			// Test-only profile: forces min-band proactive compress to fire early
 			// (max 10% / min 5% — far more aggressive than brutal 20%/10%).
 			// Use for live TUI verification, then remove or keep disabled.
@@ -456,22 +450,24 @@
 		},
 	},
 	// Tools hidden from the model (paired with context_mode enforcement below).
-	"disabled_tools": [
-		"grep",
-		"glob",
-		"read",
-		"edit"
-	],
-	// Hard block on raw grep/glob/read/edit: use ctx_* tools instead (saves context).
+	// "disabled_tools": [
+	// 	"grep",
+	// 	"glob",
+	// 	"read",
+	// 	"edit"
+	// ],
+	// Hard block on raw grep/glob/webfetch (+ fetch-shaped bash): use ctx_* tools instead (saves context).
+	// Note: "read" is warn-only by design (blocking it would deadlock the Read+Edit plan flow);
+	// "edit"/"write" are not valid here (schema enum: read, grep, glob, bash, webfetch).
 	"context_mode": {
 		"enabled": true,
 		"enforce": true,
 		"blocked_tools": [
 			"grep",
 			"glob",
+			"webfetch",
 			"read",
-			"edit",
-			"write"
+			"bash"
 		]
 	},
 	// Applied config migrations. Managed by the plugin — don't touch.
@@ -1311,15 +1307,15 @@
 					"variant": "low"
 				},
 				"mouse": {
-					"model": "opencode/mimo-v2.6-flash-free",
+					"model": "opencode-go/glm-5.3-flash",
 					"variant": "low"
 				},
 				"operator": {
-					"model": "opencode/mimo-v2.6-flash-free",
+					"model": "opencode-go/glm-5.3-flash",
 					"variant": "low"
 				},
 				"trinity": {
-					"model": "opencode/mimo-v2.6-flash-free",
+					"model": "opencode-go/glm-5.3-flash",
 					"variant": "low"
 				},
 				"construct": {
@@ -1353,15 +1349,15 @@
 					"variant": "low"
 				},
 				"blue-pill": {
-					"model": "opencode/mimo-v2.6-flash-free",
+					"model": "opencode-go/glm-5.3-flash",
 					"variant": "low"
 				},
 				"broadcast": {
-					"model": "opencode/mimo-v2.6-flash-free",
+					"model": "opencode-go/glm-5.3-flash",
 					"variant": "low"
 				},
 				"bullet-time": {
-					"model": "opencode/mimo-v2.6-flash-free",
+					"model": "opencode-go/glm-5.3-flash",
 					"variant": "low"
 				}
 			}
@@ -1567,5 +1563,5 @@
 		}
 	},
 	// Live preset selection. Restart the session after changing.
-	"active_preset": "commandcode-bunny"
+	"active_preset": "opencode-default"
 }
