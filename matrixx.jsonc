@@ -97,6 +97,22 @@
 		"sati": {
 			"variant": "low",
 			"temperature": 0.1
+		},
+ 		"neo": {
+			"variant": "low",
+			"temperature": 0.1,
+			"thinking": {
+				"type": "enabled",
+				"budgetTokens": 16000
+			}
+		},
+ 		"tank": {
+			"variant": "low",
+			"temperature": 0.1,
+			"thinking": {
+				"type": "enabled",
+				"budgetTokens": 16000
+			}
 		}
 	},
 	// Delegation tiers used by task(category=...). complexity_downgrades route
@@ -535,6 +551,14 @@
 				"sati": {
 					"model": "opencode-go/muse-spark-1.3-contributor",
 					"variant": "low"
+				},
+				"neo": {
+					"model": "opencode-go/muse-spark-1.3-contributor",
+					"variant": "low"
+				},
+				"tank": {
+					"model": "opencode-go/muse-spark-1.3-contributor",
+					"variant": "low"
 				}
 			},
 			"categories": {
@@ -628,6 +652,14 @@
 					"variant": "low"
 				},
 				"sati": {
+					"model": "byteplus-plan/deepseek-v4-flash",
+					"variant": "low"
+				},
+				"neo": {
+					"model": "byteplus-plan/deepseek-v4-flash",
+					"variant": "low"
+				},
+				"tank": {
 					"model": "byteplus-plan/deepseek-v4-flash",
 					"variant": "low"
 				}
@@ -728,6 +760,14 @@
 				"sati": {
 					"model": "commandcode/meituan/LongCat-2.0:free",
 					"variant": "low"
+				},
+				"neo": {
+					"model": "commandcode/meituan/LongCat-2.0:free",
+					"variant": "low"
+				},
+				"tank": {
+					"model": "commandcode/meituan/LongCat-2.0:free",
+					"variant": "low"
 				}
 			},
 			"categories": {
@@ -824,6 +864,14 @@
 					"variant": "low"
 				},
 				"sati": {
+					"model": "commandcode/meta/muse-spark-1.3-contributor",
+					"variant": "low"
+				},
+				"neo": {
+					"model": "commandcode/meta/muse-spark-1.3-contributor",
+					"variant": "low"
+				},
+				"tank": {
 					"model": "commandcode/meta/muse-spark-1.3-contributor",
 					"variant": "low"
 				}
@@ -923,6 +971,14 @@
 				"sati": {
 					"model": "commandcode/meta/muse-spark-1.3-contributor",
 					"variant": "low"
+				},
+				"neo": {
+					"model": "commandcode/meta/muse-spark-1.3-contributor",
+					"variant": "low"
+				},
+				"tank": {
+					"model": "commandcode/meta/muse-spark-1.3-contributor",
+					"variant": "low"
 				}
 			},
 			"categories": {
@@ -1016,6 +1072,14 @@
 					"variant": "low"
 				},
 				"sati": {
+					"model": "commandcode/deepseek/deepseek-v4.1-flash",
+					"variant": "low"
+				},
+				"neo": {
+					"model": "commandcode/deepseek/deepseek-v4.1-flash",
+					"variant": "low"
+				},
+				"tank": {
 					"model": "commandcode/deepseek/deepseek-v4.1-flash",
 					"variant": "low"
 				}
@@ -1120,6 +1184,14 @@
 				"sati": {
 					"model": "opencode/muse-spark-1.3-contributor-free",
 					"variant": "low"
+				},
+				"neo": {
+					"model": "opencode/muse-spark-1.3-contributor-free",
+					"variant": "low"
+				},
+				"tank": {
+					"model": "opencode/muse-spark-1.3-contributor-free",
+					"variant": "low"
 				}
 			},
 			"categories": {
@@ -1220,6 +1292,14 @@
 					"variant": "low"
 				},
 				"sati": {
+					"model": "opencode-go/muse-spark-1.3-contributor",
+					"variant": "low"
+				},
+				"neo": {
+					"model": "opencode-go/muse-spark-1.3-contributor",
+					"variant": "low"
+				},
+				"tank": {
 					"model": "opencode-go/muse-spark-1.3-contributor",
 					"variant": "low"
 				}
@@ -1325,6 +1405,14 @@
 				"sati": {
 					"model": "opencode-go/deepseek-v4.1-flash",
 					"variant": "low"
+				},
+				"neo": {
+					"model": "opencode-go/deepseek-v4.1-flash",
+					"variant": "low"
+				},
+				"tank": {
+					"model": "opencode-go/deepseek-v4.1-flash",
+					"variant": "low"
 				}
 			},
 			"categories": {
@@ -1423,6 +1511,14 @@
 					"variant": "low"
 				},
 				"sati": {
+					"model": "opencode/space-bunny-free",
+					"variant": "low"
+				},
+				"neo": {
+					"model": "opencode/space-bunny-free",
+					"variant": "low"
+				},
+				"tank": {
 					"model": "opencode/space-bunny-free",
 					"variant": "low"
 				}
@@ -1524,6 +1620,14 @@
 				"sati": {
 					"model": "commandcode/stealth/space-bunny-alpha",
 					"variant": "low"
+				},
+				"neo": {
+					"model": "commandcode/stealth/space-bunny-alpha",
+					"variant": "low"
+				},
+				"tank": {
+					"model": "commandcode/stealth/space-bunny-alpha",
+					"variant": "low"
 				}
 			},
 			"categories": {
@@ -1563,5 +1667,5 @@
 		}
 	},
 	// Live preset selection. Restart the session after changing.
-	"active_preset": "opencode-default"
+	"active_preset": "opencode-spark"
 }
