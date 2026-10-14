@@ -113,6 +113,14 @@
 				"type": "enabled",
 				"budgetTokens": 16000
 			}
+		},
+		"auditor": {
+			"variant": "low",
+			"temperature": 0.1,
+			"thinking": {
+				"type": "enabled",
+				"budgetTokens": 16000
+			}
 		}
 	},
 	// Delegation tiers used by task(category=...). complexity_downgrades route
@@ -559,6 +567,10 @@
 				"tank": {
 					"model": "opencode-go/muse-spark-1.3-contributor",
 					"variant": "low"
+				},
+				"auditor": {
+					"model": "opencode-go/muse-spark-1.3-contributor",
+					"variant": "low"
 				}
 			},
 			"categories": {
@@ -660,6 +672,10 @@
 					"variant": "low"
 				},
 				"tank": {
+					"model": "byteplus-plan/deepseek-v4-flash",
+					"variant": "low"
+				},
+				"auditor": {
 					"model": "byteplus-plan/deepseek-v4-flash",
 					"variant": "low"
 				}
@@ -768,6 +784,10 @@
 				"tank": {
 					"model": "commandcode/meituan/LongCat-2.0:free",
 					"variant": "low"
+				},
+				"auditor": {
+					"model": "commandcode/meituan/LongCat-2.0:free",
+					"variant": "low"
 				}
 			},
 			"categories": {
@@ -872,6 +892,10 @@
 					"variant": "low"
 				},
 				"tank": {
+					"model": "commandcode/meta/muse-spark-1.3-contributor",
+					"variant": "low"
+				},
+				"auditor": {
 					"model": "commandcode/meta/muse-spark-1.3-contributor",
 					"variant": "low"
 				}
@@ -979,6 +1003,10 @@
 				"tank": {
 					"model": "commandcode/meta/muse-spark-1.3-contributor",
 					"variant": "low"
+				},
+				"auditor": {
+					"model": "commandcode/meta/muse-spark-1.3-contributor",
+					"variant": "low"
 				}
 			},
 			"categories": {
@@ -1080,6 +1108,10 @@
 					"variant": "low"
 				},
 				"tank": {
+					"model": "commandcode/deepseek/deepseek-v4.1-flash",
+					"variant": "low"
+				},
+				"auditor": {
 					"model": "commandcode/deepseek/deepseek-v4.1-flash",
 					"variant": "low"
 				}
@@ -1192,6 +1224,10 @@
 				"tank": {
 					"model": "opencode/muse-spark-1.3-contributor-free",
 					"variant": "low"
+				},
+				"auditor": {
+					"model": "opencode/muse-spark-1.3-contributor-free",
+					"variant": "low"
 				}
 			},
 			"categories": {
@@ -1300,6 +1336,10 @@
 					"variant": "low"
 				},
 				"tank": {
+					"model": "opencode-go/muse-spark-1.3-contributor",
+					"variant": "low"
+				},
+				"auditor": {
 					"model": "opencode-go/muse-spark-1.3-contributor",
 					"variant": "low"
 				}
@@ -1413,6 +1453,10 @@
 				"tank": {
 					"model": "opencode-go/deepseek-v4.1-flash",
 					"variant": "low"
+				},
+				"auditor": {
+					"model": "opencode-go/deepseek-v4.1-flash",
+					"variant": "low"
 				}
 			},
 			"categories": {
@@ -1521,6 +1565,10 @@
 				"tank": {
 					"model": "opencode/space-bunny-free",
 					"variant": "low"
+				},
+				"auditor": {
+					"model": "opencode/space-bunny-free",
+					"variant": "low"
 				}
 			},
 			"categories": {
@@ -1626,6 +1674,10 @@
 					"variant": "low"
 				},
 				"tank": {
+					"model": "commandcode/stealth/space-bunny-alpha",
+					"variant": "low"
+				},
+				"auditor": {
 					"model": "commandcode/stealth/space-bunny-alpha",
 					"variant": "low"
 				}
