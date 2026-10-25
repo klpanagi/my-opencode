@@ -76,29 +76,20 @@
 		"operator": {
 			"variant": "low",
 			"temperature": 0.1,
-			"permission": {
-				"bash": "ask"
-			}
 		},
 		"trinity": {
 			"variant": "low",
 			"temperature": 0.1,
-			"permission": {
-				"bash": "ask"
-			}
 		},
 		"construct": {
 			"variant": "low",
 			"temperature": 0.1,
-			"permission": {
-				"bash": "ask"
-			}
 		},
 		"sati": {
 			"variant": "low",
 			"temperature": 0.1
 		},
- 		"neo": {
+		"neo": {
 			"variant": "low",
 			"temperature": 0.1,
 			"thinking": {
@@ -106,7 +97,7 @@
 				"budgetTokens": 16000
 			}
 		},
- 		"tank": {
+		"tank": {
 			"variant": "low",
 			"temperature": 0.1,
 			"thinking": {
@@ -413,7 +404,7 @@
 					"mode": "range",
 					"permission": "allow",
 					"showCompression": true,
-					"summaryBuffer": true,
+					"summaryBuffer": false,
 					"nudgeForce": "strong",
 					"protectedTools": [],
 					"protectUserMessages": false
@@ -719,42 +710,42 @@
 			// Free / best-effort preset — all free deals (no credits while capacity lasts).
 			// LongCat-2.0 1M context for heavy agents/categories, Laguna S 2.1 for cheap slots.
 			// Do NOT use as daily driver — free pool has no SLA and ling:free is 100/day.
-			"default_model": "commandcode/meituan/LongCat-2.0:free",
+			"default_model": "commandcode/meituan/LongCat-2.0",
 			"agents": {
 				"morpheus": {
-					"model": "commandcode/meituan/LongCat-2.0:free",
+					"model": "commandcode/meituan/LongCat-2.0",
 					"variant": "low"
 				},
 				"oracle": {
-					"model": "commandcode/meituan/LongCat-2.0:free",
+					"model": "commandcode/meituan/LongCat-2.0",
 					"variant": "low"
 				},
 				"seraph": {
-					"model": "commandcode/meituan/LongCat-2.0:free",
+					"model": "commandcode/meituan/LongCat-2.0",
 					"variant": "low"
 				},
 				"keymaker": {
-					"model": "commandcode/meituan/LongCat-2.0:free",
+					"model": "commandcode/meituan/LongCat-2.0",
 					"variant": "low"
 				},
 				"cipher": {
-					"model": "commandcode/meituan/LongCat-2.0:free",
+					"model": "commandcode/meituan/LongCat-2.0",
 					"variant": "low"
 				},
 				"sentinel": {
-					"model": "commandcode/meituan/LongCat-2.0:free",
+					"model": "commandcode/meituan/LongCat-2.0",
 					"variant": "low"
 				},
 				"smith": {
-					"model": "commandcode/meituan/LongCat-2.0:free",
+					"model": "commandcode/meituan/LongCat-2.0",
 					"variant": "low"
 				},
 				"merovingian": {
-					"model": "commandcode/meituan/LongCat-2.0:free",
+					"model": "commandcode/meituan/LongCat-2.0",
 					"variant": "low"
 				},
 				"architect": {
-					"model": "commandcode/meituan/LongCat-2.0:free",
+					"model": "commandcode/meituan/LongCat-2.0",
 					"variant": "low"
 				},
 				"mouse": {
@@ -774,41 +765,41 @@
 					"variant": "low"
 				},
 				"sati": {
-					"model": "commandcode/meituan/LongCat-2.0:free",
+					"model": "commandcode/meituan/LongCat-2.0",
 					"variant": "low"
 				},
 				"neo": {
-					"model": "commandcode/meituan/LongCat-2.0:free",
+					"model": "commandcode/meituan/LongCat-2.0",
 					"variant": "low"
 				},
 				"tank": {
-					"model": "commandcode/meituan/LongCat-2.0:free",
+					"model": "commandcode/meituan/LongCat-2.0",
 					"variant": "low"
 				},
 				"auditor": {
-					"model": "commandcode/meituan/LongCat-2.0:free",
+					"model": "commandcode/meituan/LongCat-2.0",
 					"variant": "low"
 				}
 			},
 			"categories": {
 				"source": {
-					"model": "commandcode/meituan/LongCat-2.0:free",
+					"model": "commandcode/meituan/LongCat-2.0",
 					"variant": "low"
 				},
 				"deep-jack": {
-					"model": "commandcode/meituan/LongCat-2.0:free",
+					"model": "commandcode/meituan/LongCat-2.0",
 					"variant": "low"
 				},
 				"red-pill": {
-					"model": "commandcode/meituan/LongCat-2.0:free",
+					"model": "commandcode/meituan/LongCat-2.0",
 					"variant": "low"
 				},
 				"construct": {
-					"model": "commandcode/meituan/LongCat-2.0:free",
+					"model": "commandcode/meituan/LongCat-2.0",
 					"variant": "low"
 				},
 				"matrix-bend": {
-					"model": "commandcode/meituan/LongCat-2.0:free",
+					"model": "commandcode/meituan/LongCat-2.0",
 					"variant": "low"
 				},
 				"blue-pill": {
@@ -1607,117 +1598,228 @@
 			}
 		},
 		"commandcode-bunny": {
-			// Single-model preset — Space Bunny Alpha (Stealth), every agent and category.
-			// Command Code (Sep 24 2026, https://commandcode.ai/models/space-bunny-alpha):
-			// stealth/space-bunny-alpha — free $0.00/M in/out, 1M context, zero retention.
-			// Limited-time stealth preview; available on Go and above.
-			"default_model": "commandcode/stealth/space-bunny-alpha",
+			// Single-model preset — Glyph Cluster (Stealth), every agent and category.
+			// Command Code live 2026-10-14 (GET /provider/v1/models):
+			// stealth/glyph-cluster:free — free stealth preview, zero retention.
+			// Limited-time stealth preview; space-bunny-alpha retired from live catalog.
+			"default_model": "commandcode/stealth/glyph-cluster:free",
 			"agents": {
 				"morpheus": {
-					"model": "commandcode/stealth/space-bunny-alpha",
+					"model": "commandcode/stealth/glyph-cluster:free",
 					"variant": "low"
 				},
 				"oracle": {
-					"model": "commandcode/stealth/space-bunny-alpha",
+					"model": "commandcode/stealth/glyph-cluster:free",
 					"variant": "low"
 				},
 				"seraph": {
-					"model": "commandcode/stealth/space-bunny-alpha",
+					"model": "commandcode/stealth/glyph-cluster:free",
 					"variant": "low"
 				},
 				"keymaker": {
-					"model": "commandcode/stealth/space-bunny-alpha",
+					"model": "commandcode/stealth/glyph-cluster:free",
 					"variant": "low"
 				},
 				"cipher": {
-					"model": "commandcode/stealth/space-bunny-alpha",
+					"model": "commandcode/stealth/glyph-cluster:free",
 					"variant": "low"
 				},
 				"sentinel": {
-					"model": "commandcode/stealth/space-bunny-alpha",
+					"model": "commandcode/stealth/glyph-cluster:free",
 					"variant": "low"
 				},
 				"smith": {
-					"model": "commandcode/stealth/space-bunny-alpha",
+					"model": "commandcode/stealth/glyph-cluster:free",
 					"variant": "low"
 				},
 				"merovingian": {
-					"model": "commandcode/stealth/space-bunny-alpha",
+					"model": "commandcode/stealth/glyph-cluster:free",
 					"variant": "low"
 				},
 				"architect": {
-					"model": "commandcode/stealth/space-bunny-alpha",
+					"model": "commandcode/stealth/glyph-cluster:free",
 					"variant": "low"
 				},
 				"mouse": {
-					"model": "commandcode/stealth/space-bunny-alpha",
+					"model": "commandcode/stealth/glyph-cluster:free",
 					"variant": "low"
 				},
 				"operator": {
-					"model": "commandcode/stealth/space-bunny-alpha",
+					"model": "commandcode/stealth/glyph-cluster:free",
 					"variant": "low"
 				},
 				"trinity": {
-					"model": "commandcode/stealth/space-bunny-alpha",
+					"model": "commandcode/stealth/glyph-cluster:free",
 					"variant": "low"
 				},
 				"construct": {
-					"model": "commandcode/stealth/space-bunny-alpha",
+					"model": "commandcode/stealth/glyph-cluster:free",
 					"variant": "low"
 				},
 				"sati": {
-					"model": "commandcode/stealth/space-bunny-alpha",
+					"model": "commandcode/stealth/glyph-cluster:free",
 					"variant": "low"
 				},
 				"neo": {
-					"model": "commandcode/stealth/space-bunny-alpha",
+					"model": "commandcode/stealth/glyph-cluster:free",
 					"variant": "low"
 				},
 				"tank": {
-					"model": "commandcode/stealth/space-bunny-alpha",
+					"model": "commandcode/stealth/glyph-cluster:free",
 					"variant": "low"
 				},
 				"auditor": {
-					"model": "commandcode/stealth/space-bunny-alpha",
+					"model": "commandcode/stealth/glyph-cluster:free",
 					"variant": "low"
 				}
 			},
 			"categories": {
 				"source": {
-					"model": "commandcode/stealth/space-bunny-alpha",
+					"model": "commandcode/stealth/glyph-cluster:free",
 					"variant": "low"
 				},
 				"deep-jack": {
-					"model": "commandcode/stealth/space-bunny-alpha",
+					"model": "commandcode/stealth/glyph-cluster:free",
 					"variant": "low"
 				},
 				"red-pill": {
-					"model": "commandcode/stealth/space-bunny-alpha",
+					"model": "commandcode/stealth/glyph-cluster:free",
 					"variant": "low"
 				},
 				"construct": {
-					"model": "commandcode/stealth/space-bunny-alpha",
+					"model": "commandcode/stealth/glyph-cluster:free",
 					"variant": "low"
 				},
 				"matrix-bend": {
-					"model": "commandcode/stealth/space-bunny-alpha",
+					"model": "commandcode/stealth/glyph-cluster:free",
 					"variant": "low"
 				},
 				"blue-pill": {
-					"model": "commandcode/stealth/space-bunny-alpha",
+					"model": "commandcode/stealth/glyph-cluster:free",
 					"variant": "low"
 				},
 				"broadcast": {
-					"model": "commandcode/stealth/space-bunny-alpha",
+					"model": "commandcode/stealth/glyph-cluster:free",
 					"variant": "low"
 				},
 				"bullet-time": {
-					"model": "commandcode/stealth/space-bunny-alpha",
+					"model": "commandcode/stealth/glyph-cluster:free",
+					"variant": "low"
+				}
+			}
+		},
+		"commandcode-default": {
+			// Mirror of opencode-default on CommandCode — same split, paid pool.
+			// Heavy reasoning: deepseek-v4.1-flash; bulk/executor: z-ai/glm-5.3-flash.
+			// Live IDs verified 2026-10-14 via GET /provider/v1/models.
+			"default_model": "commandcode/deepseek/deepseek-v4.1-flash",
+			"agents": {
+				"morpheus": {
+					"model": "commandcode/deepseek/deepseek-v4.1-flash",
+					"variant": "low"
+				},
+				"oracle": {
+					"model": "commandcode/deepseek/deepseek-v4.1-flash",
+					"variant": "low"
+				},
+				"seraph": {
+					"model": "commandcode/deepseek/deepseek-v4.1-flash",
+					"variant": "low"
+				},
+				"keymaker": {
+					"model": "commandcode/deepseek/deepseek-v4.1-flash",
+					"variant": "low"
+				},
+				"cipher": {
+					"model": "commandcode/deepseek/deepseek-v4.1-flash",
+					"variant": "low"
+				},
+				"sentinel": {
+					"model": "commandcode/deepseek/deepseek-v4.1-flash",
+					"variant": "low"
+				},
+				"smith": {
+					"model": "commandcode/deepseek/deepseek-v4.1-flash",
+					"variant": "low"
+				},
+				"merovingian": {
+					"model": "commandcode/deepseek/deepseek-v4.1-flash",
+					"variant": "low"
+				},
+				"architect": {
+					"model": "commandcode/deepseek/deepseek-v4.1-flash",
+					"variant": "low"
+				},
+				"mouse": {
+					"model": "commandcode/z-ai/glm-5.3-flash",
+					"variant": "low"
+				},
+				"operator": {
+					"model": "commandcode/z-ai/glm-5.3-flash",
+					"variant": "low"
+				},
+				"trinity": {
+					"model": "commandcode/z-ai/glm-5.3-flash",
+					"variant": "low"
+				},
+				"construct": {
+					"model": "commandcode/deepseek/deepseek-v4.1-flash",
+					"variant": "low"
+				},
+				"sati": {
+					"model": "commandcode/deepseek/deepseek-v4.1-flash",
+					"variant": "low"
+				},
+				"neo": {
+					"model": "commandcode/deepseek/deepseek-v4.1-flash",
+					"variant": "low"
+				},
+				"tank": {
+					"model": "commandcode/deepseek/deepseek-v4.1-flash",
+					"variant": "low"
+				},
+				"auditor": {
+					"model": "commandcode/deepseek/deepseek-v4.1-flash",
+					"variant": "low"
+				}
+			},
+			"categories": {
+				"source": {
+					"model": "commandcode/deepseek/deepseek-v4.1-flash",
+					"variant": "low"
+				},
+				"deep-jack": {
+					"model": "commandcode/deepseek/deepseek-v4.1-flash",
+					"variant": "low"
+				},
+				"red-pill": {
+					"model": "commandcode/deepseek/deepseek-v4.1-flash",
+					"variant": "low"
+				},
+				"construct": {
+					"model": "commandcode/deepseek/deepseek-v4.1-flash",
+					"variant": "low"
+				},
+				"matrix-bend": {
+					"model": "commandcode/deepseek/deepseek-v4.1-flash",
+					"variant": "low"
+				},
+				"blue-pill": {
+					"model": "commandcode/z-ai/glm-5.3-flash",
+					"variant": "low"
+				},
+				"broadcast": {
+					"model": "commandcode/z-ai/glm-5.3-flash",
+					"variant": "low"
+				},
+				"bullet-time": {
+					"model": "commandcode/z-ai/glm-5.3-flash",
 					"variant": "low"
 				}
 			}
 		}
 	},
 	// Live preset selection. Restart the session after changing.
+	// "active_preset": "commandcode-default"
 	"active_preset": "opencode-spark"
 }
