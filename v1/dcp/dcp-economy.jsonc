@@ -1,0 +1,22 @@
+{
+  // Economy — most aggressive, earliest and most frequent nudges
+  "pruneNotification": "off",
+  "compress": {
+    "maxContextLimit": "30%",
+    "minContextLimit": "20%",
+    "nudgeFrequency": 2,
+    "nudgeForce": "strong",
+    "iterationNudgeThreshold": 7
+  },
+  "turnProtection": {
+    "enabled": false
+  },
+  "experimental": {
+    "allowSubAgents": false
+  },
+  "strategies": {
+    "purgeErrors": {
+      "turns": 1
+    }
+  }
+}

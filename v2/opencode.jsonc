@@ -8,13 +8,9 @@
 	],
 	"model": "commandcode/deepseek/deepseek-v4-flash",
 	"plugins": [
-		"/home/klpanagi/Development/opencode-matrixx-2",
-		"@tarquinen/opencode-dcp@latest",
+		"/home/klpanagi/Development/opencode-matrixx-2/dist",
 		"@nick-vi/opencode-type-inject@latest",
 		"envsitter-guard@latest",
-		"context-mode@latest",
-		// "opencode-mem@latest",
-		"opencode-plugin-auto-update@latest",
 		"opencode-cmd-provider@latest"
 	],
 	// V2 permissions are an ordered allow-list: first match wins.
@@ -22,51 +18,231 @@
 	// unlisted external_directory / shell access keeps asking
 	// (preserves the V1 deny-by-default posture — V2 would default-allow).
 	"permissions": [
-		{ "action": "edit", "resource": "*", "effect": "allow" },
-		{ "action": "webfetch", "resource": "*", "effect": "allow" },
-		{ "action": "external_directory", "resource": "/tmp/*", "effect": "allow" },
-		{ "action": "external_directory", "resource": "/home/klpanagi/.config/opencode/*", "effect": "allow" },
-		{ "action": "shell", "resource": "awk *", "effect": "allow" },
-		{ "action": "shell", "resource": "basename *", "effect": "allow" },
-		{ "action": "shell", "resource": "cat *", "effect": "allow" },
-		{ "action": "shell", "resource": "column *", "effect": "allow" },
-		{ "action": "shell", "resource": "cut *", "effect": "allow" },
-		{ "action": "shell", "resource": "date *", "effect": "allow" },
-		{ "action": "shell", "resource": "df *", "effect": "allow" },
-		{ "action": "shell", "resource": "dirname *", "effect": "allow" },
-		{ "action": "shell", "resource": "du *", "effect": "allow" },
-		{ "action": "shell", "resource": "echo *", "effect": "allow" },
-		{ "action": "shell", "resource": "env", "effect": "allow" },
-		{ "action": "shell", "resource": "file *", "effect": "allow" },
-		{ "action": "shell", "resource": "find *", "effect": "allow" },
-		{ "action": "shell", "resource": "git *", "effect": "allow" },
-		{ "action": "shell", "resource": "grep *", "effect": "allow" },
-		{ "action": "shell", "resource": "head *", "effect": "allow" },
-		{ "action": "shell", "resource": "ls *", "effect": "allow" },
-		{ "action": "shell", "resource": "mkdir *", "effect": "allow" },
-		{ "action": "shell", "resource": "node *", "effect": "allow" },
-		{ "action": "shell", "resource": "printf *", "effect": "allow" },
-		{ "action": "shell", "resource": "ps *", "effect": "allow" },
-		{ "action": "shell", "resource": "pwd", "effect": "allow" },
-		{ "action": "shell", "resource": "rg *", "effect": "allow" },
-		{ "action": "shell", "resource": "rtk *", "effect": "allow" },
-		{ "action": "shell", "resource": "sed *", "effect": "allow" },
-		{ "action": "shell", "resource": "sort *", "effect": "allow" },
-		{ "action": "shell", "resource": "stat *", "effect": "allow" },
-		{ "action": "shell", "resource": "strings *", "effect": "allow" },
-		{ "action": "shell", "resource": "tail *", "effect": "allow" },
-		{ "action": "shell", "resource": "test *", "effect": "allow" },
-		{ "action": "shell", "resource": "tr *", "effect": "allow" },
-		{ "action": "shell", "resource": "true", "effect": "allow" },
-		{ "action": "shell", "resource": "uniq *", "effect": "allow" },
-		{ "action": "shell", "resource": "wc *", "effect": "allow" },
-		{ "action": "shell", "resource": "which *", "effect": "allow" },
-		{ "action": "shell", "resource": "whoami", "effect": "allow" },
-		{ "action": "shell", "resource": "find * -delete", "effect": "ask" },
-		{ "action": "shell", "resource": "find * -exec *", "effect": "ask" },
-		{ "action": "shell", "resource": "sed -i *", "effect": "ask" },
-		{ "action": "external_directory", "resource": "*", "effect": "ask" },
-		{ "action": "shell", "resource": "*", "effect": "ask" }
+		{
+			"action": "edit",
+			"resource": "*",
+			"effect": "allow"
+		},
+		{
+			"action": "webfetch",
+			"resource": "*",
+			"effect": "allow"
+		},
+		{
+			"action": "external_directory",
+			"resource": "/tmp/*",
+			"effect": "allow"
+		},
+		{
+			"action": "external_directory",
+			"resource": "/home/klpanagi/.config/opencode/*",
+			"effect": "allow"
+		},
+		{
+			"action": "shell",
+			"resource": "awk *",
+			"effect": "allow"
+		},
+		{
+			"action": "shell",
+			"resource": "basename *",
+			"effect": "allow"
+		},
+		{
+			"action": "shell",
+			"resource": "cat *",
+			"effect": "allow"
+		},
+		{
+			"action": "shell",
+			"resource": "column *",
+			"effect": "allow"
+		},
+		{
+			"action": "shell",
+			"resource": "cut *",
+			"effect": "allow"
+		},
+		{
+			"action": "shell",
+			"resource": "date *",
+			"effect": "allow"
+		},
+		{
+			"action": "shell",
+			"resource": "df *",
+			"effect": "allow"
+		},
+		{
+			"action": "shell",
+			"resource": "dirname *",
+			"effect": "allow"
+		},
+		{
+			"action": "shell",
+			"resource": "du *",
+			"effect": "allow"
+		},
+		{
+			"action": "shell",
+			"resource": "echo *",
+			"effect": "allow"
+		},
+		{
+			"action": "shell",
+			"resource": "env",
+			"effect": "allow"
+		},
+		{
+			"action": "shell",
+			"resource": "file *",
+			"effect": "allow"
+		},
+		{
+			"action": "shell",
+			"resource": "find *",
+			"effect": "allow"
+		},
+		{
+			"action": "shell",
+			"resource": "git *",
+			"effect": "allow"
+		},
+		{
+			"action": "shell",
+			"resource": "grep *",
+			"effect": "allow"
+		},
+		{
+			"action": "shell",
+			"resource": "head *",
+			"effect": "allow"
+		},
+		{
+			"action": "shell",
+			"resource": "ls *",
+			"effect": "allow"
+		},
+		{
+			"action": "shell",
+			"resource": "mkdir *",
+			"effect": "allow"
+		},
+		{
+			"action": "shell",
+			"resource": "node *",
+			"effect": "allow"
+		},
+		{
+			"action": "shell",
+			"resource": "printf *",
+			"effect": "allow"
+		},
+		{
+			"action": "shell",
+			"resource": "ps *",
+			"effect": "allow"
+		},
+		{
+			"action": "shell",
+			"resource": "pwd",
+			"effect": "allow"
+		},
+		{
+			"action": "shell",
+			"resource": "rg *",
+			"effect": "allow"
+		},
+		{
+			"action": "shell",
+			"resource": "rtk *",
+			"effect": "allow"
+		},
+		{
+			"action": "shell",
+			"resource": "sed *",
+			"effect": "allow"
+		},
+		{
+			"action": "shell",
+			"resource": "sort *",
+			"effect": "allow"
+		},
+		{
+			"action": "shell",
+			"resource": "stat *",
+			"effect": "allow"
+		},
+		{
+			"action": "shell",
+			"resource": "strings *",
+			"effect": "allow"
+		},
+		{
+			"action": "shell",
+			"resource": "tail *",
+			"effect": "allow"
+		},
+		{
+			"action": "shell",
+			"resource": "test *",
+			"effect": "allow"
+		},
+		{
+			"action": "shell",
+			"resource": "tr *",
+			"effect": "allow"
+		},
+		{
+			"action": "shell",
+			"resource": "true",
+			"effect": "allow"
+		},
+		{
+			"action": "shell",
+			"resource": "uniq *",
+			"effect": "allow"
+		},
+		{
+			"action": "shell",
+			"resource": "wc *",
+			"effect": "allow"
+		},
+		{
+			"action": "shell",
+			"resource": "which *",
+			"effect": "allow"
+		},
+		{
+			"action": "shell",
+			"resource": "whoami",
+			"effect": "allow"
+		},
+		{
+			"action": "shell",
+			"resource": "find * -delete",
+			"effect": "ask"
+		},
+		{
+			"action": "shell",
+			"resource": "find * -exec *",
+			"effect": "ask"
+		},
+		{
+			"action": "shell",
+			"resource": "sed -i *",
+			"effect": "ask"
+		},
+		{
+			"action": "external_directory",
+			"resource": "*",
+			"effect": "ask"
+		},
+		{
+			"action": "shell",
+			"resource": "*",
+			"effect": "ask"
+		}
 	],
 	"providers": {
 		"ollama": {
@@ -89,7 +265,9 @@
 			"settings": {
 				"baseURL": "https://ariadne.issel.ee.auth.gr/api/v1"
 			},
-			"env": ["ARIADNE_STAGING_API_KEY"],
+			"env": [
+				"ARIADNE_STAGING_API_KEY"
+			],
 			"models": {
 				"claude-haiku-4-5@20251001": {
 					"name": "Claude Haiku 4-5"
@@ -106,7 +284,9 @@
 				// Dedicated Coding Plan subscription endpoint
 				"baseURL": "https://ark.ap-southeast.bytepluses.com/api/coding/v3"
 			},
-			"env": ["BYTEPLUS_CODING_KEY"],
+			"env": [
+				"BYTEPLUS_CODING_KEY"
+			],
 			"models": {
 				// -----------------------------------------------------------------
 				// 1. DYNAMIC AUTO / ROUTING MODEL
@@ -202,6 +382,16 @@
 						"output": 16000
 					}
 				}
+			}
+		}
+	},
+	"mcp": {
+		"servers": {
+			"context-mode": {
+				"type": "local",
+				"command": [
+					"context-mode"
+				]
 			}
 		}
 	}

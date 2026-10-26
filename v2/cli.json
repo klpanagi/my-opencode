@@ -1,0 +1,61 @@
+// CLI (TUI) config for the opencode V2 binary (2.x line).
+// Migrated from the V1 tui.json. Field reference: https://opencode.ai/v2/docs/cli/config
+// NOTE: no "$schema" here — there is no documented CLI schema URL to pin.
+{
+	"theme": {
+		"name": "orng"
+	},
+	"leader": {
+		"timeout": 2000
+	},
+	"scroll": {
+		"acceleration": true
+	},
+	"diffs": {
+		"view": "auto"
+	},
+	"mouse": true,
+	"attention": {
+		"notifications": true,
+		"sound": true,
+		"volume": 0.5,
+		"sound_pack": "opencode.default"
+	},
+	"keybinds": {
+		"leader": "ctrl+x",
+		"app.exit": ["ctrl+c", "ctrl+d", "<leader>q"],
+		"app.debug": "none",
+		"app.console": "none",
+		"session.compact": "<leader>c",
+		"session.new": "<leader>n",
+		"session.list": "<leader>l",
+		"session.export": "<leader>x",
+		"session.undo": "<leader>u",
+		"session.redo": "<leader>r",
+		"messages.copy": "<leader>y",
+		"model.list": "<leader>m",
+		"theme.switch": "<leader>t",
+		"agent.list": "<leader>a",
+		// "tab" kept explicitly: the V2 default for agent.cycle differs.
+		"agent.cycle": "tab",
+		"agent.cycle.reverse": "shift+tab",
+		"variant.cycle": "ctrl+t",
+		"session.sidebar.toggle": "<leader>b",
+		"prompt.editor": "<leader>e",
+		"help.show": false,
+		// tips_toggle (<leader>h) has NO V2 equivalent — omitted.
+		"command.palette.show": "ctrl+p",
+		"prompt.submit": "return",
+		"input.newline": ["shift+return", "ctrl+return", "alt+return", "ctrl+j"],
+		"prompt.clear": "ctrl+c",
+		"session.page.up": ["pageup", "ctrl+alt+b"],
+		"session.page.down": ["pagedown", "ctrl+alt+f"],
+		"session.first": ["ctrl+g", "home"],
+		"session.last": ["ctrl+alt+g", "end"],
+		// V2 default <leader>q for queued prompts would collide with app.exit above.
+		"session.queued_prompts": "none"
+	},
+	"plugins": [
+		"@tarquinen/opencode-dcp@3.1.14"
+	]
+}

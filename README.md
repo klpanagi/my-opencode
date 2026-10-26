@@ -196,6 +196,30 @@ git commit -m "msg"      # not git commit
 | `npm_config_yes` | `true` |
 
 ---
+## 🗂️ Version Layout (v1 / v2)
+
+This repo keeps two versioned trees side by side. `./install.sh` picks one
+(explicit `--v1`/`--v2` flag, or auto-detected from `opencode --version`)
+and symlinks it into `~/.config/opencode/`.
+
+```
+v1/  →  opencode 1.x (1.19.x line, installer https://opencode.ai/install)
+     opencode.jsonc (`plugin`, `permission`, `provider`) + tui.json
+v2/  →  opencode 2.x (2.x line, installer https://opencode.ai/v2/install)
+     opencode.jsonc (`plugins`, `permissions`, `providers`) + cli.json
+```
+
+| Tree | Binary | Config | UI config | Notification plugin |
+|------|--------|--------|-----------|---------------------|
+| `v1/` | opencode 1.x | `opencode.jsonc` (V1 schema) | `tui.json` | legacy `server()` hooks (`PreToolUse`, `PostToolUse`, `Stop`, `UserPromptSubmit`) |
+| `v2/` | opencode 2.x | `opencode.jsonc` (migrated: `plugins` / ordered `permissions` / `providers` with `package`+`settings`+`env`) | `cli.json` (migrated keybind IDs, `theme.name`, `leader.timeout`, `scroll.acceleration`, `diffs.view`) | dual-support entrypoint: V2 `Plugin.define({id, setup})` (`tool.hook`, `session.hook`, `event.subscribe`) + V1 `server()` fallback |
+
+Version-independent option blobs are copied **unchanged** into both trees:
+`matrixx.jsonc`, `scholia.jsonc`, `opencode-mem.jsonc`, and the whole `dcp/`
+directory (profiles, generator, switch script). The `matrixx` directory plugin
+itself is NOT ported here — only its options blobs are shared.
+
+---
 
 ## 🚀 Installation
 
