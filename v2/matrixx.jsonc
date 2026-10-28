@@ -1872,5 +1872,5 @@
 	},
 	// Live preset selection. Restart the session after changing.
 	// "active_preset": "commandcode-default"
-	"active_preset": "commandcode-spark"
+	"active_preset": "opencode-spark"
 }

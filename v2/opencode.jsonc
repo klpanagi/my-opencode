@@ -11,12 +11,19 @@
 		"/home/klpanagi/Development/opencode-matrixx-2/dist",
 		"@nick-vi/opencode-type-inject@latest",
 		"envsitter-guard@latest",
-		"opencode-cmd-provider@latest"
+		"opencode-cmd-provider@latest",
+		"@tarquinen/opencode-dcp@latest",
+		// "opencode-lcm@latest"
 	],
-	// V2 permissions are an ordered allow-list: first match wins.
-	// Specific allows come first; the two "*" catch-alls stay LAST so
-	// unlisted external_directory / shell access keeps asking
-	// (preserves the V1 deny-by-default posture — V2 would default-allow).
+	// V2 permissions are an ordered rule list where the LAST matching rule WINS.
+	// Broad rules go FIRST, narrow exceptions LAST. A specific rule placed before
+	// a catch-all is silently overridden.
+	//
+	// Shell commands are checked against `external_directory` (their working dir
+	// plus any scanner-inferred paths) BEFORE their `shell` rule, so a late
+	// `external_directory: "*" -> ask` re-introduces a prompt on every command
+	// that touches a path outside the project. Both catch-alls below are `allow`
+	// and sit last so nothing overrides them.
 	"permissions": [
 		{
 			"action": "edit",
@@ -29,219 +36,14 @@
 			"effect": "allow"
 		},
 		{
-			"action": "external_directory",
-			"resource": "/tmp/*",
+			"action": "shell",
+			"resource": "*",
 			"effect": "allow"
-		},
-		{
-			"action": "external_directory",
-			"resource": "/home/klpanagi/.config/opencode/*",
-			"effect": "allow"
-		},
-		{
-			"action": "shell",
-			"resource": "awk *",
-			"effect": "allow"
-		},
-		{
-			"action": "shell",
-			"resource": "basename *",
-			"effect": "allow"
-		},
-		{
-			"action": "shell",
-			"resource": "cat *",
-			"effect": "allow"
-		},
-		{
-			"action": "shell",
-			"resource": "column *",
-			"effect": "allow"
-		},
-		{
-			"action": "shell",
-			"resource": "cut *",
-			"effect": "allow"
-		},
-		{
-			"action": "shell",
-			"resource": "date *",
-			"effect": "allow"
-		},
-		{
-			"action": "shell",
-			"resource": "df *",
-			"effect": "allow"
-		},
-		{
-			"action": "shell",
-			"resource": "dirname *",
-			"effect": "allow"
-		},
-		{
-			"action": "shell",
-			"resource": "du *",
-			"effect": "allow"
-		},
-		{
-			"action": "shell",
-			"resource": "echo *",
-			"effect": "allow"
-		},
-		{
-			"action": "shell",
-			"resource": "env",
-			"effect": "allow"
-		},
-		{
-			"action": "shell",
-			"resource": "file *",
-			"effect": "allow"
-		},
-		{
-			"action": "shell",
-			"resource": "find *",
-			"effect": "allow"
-		},
-		{
-			"action": "shell",
-			"resource": "git *",
-			"effect": "allow"
-		},
-		{
-			"action": "shell",
-			"resource": "grep *",
-			"effect": "allow"
-		},
-		{
-			"action": "shell",
-			"resource": "head *",
-			"effect": "allow"
-		},
-		{
-			"action": "shell",
-			"resource": "ls *",
-			"effect": "allow"
-		},
-		{
-			"action": "shell",
-			"resource": "mkdir *",
-			"effect": "allow"
-		},
-		{
-			"action": "shell",
-			"resource": "node *",
-			"effect": "allow"
-		},
-		{
-			"action": "shell",
-			"resource": "printf *",
-			"effect": "allow"
-		},
-		{
-			"action": "shell",
-			"resource": "ps *",
-			"effect": "allow"
-		},
-		{
-			"action": "shell",
-			"resource": "pwd",
-			"effect": "allow"
-		},
-		{
-			"action": "shell",
-			"resource": "rg *",
-			"effect": "allow"
-		},
-		{
-			"action": "shell",
-			"resource": "rtk *",
-			"effect": "allow"
-		},
-		{
-			"action": "shell",
-			"resource": "sed *",
-			"effect": "allow"
-		},
-		{
-			"action": "shell",
-			"resource": "sort *",
-			"effect": "allow"
-		},
-		{
-			"action": "shell",
-			"resource": "stat *",
-			"effect": "allow"
-		},
-		{
-			"action": "shell",
-			"resource": "strings *",
-			"effect": "allow"
-		},
-		{
-			"action": "shell",
-			"resource": "tail *",
-			"effect": "allow"
-		},
-		{
-			"action": "shell",
-			"resource": "test *",
-			"effect": "allow"
-		},
-		{
-			"action": "shell",
-			"resource": "tr *",
-			"effect": "allow"
-		},
-		{
-			"action": "shell",
-			"resource": "true",
-			"effect": "allow"
-		},
-		{
-			"action": "shell",
-			"resource": "uniq *",
-			"effect": "allow"
-		},
-		{
-			"action": "shell",
-			"resource": "wc *",
-			"effect": "allow"
-		},
-		{
-			"action": "shell",
-			"resource": "which *",
-			"effect": "allow"
-		},
-		{
-			"action": "shell",
-			"resource": "whoami",
-			"effect": "allow"
-		},
-		{
-			"action": "shell",
-			"resource": "find * -delete",
-			"effect": "ask"
-		},
-		{
-			"action": "shell",
-			"resource": "find * -exec *",
-			"effect": "ask"
-		},
-		{
-			"action": "shell",
-			"resource": "sed -i *",
-			"effect": "ask"
 		},
 		{
 			"action": "external_directory",
 			"resource": "*",
-			"effect": "ask"
-		},
-		{
-			"action": "shell",
-			"resource": "*",
-			"effect": "ask"
+			"effect": "allow"
 		}
 	],
 	"providers": {
@@ -277,113 +79,6 @@
 				}
 			}
 		},
-		"byteplus-plan": {
-			"package": "@ai-sdk/openai-compatible",
-			"name": "BytePlus Coding Plan",
-			"settings": {
-				// Dedicated Coding Plan subscription endpoint
-				"baseURL": "https://ark.ap-southeast.bytepluses.com/api/coding/v3"
-			},
-			"env": [
-				"BYTEPLUS_CODING_KEY"
-			],
-			"models": {
-				// -----------------------------------------------------------------
-				// 1. DYNAMIC AUTO / ROUTING MODEL
-				// -----------------------------------------------------------------
-				"ark-code-latest": {
-					"name": "ark-code-latest",
-					"limit": {
-						"context": 256000,
-						"output": 32000
-					}
-				},
-				// -----------------------------------------------------------------
-				// 2. BYTEDANCE / DOLA SEED NATIVE MODELS
-				// -----------------------------------------------------------------
-				"dola-seed-2.0-pro": {
-					"name": "dola-seed-2.0-pro",
-					"limit": {
-						"context": 256000,
-						"output": 32000
-					}
-				},
-				"dola-seed-2.0-lite": {
-					"name": "dola-seed-2.0-lite",
-					"limit": {
-						"context": 128000,
-						"output": 16000
-					}
-				},
-				"dola-seed-2.0-code": {
-					"name": "dola-seed-2.0-code",
-					"limit": {
-						"context": 256000,
-						"output": 32000
-					}
-				},
-				"bytedance-seed-code": {
-					"name": "bytedance-seed-code",
-					"limit": {
-						"context": 128000,
-						"output": 16000
-					}
-				},
-				// -----------------------------------------------------------------
-				// 3. DEEPSEEK MODELS
-				// -----------------------------------------------------------------
-				"deepseek-v4-flash": {
-					"name": "deepseek-v4-flash",
-					"limit": {
-						"context": 1024000,
-						// "context": 256000,
-						// "output": 384000,
-						"output": 32000
-					}
-				},
-				"deepseek-v4-pro": {
-					"name": "deepseek-v4-pro",
-					"limit": {
-						"context": 1024000,
-						"output": 384000
-					}
-				},
-				// -----------------------------------------------------------------
-				// 4. TSINGHUA GLM SERIES
-				// -----------------------------------------------------------------
-				"glm-5.2": {
-					"name": "glm-5.2",
-					"limit": {
-						"context": 1000000,
-						"output": 32000
-					}
-				},
-				"glm-5.1": {
-					"name": "glm-5.1",
-					"limit": {
-						"context": 1000000,
-						"output": 32000
-					}
-				},
-				// -----------------------------------------------------------------
-				// 5. MOONSHOT KIMI & OPEN SOURCE FRONTIER
-				// -----------------------------------------------------------------
-				"kimi-k2.5": {
-					"name": "kimi-k2.5",
-					"limit": {
-						"context": 256000,
-						"output": 32000
-					}
-				},
-				"gpt-oss-120b": {
-					"name": "gpt-oss-120b",
-					"limit": {
-						"context": 128000,
-						"output": 16000
-					}
-				}
-			}
-		}
 	},
 	"mcp": {
 		"servers": {
