@@ -3,7 +3,7 @@
 // NOTE: no "$schema" here — there is no documented CLI schema URL to pin.
 {
 	"theme": {
-		"name": "orng"
+		"name": "vercel"
 	},
 	"leader": {
 		"timeout": 2000
@@ -56,6 +56,17 @@
 		"session.queued_prompts": "none"
 	},
 	"plugins": [
-		"@tarquinen/opencode-dcp@3.1.14"
-	]
+		"@tarquinen/opencode-dcp@3.2.0"
+  ],
+  "session": {
+    "sidebar": "auto",
+    "scrollbar": true,
+    "thinking": "hide"
+  },
+  "tabs": {
+    "mode": "on",
+    "scope": "cwd",
+    "layout": "vertical",
+    "indicators": "status"
+  }
 }

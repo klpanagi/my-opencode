@@ -4,9 +4,6 @@
 	"subagent_depth": 3,
 	"lsp": true,
 	"formatter": true,
-	"instructions": [
-		"/home/klpanagi/.config/opencode/ctx-rtk-discipline.md"
-	],
 	"model": "commandcode/deepseek/deepseek-v4-flash",
 	"plugins": [
 		"/home/klpanagi/Development/opencode-matrixx-2/dist",
