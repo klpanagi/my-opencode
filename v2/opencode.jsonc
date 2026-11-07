@@ -11,7 +11,7 @@
 		"envsitter-guard@latest",
 		"opencode-cmd-provider@latest",
 		"@tarquinen/opencode-dcp@latest",
-		// "opencode-lcm@latest"
+		"context-mode@2.1.5"
 	],
 	// V2 permissions are an ordered rule list where the LAST matching rule WINS.
 	// Broad rules go FIRST, narrow exceptions LAST. A specific rule placed before
@@ -77,15 +77,5 @@
 				}
 			}
 		},
-	},
-	"mcp": {
-		"servers": {
-			"context-mode": {
-				"type": "local",
-				"command": [
-					"context-mode"
-				]
-			}
-		}
 	}
 }
