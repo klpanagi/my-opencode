@@ -404,7 +404,11 @@
 					"mode": "range",
 					"permission": "allow",
 					"showCompression": true,
-					"summaryBuffer": false,
+					"maxContextLimit": "15%",
+					"minContextLimit": "10%",
+					"nudgeFrequency": 1,
+					"iterationNudgeThreshold": 3,
+					"summaryBuffer": true,
 					"nudgeForce": "strong",
 					"protectedTools": [],
 					"protectUserMessages": false
@@ -453,6 +457,15 @@
 					}
 				}
 			}
+		},
+		// Matrixx-side hard enforcement of the DCP ceiling: above abovePercent,
+		// prepend an explicit "compress the largest closed span, reach targetPercent"
+		// directive to the tail of the last user message (tail-only, cache-safe).
+		"watchdog": {
+			"enabled": true,
+			"abovePercent": 15,
+			"targetPercent": 8,
+			"cooldownTurns": 2
 		},
 		// Handoff-boundary compression for background agent results.
 		// When enabled, background agent session messages > maxMessages are
@@ -1872,5 +1885,6 @@
 	},
 	// Live preset selection. Restart the session after changing.
 	// "active_preset": "commandcode-default"
-	"active_preset": "opencode-spark"
+	// "active_preset": "opencode-spark"
+	"active_preset": "commandcode-default"
 }

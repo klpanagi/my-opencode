@@ -53,9 +53,12 @@ ask_version() {
 		local answer
 		read -r -p "No opencode binary found. Install [v1]/v2/none? (default: v2) " answer </dev/tty || answer=""
 		case "${answer}" in
-			1|v1|V1) VERSION="v1" ;;
-			none|n|N|no) echo "Aborted."; exit 0 ;;
-			*) VERSION="v2" ;;
+		1 | v1 | V1) VERSION="v1" ;;
+		none | n | N | no)
+			echo "Aborted."
+			exit 0
+			;;
+		*) VERSION="v2" ;;
 		esac
 	else
 		info "INFO" "no opencode binary and no tty — defaulting to v2"
@@ -88,8 +91,6 @@ create_symlinks() {
 		items=(
 			opencode.jsonc
 			matrixx.jsonc
-			opencode-mem.jsonc
-			scholia.jsonc
 			tui.json
 			AGENTS.md
 			agents
@@ -102,8 +103,6 @@ create_symlinks() {
 		items=(
 			opencode.jsonc
 			matrixx.jsonc
-			opencode-mem.jsonc
-			scholia.jsonc
 			cli.json
 			AGENTS.md
 			agents
@@ -160,10 +159,23 @@ install_plugin_deps() {
 main() {
 	while [[ $# -gt 0 ]]; do
 		case "$1" in
-			--v1) VERSION="v1"; shift ;;
-			--v2) VERSION="v2"; shift ;;
-			-h|--help) usage; exit 0 ;;
-			*) echo "Unknown argument: $1"; usage; exit 1 ;;
+		--v1)
+			VERSION="v1"
+			shift
+			;;
+		--v2)
+			VERSION="v2"
+			shift
+			;;
+		-h | --help)
+			usage
+			exit 0
+			;;
+		*)
+			echo "Unknown argument: $1"
+			usage
+			exit 1
+			;;
 		esac
 	done
 
