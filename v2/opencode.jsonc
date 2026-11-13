@@ -7,6 +7,7 @@
 	"model": "commandcode/deepseek/deepseek-v4-flash",
 	"plugins": [
 		"/home/klpanagi/Development/opencode-matrixx-2/dist",
+		"/home/klpanagi/Development/opencode2-clinepass",
 		"@nick-vi/opencode-type-inject@latest",
 		"envsitter-guard@latest",
 		"opencode-cmd-provider@latest",

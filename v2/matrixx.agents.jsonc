@@ -1,0 +1,185 @@
+// Agent and category parameters for Matrixx. Extracted from matrixx.jsonc.
+// Edit here; reference via "agents_file": "matrixx.agents.jsonc" in matrixx.jsonc.
+// Inline `agents`/`categories` in matrixx.jsonc are deprecated overrides (inline wins per name).
+{
+	// Per-agent overrides (temperature, thinking budgets in output tokens, failover chains).
+	// Model selection lives in matrixx.presets.jsonc, not here.
+	"agents": {
+		"morpheus": {
+			"variant": "low",
+			"temperature": 0.1,
+			"thinking": {
+				"type": "enabled",
+				"budgetTokens": 32000
+			},
+		},
+		"oracle": {
+			"variant": "low",
+			"temperature": 0.1,
+			"thinking": {
+				"type": "enabled",
+				"budgetTokens": 16000
+			},
+		},
+		"seraph": {
+			"variant": "low",
+			"temperature": 0.3,
+			"thinking": {
+				"type": "enabled",
+				"budgetTokens": 16000
+			}
+		},
+		"keymaker": {
+			"variant": "low",
+			"temperature": 0.1,
+			"thinking": {
+				"type": "enabled",
+				"budgetTokens": 16000
+			},
+		},
+		"cipher": {
+			"variant": "low",
+			"temperature": 0.1
+		},
+		"sentinel": {
+			"variant": "low",
+			"temperature": 0.1,
+			"thinking": {
+				"type": "enabled",
+				"budgetTokens": 16000
+			},
+		},
+		"smith": {
+			"variant": "low",
+			"temperature": 0.1,
+			"thinking": {
+				"type": "enabled",
+				"budgetTokens": 16000
+			}
+		},
+		"merovingian": {
+			"variant": "low",
+			"temperature": 0.1
+		},
+		"niobe": {
+			"variant": "low",
+			"temperature": 0.1
+		},
+		"mouse": {
+			"variant": "low",
+			"temperature": 0.1,
+			"thinking": {
+				"type": "enabled",
+				"budgetTokens": 8000
+			}
+		},
+		"operator": {
+			"variant": "low",
+			"temperature": 0.1,
+		},
+		"trinity": {
+			"variant": "low",
+			"temperature": 0.1,
+		},
+		"construct": {
+			"variant": "low",
+			"temperature": 0.1,
+		},
+		"sati": {
+			"variant": "low",
+			"temperature": 0.1
+		},
+		"neo": {
+			"variant": "low",
+			"temperature": 0.1,
+			"thinking": {
+				"type": "enabled",
+				"budgetTokens": 16000
+			}
+		},
+		"tank": {
+			"variant": "low",
+			"temperature": 0.1,
+			"thinking": {
+				"type": "enabled",
+				"budgetTokens": 16000
+			}
+		},
+		"auditor": {
+			"variant": "low",
+			"temperature": 0.1,
+			"thinking": {
+				"type": "enabled",
+				"budgetTokens": 16000
+			}
+		}
+	},
+	// Delegation tiers used by task(category=...). complexity_downgrades route
+	// trivial work to cheap models (note: still reference the retired opencode-go provider).
+	"categories": {
+		// Heavy reasoning — thinking ON with generous budget
+		"source": {
+			"variant": "low",
+			"temperature": 0.1,
+			"thinking": {
+				"type": "enabled",
+				"budgetTokens": 32000
+			},
+		},
+		"rabbit-hole": {
+			"variant": "low",
+			"temperature": 0.1,
+			"thinking": {
+				"type": "enabled",
+				"budgetTokens": 32000
+			}
+		},
+		"glitch": {
+			"variant": "low",
+			"temperature": 0.1,
+			"thinking": {
+				"type": "enabled",
+				"budgetTokens": 32000
+			}
+		},
+		// Moderate reasoning
+		"the-one": {
+			"variant": "low",
+			"temperature": 0.1,
+			"thinking": {
+				"type": "enabled",
+				"budgetTokens": 16000
+			},
+		},
+		"construct": {
+			"variant": "low",
+			"temperature": 0.1,
+			"thinking": {
+				"type": "enabled",
+				"budgetTokens": 16000
+			}
+		},
+		// Thinking OFF — simple/cheap tasks
+		"blue-pill": {
+			"variant": "low",
+			"temperature": 0.1,
+			"thinking": {
+				"type": "disabled"
+			}
+		},
+		"transmission": {
+			"variant": "low",
+			"temperature": 0.1,
+			"thinking": {
+				"type": "disabled"
+			}
+		},
+		"bullet-time": {
+			"variant": "low",
+			"temperature": 0.1,
+			"thinking": {
+				"type": "disabled"
+			}
+		}
+	}
+}

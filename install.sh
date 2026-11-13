@@ -102,7 +102,6 @@ create_symlinks() {
 	else
 		items=(
 			opencode.jsonc
-			matrixx.jsonc
 			cli.json
 			AGENTS.md
 			agents
@@ -111,6 +110,13 @@ create_symlinks() {
 			plugins
 			dcp
 		)
+		# Symlink every matrixx.*.jsonc config from the repo
+		# (matrixx.jsonc, matrixx.agents.jsonc, matrixx.presets.jsonc, …).
+		local mf
+		for mf in "${src_dir}/matrixx.jsonc" "${src_dir}"/matrixx.*.jsonc; do
+			[[ -e "${mf}" ]] || continue
+			items+=("$(basename "${mf}")")
+		done
 	fi
 
 	echo "Symlinks (${VERSION}):"
